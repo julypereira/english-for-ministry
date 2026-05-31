@@ -1,12 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "English for Ministry - Amigo Intimo Church" },
+      { name: "description", content: "Ministério de idiomas para avançar em missões e ministérios cristãos." },
     ],
   }),
   component: Index,
