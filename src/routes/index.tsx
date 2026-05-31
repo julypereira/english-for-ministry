@@ -86,13 +86,24 @@ function Index() {
 
       {/* Hero Section with Map Concept */}
       <section className="relative pt-20 pb-32 overflow-hidden">
-        {/* Abstract Map Background Decoration */}
-        <div className="absolute top-0 right-0 w-[60%] h-full opacity-[0.03] pointer-events-none select-none">
+        {/* Full Section Background Image (Inspired by attached reference) */}
+        <div className="absolute inset-0 z-0 opacity-10 grayscale hover:grayscale-0 transition-all duration-1000">
+          <img 
+            src="https://images.unsplash.com/photo-1519491050282-ce00c729c8bf?q=80&w=2000" 
+            alt="Missions World Map"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+        </div>
+
+        {/* Abstract Decorative Map Lines (Replaces "lions" or messy shapes) */}
+        <div className="absolute top-0 right-0 w-[60%] h-full opacity-[0.05] pointer-events-none select-none">
           <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" className="w-full h-full fill-black">
-             <path d="M150 200 L200 150 L300 180 L400 120 L500 150 L600 100 L700 180 L850 150 L900 250 L800 350 L850 450 L750 600 L650 550 L550 650 L400 600 L300 700 L150 650 L200 500 L100 400 L150 300 Z" />
-             <circle cx="500" cy="500" r="10" />
-             <circle cx="200" cy="300" r="10" />
-             <circle cx="800" cy="600" r="10" />
+             <path d="M50 200 Q 200 100 400 250 T 800 150" fill="none" stroke="currentColor" strokeWidth="2" />
+             <path d="M100 400 Q 300 300 500 450 T 900 350" fill="none" stroke="currentColor" strokeWidth="2" />
+             <circle cx="400" cy="250" r="4" />
+             <circle cx="800" cy="150" r="4" />
+             <circle cx="500" cy="450" r="4" />
           </svg>
         </div>
 
