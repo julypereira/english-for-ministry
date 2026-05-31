@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, MapPin } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, MapPin, Search, ArrowRight, Play, CheckCircle, Headphones, Star } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "English for Ministry - Amigo Intimo Church" },
-      { name: "description", content: "Ministério de idiomas para avançar em missões e ministérios cristãos." },
+      { title: "English for Ministry | Amigo Intimo Church" },
+      { name: "description", content: "A plataforma oficial de idiomas da Amigo Intimo Church para missões e ministérios." },
     ],
   }),
   component: Index,
