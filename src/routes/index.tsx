@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, Instagram, MessageCircle, MapPin } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, MapPin } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 export const Route = createFileRoute("/")({
@@ -172,10 +172,10 @@ function Index() {
               </p>
               <div className="flex gap-4">
                 <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-primary transition-colors">
-                  <Instagram size={20} />
+                  Instagram
                 </a>
                 <a href="https://wa.link/wcgt0u" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-primary transition-colors">
-                  <MessageCircle size={20} />
+                  WhatsApp
                 </a>
               </div>
             </div>
