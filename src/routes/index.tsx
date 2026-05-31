@@ -1,4 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import useEmblaCarousel from 'embla-carousel-react';
+import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const Route = createFileRoute("/")({
   head: () => ({
