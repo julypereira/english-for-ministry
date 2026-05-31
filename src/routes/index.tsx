@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, MapPin } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 export const Route = createFileRoute("/")({
@@ -44,21 +44,27 @@ function Index() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
-      {/* Background Decorativo Estilo "Inspiração" */}
+    <div className="min-h-screen bg-white relative overflow-hidden">
+      {/* Background Decorativo - Paleta Preto/Branco/Laranja */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-3xl opacity-40"></div>
-        <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-indigo-200/30 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] bg-slate-100 rounded-full blur-3xl opacity-40"></div>
       </div>
 
-      <nav className="border-b bg-white/80 backdrop-blur-md sticky top-0 z-50 p-4 shadow-sm">
+      <nav className="border-b bg-white/90 backdrop-blur-md sticky top-0 z-50 p-4 shadow-sm">
         <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary p-2 rounded-lg">
-              <Globe className="text-white w-6 h-6" />
+          <div className="flex items-center gap-3">
+            <div className="bg-black p-1.5 rounded-lg flex items-center justify-center">
+              <img 
+                src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=100" 
+                alt="Logo Amigo Intimo Church"
+                className="w-10 h-10 object-contain brightness-0 invert" 
+              />
             </div>
-            <div className="font-bold text-xl text-primary tracking-tight">AMIGO INTIMO CHURCH</div>
+            <div className="font-black text-xl text-black tracking-tighter leading-none uppercase">
+              Amigo Intimo <br />
+              <span className="text-primary text-xs tracking-[0.2em] font-bold">Church</span>
+            </div>
           </div>
           <div className="flex items-center space-x-6">
             <Link to="/" className="text-muted-foreground hover:text-primary font-medium transition-colors hidden sm:block">Home</Link>
@@ -154,14 +160,46 @@ function Index() {
         </div>
       </main>
 
-      <footer className="bg-slate-900 text-slate-400 py-16 mt-20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-8 font-bold text-xl text-white">AMIGO INTIMO CHURCH</div>
-          <p className="max-w-md mx-auto mb-8">
-            Levando o Reino de Deus a todas as nações através da comunicação.
-          </p>
-          <div className="border-t border-slate-800 pt-8 text-sm">
-            © {new Date().getFullYear()} English for Ministry. Todos os direitos reservados.
+      <footer className="bg-black text-white py-20 mt-20 relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-12 border-b border-white/10 pb-16">
+            <div>
+              <div className="font-black text-2xl mb-6 uppercase tracking-tighter">
+                Amigo Intimo <span className="text-primary italic">Church</span>
+              </div>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                Levando o Reino de Deus a todas as nações através da comunicação e do discipulado.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-primary transition-colors">
+                  Instagram
+                </a>
+                <a href="https://wa.link/wcgt0u" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-primary transition-colors">
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-6 text-primary">Localização</h4>
+              <div className="flex gap-4 text-slate-400">
+                <MapPin className="shrink-0 text-primary" />
+                <p>📍 R. dos Pássaros, 46, Bonjardim - Campo Grande/MS - Brasil</p>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-lg mb-6 text-primary">Contato</h4>
+              <p className="text-slate-400 mb-4 italic">
+                "Go into all the world and preach the gospel to all creation." - Mark 16:15
+              </p>
+              <a href="https://wa.link/wcgt0u" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary text-white px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform">
+                Fale Conosco via WhatsApp
+              </a>
+            </div>
+          </div>
+          <div className="pt-8 text-center text-sm text-slate-500">
+            © {new Date().getFullYear()} English for Ministry. Um ministério Amigo Intimo Church.
           </div>
         </div>
       </footer>
