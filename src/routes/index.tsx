@@ -45,10 +45,14 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Background Decorativo - Paleta Preto/Branco/Laranja */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] bg-slate-100 rounded-full blur-3xl opacity-40"></div>
+      {/* Background de Imagem com Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2000" 
+          alt="Church Background" 
+          className="w-full h-full object-cover opacity-10 grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white"></div>
       </div>
 
       <nav className="border-b bg-white/90 backdrop-blur-md sticky top-0 z-50 p-4 shadow-sm">
