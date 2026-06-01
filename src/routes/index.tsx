@@ -239,8 +239,8 @@ function Index() {
             <div className="relative">
               <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white/5 group bg-black">
                 <img 
-                  src="https://images.unsplash.com/photo-1519491050282-ce00c729c8bf?q=80&w=1200" 
-                  alt="Missions Map and Cross" 
+                  src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1200" 
+                  alt="Missionary Global Map" 
                   className="w-full aspect-square object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
