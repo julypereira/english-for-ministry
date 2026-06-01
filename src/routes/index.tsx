@@ -182,14 +182,9 @@ function Index() {
             <Link to="/" className="flex items-center gap-3 group">
               <div className="bg-transparent p-0 rounded-xl group-hover:scale-105 transition-transform duration-300">
                 <img 
-                  src="/church-logo.png" 
+                  src="https://drive.google.com/uc?export=view&id=1saUNtId0xy6RTdoZVVm5akaDgTAAMkSW" 
                   alt="Logo Amigo Intimo Church"
-                  className="w-auto h-12 object-contain" 
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    if (target.src.includes('drive.google.com')) return;
-                    target.src = "https://drive.google.com/uc?export=download&id=1saUNtId0xy6RTdoZVVm5akaDgTAAMkSW";
-                  }}
+                  className="w-auto h-16 object-contain"
                 />
               </div>
               <div className="flex flex-col">
