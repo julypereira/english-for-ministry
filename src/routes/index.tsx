@@ -385,8 +385,8 @@ function Index() {
                 <ul className="space-y-4 text-slate-400 font-bold uppercase tracking-tight text-sm">
                   <li><Link to="/" className="hover:text-white transition-colors">{t.nav.methodology}</Link></li>
                   <li><Link to="/" className="hover:text-white transition-colors">{t.nav.courses}</Link></li>
-                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.testimonials}</Link></li>
-                  <li><Link to="/login" className="hover:text-white transition-colors">{t.nav.login}</Link></li>
+                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.missions}</Link></li>
+                  <li><Link to="/login" className="hover:text-white transition-colors">{t.nav.join}</Link></li>
                 </ul>
               </div>
 
