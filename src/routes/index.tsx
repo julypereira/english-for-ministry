@@ -23,8 +23,6 @@ const translations = {
       methodology: "Metodologia",
       courses: "Cursos",
       missions: "Missões",
-      testimonials: "Depoimentos",
-      login: "Entrar",
       join: "Área do Aluno",
     },
     hero: {
@@ -85,8 +83,6 @@ const translations = {
       methodology: "Methodology",
       courses: "Courses",
       missions: "Missions",
-      testimonials: "Testimonials",
-      login: "Login",
       join: "Student Area",
     },
     hero: {
@@ -188,7 +184,6 @@ function Index() {
               <Link to="/" className="text-white hover:text-primary transition-colors py-2 border-b-2 border-primary">{t.nav.methodology}</Link>
               <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.courses}</Link>
               <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.missions}</Link>
-              <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.testimonials}</Link>
             </div>
 
             <div className="flex items-center gap-3 md:gap-6">
@@ -390,8 +385,8 @@ function Index() {
                 <ul className="space-y-4 text-slate-400 font-bold uppercase tracking-tight text-sm">
                   <li><Link to="/" className="hover:text-white transition-colors">{t.nav.methodology}</Link></li>
                   <li><Link to="/" className="hover:text-white transition-colors">{t.nav.courses}</Link></li>
-                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.testimonials}</Link></li>
-                  <li><Link to="/login" className="hover:text-white transition-colors">{t.nav.login}</Link></li>
+                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.missions}</Link></li>
+                  <li><Link to="/login" className="hover:text-white transition-colors">{t.nav.join}</Link></li>
                 </ul>
               </div>
 
