@@ -179,18 +179,9 @@ function Index() {
 
         <nav className="sticky top-0 z-[100] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
           <div className="container mx-auto flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="bg-transparent p-0 rounded-xl group-hover:scale-105 transition-transform duration-300">
-                <img 
-                  src="https://drive.google.com/uc?export=view&id=1saUNtId0xy6RTdoZVVm5akaDgTAAMkSW" 
-                  alt="Logo Amigo Intimo Church"
-                  className="w-auto h-16 object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
-                <span className="text-primary text-[10px] tracking-[0.3em] font-black uppercase">English for Ministry</span>
-              </div>
+            <Link to="/" className="flex flex-col group">
+              <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
+              <span className="text-primary text-[10px] tracking-[0.3em] font-black uppercase">English for Ministry</span>
             </Link>
 
             <div className="hidden lg:flex items-center space-x-10 text-sm font-bold uppercase tracking-tight">
