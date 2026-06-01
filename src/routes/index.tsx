@@ -180,11 +180,11 @@ function Index() {
         <nav className="sticky top-0 z-[100] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="bg-white p-2 rounded-xl group-hover:bg-primary transition-colors duration-300">
+              <div className="bg-transparent p-0 rounded-xl group-hover:scale-105 transition-transform duration-300">
                 <img 
-                  src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=100" 
+                  src="/lovable-uploads/27063d83-4a0b-426b-ae9b-0082662c193c.png" 
                   alt="Logo Amigo Intimo Church"
-                  className="w-8 h-8 object-contain" 
+                  className="w-12 h-12 object-contain" 
                 />
               </div>
               <div className="flex flex-col">
