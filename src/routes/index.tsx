@@ -220,17 +220,6 @@ function Index() {
               <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 {t.hero.desc} <span className="text-white font-bold decoration-primary/50 decoration-2 underline-offset-8">{t.hero.descHighlight}</span>
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6">
-                <Link to="/login" className="w-full sm:w-auto px-12 py-5 bg-white text-black text-[13px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5 active:scale-95">
-                  {t.hero.cta}
-                </Link>
-                <button className="w-full sm:w-auto flex items-center justify-center gap-4 px-10 py-5 border border-white/10 rounded-full hover:border-primary/50 hover:bg-white/5 transition-all group backdrop-blur-sm active:scale-95">
-                  <div className="bg-primary text-white p-2 rounded-full group-hover:scale-110 transition-transform">
-                    <Play size={18} fill="currentColor" />
-                  </div>
-                  <span className="text-[13px] font-black uppercase tracking-[0.15em] text-white/90">{t.hero.secondaryCta}</span>
-                </button>
-              </div>
             </div>
 
             <div className="relative mt-12 lg:mt-0 max-w-2xl mx-auto w-full">
