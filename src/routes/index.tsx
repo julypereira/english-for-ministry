@@ -307,30 +307,33 @@ function Index() {
           </div>
         </section>
 
-        <section className="py-32">
-          <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="bg-black/80 backdrop-blur-xl rounded-[40px] p-12 text-white relative z-10 overflow-hidden border border-white/10">
-                 <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/world-map.png')]"></div>
+        <section id="methodology" className="py-24 md:py-40 relative overflow-hidden">
+          <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="bg-white/5 backdrop-blur-2xl rounded-[3rem] p-8 md:p-14 text-white relative z-10 overflow-hidden border border-white/10 shadow-3xl">
+                 <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/world-map.png')] grayscale invert"></div>
                  
                  <div className="relative z-10">
-                   <h3 className="text-4xl font-black uppercase tracking-tighter mb-10">{t.methodology.cardTitle}</h3>
-                   <div className="space-y-8">
+                   <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-12 flex items-center gap-4">
+                     <span className="w-12 h-1 bg-primary"></span>
+                     {t.methodology.cardTitle}
+                   </h3>
+                   <div className="space-y-10">
                      {t.methodology.cards.map((item, i) => (
-                       <div key={i} className="flex gap-6 items-start">
-                         <div className="bg-primary/20 text-primary p-3 rounded-2xl">
-                           {i === 0 ? <BookOpen /> : i === 1 ? <Headphones /> : <Globe />}
+                       <div key={i} className="flex gap-6 md:gap-8 items-start group/item">
+                         <div className="bg-primary/10 text-primary p-4 rounded-2xl group-hover/item:bg-primary group-hover/item:text-white transition-all duration-300 transform group-hover/item:scale-110">
+                           {i === 0 ? <BookOpen size={24} /> : i === 1 ? <Headphones size={24} /> : <Globe size={24} />}
                          </div>
                          <div>
-                           <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                           <p className="text-slate-400 font-medium">{item.desc}</p>
+                           <h4 className="text-xl font-black uppercase tracking-tight mb-2 group-hover/item:text-primary transition-colors">{item.title}</h4>
+                           <p className="text-slate-400 font-medium leading-relaxed">{item.desc}</p>
                          </div>
                        </div>
                      ))}
                    </div>
                  </div>
               </div>
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-[100px]"></div>
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-[120px]"></div>
             </div>
 
             <div className="order-1 lg:order-2">
