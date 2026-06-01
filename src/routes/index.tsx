@@ -182,7 +182,7 @@ function Index() {
             <Link to="/" className="flex items-center gap-3 group">
               <div className="bg-transparent p-0 rounded-xl group-hover:scale-105 transition-transform duration-300">
                 <img 
-                  src="/lovable-uploads/27063d83-4a0b-426b-ae9b-0082662c193c.png" 
+                  src="/church-logo.png" 
                   alt="Logo Amigo Intimo Church"
                   className="w-12 h-12 object-contain" 
                 />
