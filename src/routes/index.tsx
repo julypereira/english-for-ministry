@@ -347,18 +347,9 @@ function Index() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="grid md:grid-cols-4 gap-16 mb-24">
               <div className="col-span-2">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="bg-primary p-2 rounded-xl">
-                    <img 
-                      src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=100" 
-                      alt="Logo"
-                      className="w-10 h-10 object-contain" 
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-black text-2xl leading-none uppercase tracking-tighter">Amigo Intimo</span>
-                    <span className="text-primary text-xs tracking-[0.3em] font-black uppercase italic">Church</span>
-                  </div>
+                <div className="flex flex-col mb-8">
+                  <span className="font-black text-2xl leading-none uppercase tracking-tighter">Amigo Intimo</span>
+                  <span className="text-primary text-xs tracking-[0.3em] font-black uppercase italic">Church</span>
                 </div>
                 <p className="text-slate-400 text-lg max-w-sm mb-10 font-medium">
                   {t.footer.desc}
