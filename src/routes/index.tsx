@@ -156,9 +156,9 @@ function Index() {
   }, [emblaApi]);
 
   const carouselImages = [
-    "https://images.unsplash.com/photo-1504173010664-32509aeebb62?q=80&w=1200", // Bíblia aberta
-    "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1200", // Mapa mundi
-    "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200", // Grupo estudando
+    "https://images.unsplash.com/photo-1504173010664-32509aeebb62?q=80&w=1600",
+    "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1600",
+    "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600",
   ];
 
   const toggleLang = () => {
