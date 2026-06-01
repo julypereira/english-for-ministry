@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, MapPin, Search, ArrowRight, Play, CheckCircle, Headphones, Star, Languages } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, Globe, Users, GraduationCap, MapPin, Search, ArrowRight, Play, CheckCircle, Headphones, Star, Languages, Instagram, MessageCircle } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 type Language = 'pt' | 'en';
@@ -364,8 +364,24 @@ function Index() {
                   {t.footer.desc}
                 </p>
                 <div className="flex gap-6">
-                   <a href="https://www.instagram.com/amigointimochurch_cg/" className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest">Instagram</a>
-                   <a href="https://wa.link/wcgt0u" className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest">WhatsApp</a>
+                   <a 
+                     href="https://www.instagram.com/amigointimochurch_cg/" 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
+                   >
+                     <Instagram size={18} />
+                     Instagram
+                   </a>
+                   <a 
+                     href="https://web.whatsapp.com/send/?phone=5567984047848" 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
+                   >
+                     <MessageCircle size={18} />
+                     WhatsApp
+                   </a>
                 </div>
               </div>
 
