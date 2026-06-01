@@ -212,51 +212,58 @@ function Index() {
           </div>
         </nav>
 
-        <section className="relative pt-20 pb-32 overflow-hidden">
-          <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-primary/20 mb-8 backdrop-blur-md">
-                <Star size={14} className="fill-primary" />
+        <section className="relative pt-12 md:pt-24 pb-20 md:pb-40 overflow-hidden">
+          <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="relative z-10 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-primary/20 mb-8 backdrop-blur-md animate-fade-in">
+                <Star size={12} className="fill-primary" />
                 {t.hero.tag}
               </div>
-              <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8 uppercase">
+              <h1 className="text-5xl sm:text-7xl md:text-8xl xl:text-9xl font-black text-white leading-[0.85] tracking-tighter mb-8 uppercase">
                 {t.hero.title1} <br />
-                <span className="text-primary italic">{t.hero.title2}</span>
+                <span className="text-primary italic relative inline-block">
+                  {t.hero.title2}
+                  <span className="absolute -bottom-2 left-0 w-full h-2 bg-white/10 -rotate-1"></span>
+                </span>
               </h1>
-              <p className="text-xl text-slate-400 mb-12 max-w-xl leading-relaxed font-medium">
-                {t.hero.desc} <span className="text-white font-bold underline decoration-primary decoration-4 underline-offset-4">{t.hero.descHighlight}</span>
+              <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                {t.hero.desc} <span className="text-white font-bold decoration-primary/50 decoration-2 underline-offset-8">{t.hero.descHighlight}</span>
               </p>
-              <div className="flex flex-wrap gap-6">
-                <Link to="/login" className="px-10 py-5 bg-white text-black text-lg font-black uppercase tracking-widest rounded-full hover:bg-primary hover:text-white transition-all shadow-2xl">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6">
+                <Link to="/login" className="w-full sm:w-auto px-12 py-5 bg-white text-black text-[13px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5 active:scale-95">
                   {t.hero.cta}
                 </Link>
-                <button className="flex items-center gap-4 px-8 py-5 border-2 border-white/10 rounded-full hover:border-primary hover:bg-primary/5 transition-all group backdrop-blur-sm">
+                <button className="w-full sm:w-auto flex items-center justify-center gap-4 px-10 py-5 border border-white/10 rounded-full hover:border-primary/50 hover:bg-white/5 transition-all group backdrop-blur-sm active:scale-95">
                   <div className="bg-primary text-white p-2 rounded-full group-hover:scale-110 transition-transform">
-                    <Play size={20} fill="white" />
+                    <Play size={18} fill="currentColor" />
                   </div>
-                  <span className="text-lg font-bold uppercase tracking-tight">{t.hero.secondaryCta}</span>
+                  <span className="text-[13px] font-black uppercase tracking-[0.15em] text-white/90">{t.hero.secondaryCta}</span>
                 </button>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white/5 group bg-black">
+            <div className="relative mt-12 lg:mt-0 max-w-2xl mx-auto w-full">
+              <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 group aspect-square lg:aspect-[4/5] xl:aspect-square">
                 <img 
                   src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
                   alt="Christian Mission Service" 
-                  className="w-full aspect-square object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                <div className="absolute bottom-10 left-10 text-white">
-                  <div className="flex gap-1 mb-2">
-                     {[1,2,3,4,5].map(s => <Star key={s} size={16} fill="#FF6600" color="#FF6600" />)}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent opacity-80"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-white p-6 bg-black/40 backdrop-blur-md rounded-[2rem] border border-white/10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="flex gap-1 mb-4">
+                     {[1,2,3,4,5].map(s => <Star key={s} size={14} className="fill-primary text-primary" />)}
                   </div>
-                  <p className="text-lg font-bold italic">"{t.hero.testimonial}"</p>
-                  <p className="text-sm opacity-80 uppercase tracking-widest font-black mt-1">{t.hero.testimonialAuthor}</p>
+                  <p className="text-base md:text-lg font-bold italic leading-relaxed mb-4 text-white/90">"{t.hero.testimonial}"</p>
+                  <p className="text-[10px] opacity-60 uppercase tracking-[0.3em] font-black flex items-center gap-2">
+                    <span className="w-8 h-px bg-primary"></span>
+                    {t.hero.testimonialAuthor}
+                  </p>
                 </div>
               </div>
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-orange-100/10 rounded-full blur-3xl opacity-50"></div>
+              {/* Decorative elements */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary/20 rounded-full blur-[80px] animate-pulse"></div>
+              <div className="absolute -bottom-12 -left-12 w-72 h-72 bg-orange-600/10 rounded-full blur-[100px] opacity-40"></div>
             </div>
           </div>
         </section>
