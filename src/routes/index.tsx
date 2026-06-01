@@ -70,7 +70,7 @@ const translations = {
     footer: {
       desc: "Treinando líderes globais para levar a mensagem de esperança a cada tribo, língua e nação.",
       navTitle: "Navegação",
-      baseTitle: "Base",
+      baseTitle: "Endereço",
       copyright: "Todos os direitos reservados. Construído para a Eternidade.",
       privacy: "Privacidade",
       terms: "Termos"
@@ -130,7 +130,7 @@ const translations = {
     footer: {
       desc: "Training global leaders to carry the message of hope to every tribe, tongue, and nation.",
       navTitle: "Navigation",
-      baseTitle: "Base",
+      baseTitle: "Address",
       copyright: "All rights reserved. Built for Eternity.",
       privacy: "Privacy",
       terms: "Terms"
