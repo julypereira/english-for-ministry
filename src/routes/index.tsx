@@ -25,7 +25,7 @@ const translations = {
       missions: "Missões",
       testimonials: "Depoimentos",
       login: "Entrar",
-      join: "Participar Agora",
+      join: "Área do Aluno",
     },
     hero: {
       tag: "Capacitando Líderes do Reino",
@@ -87,7 +87,7 @@ const translations = {
       missions: "Missions",
       testimonials: "Testimonials",
       login: "Login",
-      join: "Join Now",
+      join: "Student Area",
     },
     hero: {
       tag: "Empowering Kingdom Leaders",
@@ -200,10 +200,6 @@ function Index() {
                 <Languages size={14} className="text-primary" />
                 <span className="hidden sm:inline">{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
               </button>
-              
-              <Link to="/login" className="hidden sm:block text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">
-                {t.nav.login}
-              </Link>
               
               <Link to="/login" className="bg-primary text-white text-[11px] font-black uppercase tracking-[0.2em] px-6 md:px-10 py-3.5 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all">
                 {t.nav.join}
