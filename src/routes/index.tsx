@@ -239,7 +239,7 @@ function Index() {
             <div className="relative">
               <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white/5 group bg-black">
                 <img 
-                  src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200" 
+                  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200" 
                   alt="Missions Map and Cross" 
                   className="w-full aspect-square object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
                 />
