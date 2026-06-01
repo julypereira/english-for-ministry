@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
 const translations = {
   pt: {
     topBanner: "Expanda seu ministério. Alcance as nações.",
-    topBannerCTA: "Comece sua jornada hoje",
+    topBannerCTA: "",
     nav: {
       methodology: "Metodologia",
       courses: "Cursos",
@@ -80,7 +80,7 @@ const translations = {
   },
   en: {
     topBanner: "Expand your ministry. Reach the nations.",
-    topBannerCTA: "Start your journey today",
+    topBannerCTA: "",
     nav: {
       methodology: "Methodology",
       courses: "Courses",
@@ -174,7 +174,7 @@ function Index() {
       
       <div className="relative z-10">
         <div className="bg-primary/90 backdrop-blur-sm text-white py-2 text-center text-xs font-bold uppercase tracking-widest px-4">
-          {t.topBanner} <span className="text-black ml-2 underline cursor-pointer hover:text-white transition-colors">{t.topBannerCTA}</span>
+          {t.topBanner}
         </div>
 
         <nav className="sticky top-0 z-[100] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
