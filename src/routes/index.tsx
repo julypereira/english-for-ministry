@@ -184,7 +184,12 @@ function Index() {
                 <img 
                   src="/church-logo.png" 
                   alt="Logo Amigo Intimo Church"
-                  className="w-12 h-12 object-contain" 
+                  className="w-auto h-12 object-contain" 
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.includes('drive.google.com')) return;
+                    target.src = "https://drive.google.com/uc?export=download&id=1saUNtId0xy6RTdoZVVm5akaDgTAAMkSW";
+                  }}
                 />
               </div>
               <div className="flex flex-col">
