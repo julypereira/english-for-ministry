@@ -35,8 +35,8 @@ const translations = {
       descHighlight: "Amigo Intimo Church",
       cta: "Começar",
       secondaryCta: "Nossa Missão",
-      testimonial: "Agora posso pregar com confiança.",
-      testimonialAuthor: "Pastor John, Depto. de Missões",
+      testimonial: "E disse-lhes: 'Vão pelo mundo todo e preguem o evangelho a todas as pessoas.'",
+      testimonialAuthor: "Marcos 16:15",
     },
     carousel: [
       {
@@ -97,8 +97,8 @@ const translations = {
       descHighlight: "Amigo Intimo Church",
       cta: "Get Started",
       secondaryCta: "Our Mission",
-      testimonial: "Now I can preach with confidence.",
-      testimonialAuthor: "Pastor John, Missions Dept.",
+      testimonial: "And he said unto them, 'Go ye into all the world, and preach the gospel to every creature.'",
+      testimonialAuthor: "Mark 16:15",
     },
     carousel: [
       {
