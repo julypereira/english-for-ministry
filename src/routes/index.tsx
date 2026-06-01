@@ -177,32 +177,35 @@ function Index() {
           {t.topBanner}
         </div>
 
-        <nav className="sticky top-0 z-[100] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
+        <nav className="sticky top-0 z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5 px-6 py-4">
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex flex-col group">
-              <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
-              <span className="text-primary text-[10px] tracking-[0.3em] font-black uppercase">English for Ministry</span>
+              <span className="font-black text-2xl leading-none uppercase tracking-tighter text-white group-hover:text-primary transition-colors">Amigo Intimo</span>
+              <span className="text-primary text-[10px] tracking-[0.4em] font-black uppercase opacity-80">English for Ministry</span>
             </Link>
 
-            <div className="hidden lg:flex items-center space-x-10 text-sm font-bold uppercase tracking-tight">
-              <Link to="/" className="text-white hover:text-primary transition-colors">{t.nav.methodology}</Link>
-              <Link to="/" className="text-slate-400 hover:text-primary transition-colors">{t.nav.courses}</Link>
-              <Link to="/" className="text-slate-400 hover:text-primary transition-colors">{t.nav.missions}</Link>
-              <Link to="/" className="text-slate-400 hover:text-primary transition-colors">{t.nav.testimonials}</Link>
+            <div className="hidden lg:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest">
+              <Link to="/" className="text-white hover:text-primary transition-colors py-2 border-b-2 border-primary">{t.nav.methodology}</Link>
+              <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.courses}</Link>
+              <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.missions}</Link>
+              <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.testimonials}</Link>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-6">
               <button 
                 onClick={toggleLang}
-                className="flex items-center gap-2 text-xs font-black uppercase tracking-widest px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+                className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 active:scale-95"
+                aria-label="Toggle Language"
               >
                 <Languages size={14} className="text-primary" />
-                {lang === 'pt' ? 'EN-US' : 'PT-BR'}
+                <span className="hidden sm:inline">{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
               </button>
-              <Link to="/login" className="text-sm font-bold uppercase tracking-tight text-white hover:text-primary px-4 py-2 transition-colors">
+              
+              <Link to="/login" className="hidden sm:block text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">
                 {t.nav.login}
               </Link>
-              <Link to="/login" className="bg-primary text-white text-sm font-black uppercase tracking-widest px-8 py-3.5 rounded-full shadow-[0_8px_20px_-6px_rgba(255,102,0,0.4)] hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all">
+              
+              <Link to="/login" className="bg-primary text-white text-[11px] font-black uppercase tracking-[0.2em] px-6 md:px-10 py-3.5 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all">
                 {t.nav.join}
               </Link>
             </div>
