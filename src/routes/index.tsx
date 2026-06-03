@@ -205,47 +205,64 @@ function Index() {
           </div>
         </nav>
 
-        <section className="relative pt-12 md:pt-24 pb-20 md:pb-40 overflow-hidden">
-          <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative z-10 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-primary/20 mb-8 backdrop-blur-md animate-fade-in">
-                <Star size={12} className="fill-primary" />
-                {t.hero.tag}
-              </div>
-              <h1 className="text-5xl sm:text-7xl md:text-8xl xl:text-9xl font-black text-white leading-[0.85] tracking-tighter mb-8 uppercase">
-                {t.hero.title1} <br />
-                <span className="text-primary italic relative inline-block">
-                  {t.hero.title2}
-                  <span className="absolute -bottom-2 left-0 w-full h-2 bg-white/10 -rotate-1"></span>
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                {t.hero.desc} <span className="text-white font-bold decoration-primary/50 decoration-2 underline-offset-8">{t.hero.descHighlight}</span>
-              </p>
-            </div>
-
-            <div className="relative mt-12 lg:mt-0 max-w-2xl mx-auto w-full">
-              <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 group aspect-square lg:aspect-[4/5] xl:aspect-square">
-                <img 
-                  src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
-                  alt="Christian Mission Service" 
-                  className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent opacity-80"></div>
-                <div className="absolute bottom-8 left-8 right-8 text-white p-6 bg-black/40 backdrop-blur-md rounded-[2rem] border border-white/10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="flex gap-1 mb-4">
-                     {[1,2,3,4,5].map(s => <Star key={s} size={14} className="fill-primary text-primary" />)}
+        <section className="relative pt-16 md:pt-32 pb-20 md:pb-32 overflow-hidden">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+              <div className="relative z-10 text-center lg:text-left lg:w-3/5">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-primary/20 mb-8 backdrop-blur-md">
+                  <Star size={12} className="fill-primary" />
+                  {t.hero.tag}
+                </div>
+                <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8 uppercase">
+                  {t.hero.title1} <br />
+                  <span className="text-primary italic relative inline-block">
+                    {t.hero.title2}
+                  </span>
+                </h1>
+                <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                  {t.hero.desc} <span className="text-white font-bold">{t.hero.descHighlight}</span>
+                </p>
+                
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                  <Link to="/login" className="w-full sm:w-auto bg-primary text-white text-[13px] font-black uppercase tracking-[0.2em] px-12 py-5 rounded-xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all text-center">
+                    {t.nav.join}
+                  </Link>
+                  <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                    <div className="flex -space-x-2">
+                      {[1,2,3].map(i => (
+                        <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-slate-800 flex items-center justify-center overflow-hidden">
+                          <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
+                        </div>
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">+500 ALUNOS</span>
                   </div>
-                  <p className="text-base md:text-lg font-bold italic leading-relaxed mb-4 text-white/90">"{t.hero.testimonial}"</p>
-                  <p className="text-[10px] opacity-60 uppercase tracking-[0.3em] font-black flex items-center gap-2">
-                    <span className="w-8 h-px bg-primary"></span>
-                    {t.hero.testimonialAuthor}
-                  </p>
                 </div>
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary/20 rounded-full blur-[80px] animate-pulse"></div>
-              <div className="absolute -bottom-12 -left-12 w-72 h-72 bg-orange-600/10 rounded-full blur-[100px] opacity-40"></div>
+
+              <div className="relative lg:w-2/5 w-full max-w-lg mx-auto">
+                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-[4/5] sm:aspect-square lg:aspect-[4/5]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
+                    alt="Christian Mission Service" 
+                    className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 right-6 text-white p-5 bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10">
+                    <div className="flex gap-1 mb-3">
+                       {[1,2,3,4,5].map(s => <Star key={s} size={12} className="fill-primary text-primary" />)}
+                    </div>
+                    <p className="text-sm font-bold italic leading-relaxed mb-3 text-white/90">"{t.hero.testimonial}"</p>
+                    <p className="text-[9px] opacity-60 uppercase tracking-[0.2em] font-black flex items-center gap-2">
+                      <span className="w-6 h-px bg-primary"></span>
+                      {t.hero.testimonialAuthor}
+                    </p>
+                  </div>
+                </div>
+                {/* Decorative glow */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px]"></div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-[80px]"></div>
+              </div>
             </div>
           </div>
         </section>
