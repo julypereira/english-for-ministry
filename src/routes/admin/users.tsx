@@ -124,8 +124,13 @@ function AdminUsersComponent() {
   };
 
   const handleDelete = (id: string) => {
-    if (window.confirm(lang === 'pt' ? "Tem certeza que deseja excluir este usuário?" : "Are you sure you want to delete this user?")) {
-      deleteUser(id);
+    try {
+      if (window.confirm(lang === 'pt' ? "Tem certeza que deseja excluir este usuário?" : "Are you sure you want to delete this user?")) {
+        deleteUser(id);
+      }
+    } catch (err) {
+      console.error("Erro ao excluir usuário:", err);
+      setError(lang === 'pt' ? "Erro ao excluir usuário." : "Error deleting user.");
     }
   };
 
