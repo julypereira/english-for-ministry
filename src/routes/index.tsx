@@ -162,23 +162,19 @@ function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-black font-sans text-slate-100 selection:bg-primary/30 relative">
+    <div className="h-screen bg-black font-sans text-slate-100 selection:bg-primary/30 relative overflow-hidden flex flex-col">
       <div 
         className="fixed inset-0 z-0 pointer-events-none opacity-40 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('https://images.unsplash.com/photo-1519491050282-ce00c729c8bf?q=80&w=2000')` }}
       />
       
-      <div className="relative z-10">
-
-        <nav className="sticky top-0 z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+      <div className="relative z-10 flex flex-col h-full">
+        <nav className="bg-black/60 backdrop-blur-xl border-b border-white/5 px-6 py-4">
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex flex-col group">
               <span className="font-black text-2xl leading-none uppercase tracking-tighter text-white group-hover:text-primary transition-colors">Amigo Intimo</span>
               <span className="text-primary text-[10px] tracking-[0.4em] font-black uppercase opacity-80">English for Ministry</span>
             </Link>
-
-            <div className="hidden lg:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest">
-            </div>
 
             <div className="flex items-center gap-3 md:gap-6">
               <button 
@@ -198,8 +194,8 @@ function Index() {
           </div>
         </nav>
 
-        <section className="relative pt-16 md:pt-32 pb-20 md:pb-32 overflow-hidden">
-          <div className="container mx-auto px-6">
+        <section className="flex-1 relative flex items-center overflow-hidden">
+          <div className="container mx-auto px-6 py-8">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
               <div className="relative z-10 text-center lg:text-left lg:w-3/5">
                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-primary/20 mb-8 backdrop-blur-md">
@@ -233,7 +229,7 @@ function Index() {
                 </div>
               </div>
 
-              <div className="relative lg:w-2/5 w-full max-w-lg mx-auto">
+              <div className="relative lg:w-2/5 w-full max-w-lg mx-auto hidden md:block">
                 <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-[4/5] sm:aspect-square lg:aspect-[4/5]">
                   <img 
                     src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
@@ -252,57 +248,37 @@ function Index() {
                     </p>
                   </div>
                 </div>
-                {/* Decorative glow */}
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px]"></div>
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-[80px]"></div>
               </div>
             </div>
           </div>
+          
+          {/* Social Links at Bottom Right */}
+          <div className="absolute bottom-8 right-8 z-50 flex items-center gap-6">
+            <a 
+              href="https://www.instagram.com/amigointimochurch_cg/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex items-center gap-2 text-white/50 hover:text-primary transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Instagram</span>
+            </a>
+            <a 
+              href="https://web.whatsapp.com/send/?phone=5567984047848" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex items-center gap-2 text-white/50 hover:text-primary transition-all"
+            >
+              <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+              <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">WhatsApp</span>
+            </a>
+          </div>
         </section>
-
-
-
-        <footer className="bg-black/90 backdrop-blur-xl text-white pt-32 pb-16 relative overflow-hidden border-t border-white/10">
-          <div className="absolute -bottom-20 -right-20 text-[20vw] font-black text-white/5 uppercase select-none pointer-events-none tracking-tighter">
-            MINISTRY
-          </div>
-
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="flex flex-col items-center justify-center mb-24">
-              <div className="flex gap-8">
-                 <a 
-                   href="https://www.instagram.com/amigointimochurch_cg/" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
-                 >
-                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                   Instagram
-                 </a>
-                 <a 
-                   href="https://web.whatsapp.com/send/?phone=5567984047848" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
-                 >
-                   <MessageCircle size={18} />
-                   WhatsApp
-                 </a>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between items-center pt-16 border-t border-white/10 gap-8">
-              <p className="text-slate-500 text-xs font-black uppercase tracking-[0.3em]">
-                © {new Date().getFullYear()} English for Ministry. {t.footer.copyright}
-              </p>
-              <div className="flex gap-10 text-slate-500 text-xs font-black uppercase tracking-widest">
-                <a href="#" className="hover:text-white">{t.footer.privacy}</a>
-                <a href="#" className="hover:text-white">{t.footer.terms}</a>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
+  );
+}
   );
 }
