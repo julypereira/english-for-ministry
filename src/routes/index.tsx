@@ -158,6 +158,16 @@ function Index() {
                   {t.hero.desc} <span className="text-white font-bold">{t.hero.descHighlight}</span>
                 </p>
 
+                <div className="animate-in fade-in slide-in-from-left-14 duration-1000">
+                  <Link 
+                    to="/login" 
+                    className="group relative inline-flex items-center gap-3 bg-primary hover:bg-orange-500 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)]"
+                  >
+                    <span>{t.nav.join}</span>
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+
 
                 <div className="flex flex-wrap lg:flex-nowrap gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative">
                   {t.levels.map((level, i) => (
