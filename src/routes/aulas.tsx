@@ -36,32 +36,54 @@ function AulasComponent() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#050505] text-slate-100 transition-colors duration-300">
-      <nav className="border-b border-white/10 bg-white/[0.03] backdrop-blur-md p-4">
+    <div className="min-h-screen bg-[#050505] text-slate-100 selection:bg-primary/30 flex flex-col">
+      <nav className="sticky top-0 z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-lg px-6 py-4">
         <div className="container mx-auto flex items-center justify-between">
-          <div className="font-bold text-xl text-primary">English for Ministry</div>
-          <div className="flex items-center gap-4">
-            <span className="text-muted-foreground">Olá, {user.name}</span>
-
-            <button onClick={handleLogout} className="text-destructive hover:underline flex items-center gap-2">
-              <LogOut size={16} />
-              Sair
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:rotate-3 transition-transform">
+              <span className="text-white font-black text-xl italic select-none">A</span>
+            </div>
+            <div className="hidden sm:block font-black text-sm uppercase tracking-tighter">Amigo Intimo</div>
+          </Link>
+          
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex flex-col items-end">
+              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Estudante</span>
+              <span className="text-sm font-bold">{user.name}</span>
+            </div>
+            <button 
+              onClick={handleLogout} 
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all text-xs font-black uppercase tracking-widest"
+            >
+              <LogOut size={14} />
+              <span className="hidden sm:inline">Sair</span>
             </button>
-
-
           </div>
         </div>
       </nav>
 
-      <main className="container mx-auto py-8 px-4">
-        <h1 className="text-3xl font-bold mb-8 text-foreground dark:text-white">Minhas Aulas</h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {aulas.map(aula => (
-            <div key={aula.id} className="bg-white/[0.03] dark:bg-white/[0.03] p-6 rounded-lg shadow-sm border border-border dark:border-white/10 hover:shadow-md transition-shadow">
+      <main className="flex-1 container mx-auto py-12 px-6">
+        <header className="mb-12">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4">
+            <GraduationCap size={12} className="text-primary" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-primary">Dashboard do Aluno</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">Minhas Aulas</h1>
+          <p className="text-slate-400 mt-2 max-w-xl">Bem-vindo de volta! Continue sua jornada de aprendizado do inglês ministerial.</p>
+        </header>
 
-              <h3 className="text-xl font-semibold mb-2 text-primary">{aula.title}</h3>
-              <p className="text-muted-foreground mb-4">{aula.description}</p>
-              <button className="text-primary font-medium hover:underline">Assistir Aula →</button>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {aulas.map(aula => (
+            <div key={aula.id} className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-8 hover:bg-white/[0.04] hover:border-primary/30 transition-all duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all">
+                <BookOpen size={24} className="text-primary group-hover:text-white transition-colors" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">{aula.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8">{aula.description}</p>
+              <button className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest group-hover:bg-primary group-hover:border-primary transition-all">
+                Assistir Aula
+                <ArrowRight size={14} />
+              </button>
             </div>
           ))}
         </div>

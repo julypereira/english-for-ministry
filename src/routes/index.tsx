@@ -123,50 +123,58 @@ function Index() {
       </div>
 
       <div className="relative z-10 flex flex-col h-full">
-        <nav className="px-6 py-8">
+        <nav className="px-6 py-6 sticky top-0 bg-[#050505]/80 backdrop-blur-lg border-b border-white/5 z-50 transition-all duration-300">
           <div className="container mx-auto flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <div className="w-12 h-12 bg-primary dark:bg-primary light:bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
+            <Link to="/" className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505] rounded-xl transition-all" aria-label="Amigo Intimo Home">
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-105 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
                 <div className="relative w-full h-full flex items-center justify-center">
                   <span className="text-white font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
                   <div className="absolute inset-0 bg-gradient-to-tr from-orange-600 to-orange-400 opacity-50"></div>
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white dark:text-white light:text-slate-900">Amigo Intimo</span>
+                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
                 <span className="text-primary text-[9px] tracking-[0.3em] font-black uppercase opacity-80">English for Ministry</span>
               </div>
             </Link>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               {user ? (
-
-
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <Link 
                     to={user.profile === "Administrador" ? "/admin/users" : "/aulas"}
-                    className="text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white"
+                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white focus-visible:ring-2 focus-visible:ring-primary"
                   >
-                    Área do {user.profile}
+                    Painel
                   </Link>
                   <button 
                     onClick={() => logout()}
-                    className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                    className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-red-500"
+                    title="Sair"
                   >
-                    <LogOut size={14} />
+                    <LogOut size={16} />
                   </button>
                 </div>
               ) : (
-                <button 
-                  onClick={toggleLang}
-                  className="relative overflow-hidden group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-95"
-                >
-                  <Languages size={14} className="text-primary" />
-                  <span>{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
-                </button>
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={toggleLang}
+                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all focus-visible:ring-2 focus-visible:ring-primary"
+                    aria-label="Trocar Idioma"
+                  >
+                    <Languages size={14} className="text-primary" />
+                    <span className="hidden sm:inline">{lang === 'pt' ? 'Português' : 'English'}</span>
+                    <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
+                  </button>
+                  <Link 
+                    to="/login"
+                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    Entrar
+                  </Link>
+                </div>
               )}
             </div>
-
           </div>
         </nav>
 
