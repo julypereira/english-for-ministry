@@ -139,6 +139,12 @@ export const useSchoolStore = create<SchoolStore>()(
       lockModule: (id) => set((state) => ({
         modules: state.modules.map(m => m.id === id ? { ...m, status: "locked" } : m)
       })),
+      releaseLesson: (id) => set((state) => ({
+        lessons: state.lessons.map(l => l.id === id ? { ...l, status: "released" } : l)
+      })),
+      lockLesson: (id) => set((state) => ({
+        lessons: state.lessons.map(l => l.id === id ? { ...l, status: "locked" } : l)
+      })),
       completeLesson: (studentId, lessonId, score) => set((state) => {
         const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
         if (existing) {
@@ -154,6 +160,13 @@ export const useSchoolStore = create<SchoolStore>()(
           progress: [...state.progress, { studentId, lessonId, completed: true, score }]
         };
       }),
+      addLesson: (lesson) => set((state) => ({ lessons: [...state.lessons, lesson] })),
+      updateLesson: (lesson) => set((state) => ({
+        lessons: state.lessons.map((l) => (l.id === lesson.id ? lesson : l))
+      })),
+      deleteLesson: (id) => set((state) => ({
+        lessons: state.lessons.filter((l) => l.id !== id)
+      })),
     }),
     {
       name: 'school-storage',

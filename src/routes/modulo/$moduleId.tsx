@@ -65,7 +65,10 @@ function ModuloComponent() {
   };
 
   const isLessonLocked = (index: number) => {
-    if (isAdmin || index === 0) return false;
+    if (isAdmin) return false;
+    const lesson = moduleLessons[index];
+    if (lesson.status === "locked") return true;
+    if (index === 0) return false;
     const previousLesson = moduleLessons[index - 1];
     return !getLessonProgress(previousLesson.id).completed;
   };
