@@ -29,10 +29,11 @@ const translations = {
       testimonial: "E disse-lhes: 'Vão pelo mundo todo e preguem o evangelho a todas as pessoas.'",
       testimonialAuthor: "Marcos 16:15",
     },
-    stats: [
-      { label: "ALUNOS", value: "500+" },
-      { label: "MISSÕES", value: "12" },
-      { label: "PAÍSES", value: "8" }
+    levels: [
+      { name: "Iniciante", lessons: "14 aulas" },
+      { name: "Básico", lessons: "18 aulas" },
+      { name: "Intermediário", lessons: "25 aulas" },
+      { name: "Avançado", lessons: "27 aulas" }
     ]
   },
   en: {
@@ -48,10 +49,11 @@ const translations = {
       testimonial: "And he said unto them, 'Go ye into all the world, and preach the gospel to every creature.'",
       testimonialAuthor: "Mark 16:15",
     },
-    stats: [
-      { label: "STUDENTS", value: "500+" },
-      { label: "MISSIONS", value: "12" },
-      { label: "COUNTRIES", value: "8" }
+    levels: [
+      { name: "Beginner", lessons: "14 lessons" },
+      { name: "Basic", lessons: "18 lessons" },
+      { name: "Intermediate", lessons: "25 lessons" },
+      { name: "Advanced", lessons: "27 lessons" }
     ]
   }
 };
@@ -188,11 +190,12 @@ function Index() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                  {t.stats.map((stat, i) => (
-                    <div key={i} className="space-y-1">
-                      <div className="text-2xl font-black text-white">{stat.value}</div>
-                      <div className="text-[9px] font-bold text-slate-500 tracking-[0.2em]">{stat.label}</div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                  {t.levels.map((level, i) => (
+                    <div key={i} className="group/card relative bg-white/5 border border-white/10 rounded-xl p-3 hover:bg-white/10 hover:border-primary/50 transition-all duration-300">
+                      <div className="text-[10px] font-black text-white uppercase tracking-tighter mb-0.5">{level.name}</div>
+                      <div className="text-[8px] font-bold text-primary tracking-widest uppercase opacity-80">{level.lessons}</div>
+                      <div className="absolute top-2 right-2 w-1 h-1 rounded-full bg-primary/20 group-hover/card:bg-primary transition-colors"></div>
                     </div>
                   ))}
                 </div>
