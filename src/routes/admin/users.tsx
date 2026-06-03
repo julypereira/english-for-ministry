@@ -221,6 +221,17 @@ function AdminUsersComponent() {
               </div>
 
               <div className="space-y-1">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Senha</label>
+                <input 
+                  type="password" 
+                  className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                />
+              </div>
+
+              <div className="space-y-1">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Perfil de Acesso</label>
                 <div className="grid grid-cols-2 gap-3">
                   <button
