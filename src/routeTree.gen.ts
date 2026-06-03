@@ -14,6 +14,7 @@ import { Route as AulasRouteImport } from './routes/aulas'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ModuloModuleIdRouteImport } from './routes/modulo/$moduleId'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
+import { Route as ModuloModuleIdAulaLessonIdRouteImport } from './routes/modulo/$moduleId.aula.$lessonId'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -40,20 +41,28 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
   path: '/admin/users',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModuloModuleIdAulaLessonIdRoute =
+  ModuloModuleIdAulaLessonIdRouteImport.update({
+    id: '/aula/$lessonId',
+    path: '/aula/$lessonId',
+    getParentRoute: () => ModuloModuleIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aulas': typeof AulasRoute
   '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
-  '/modulo/$moduleId': typeof ModuloModuleIdRoute
+  '/modulo/$moduleId': typeof ModuloModuleIdRouteWithChildren
+  '/modulo/$moduleId/aula/$lessonId': typeof ModuloModuleIdAulaLessonIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aulas': typeof AulasRoute
   '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
-  '/modulo/$moduleId': typeof ModuloModuleIdRoute
+  '/modulo/$moduleId': typeof ModuloModuleIdRouteWithChildren
+  '/modulo/$moduleId/aula/$lessonId': typeof ModuloModuleIdAulaLessonIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,13 +70,26 @@ export interface FileRoutesById {
   '/aulas': typeof AulasRoute
   '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
-  '/modulo/$moduleId': typeof ModuloModuleIdRoute
+  '/modulo/$moduleId': typeof ModuloModuleIdRouteWithChildren
+  '/modulo/$moduleId/aula/$lessonId': typeof ModuloModuleIdAulaLessonIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/aulas' | '/login' | '/admin/users' | '/modulo/$moduleId'
+  fullPaths:
+    | '/'
+    | '/aulas'
+    | '/login'
+    | '/admin/users'
+    | '/modulo/$moduleId'
+    | '/modulo/$moduleId/aula/$lessonId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aulas' | '/login' | '/admin/users' | '/modulo/$moduleId'
+  to:
+    | '/'
+    | '/aulas'
+    | '/login'
+    | '/admin/users'
+    | '/modulo/$moduleId'
+    | '/modulo/$moduleId/aula/$lessonId'
   id:
     | '__root__'
     | '/'
@@ -75,6 +97,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin/users'
     | '/modulo/$moduleId'
+    | '/modulo/$moduleId/aula/$lessonId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -82,7 +105,7 @@ export interface RootRouteChildren {
   AulasRoute: typeof AulasRoute
   LoginRoute: typeof LoginRoute
   AdminUsersRoute: typeof AdminUsersRoute
-  ModuloModuleIdRoute: typeof ModuloModuleIdRoute
+  ModuloModuleIdRoute: typeof ModuloModuleIdRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -122,26 +145,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modulo/$moduleId/aula/$lessonId': {
+      id: '/modulo/$moduleId/aula/$lessonId'
+      path: '/aula/$lessonId'
+      fullPath: '/modulo/$moduleId/aula/$lessonId'
+      preLoaderRoute: typeof ModuloModuleIdAulaLessonIdRouteImport
+      parentRoute: typeof ModuloModuleIdRoute
+    }
   }
 }
+
+interface ModuloModuleIdRouteChildren {
+  ModuloModuleIdAulaLessonIdRoute: typeof ModuloModuleIdAulaLessonIdRoute
+}
+
+const ModuloModuleIdRouteChildren: ModuloModuleIdRouteChildren = {
+  ModuloModuleIdAulaLessonIdRoute: ModuloModuleIdAulaLessonIdRoute,
+}
+
+const ModuloModuleIdRouteWithChildren = ModuloModuleIdRoute._addFileChildren(
+  ModuloModuleIdRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AulasRoute: AulasRoute,
   LoginRoute: LoginRoute,
   AdminUsersRoute: AdminUsersRoute,
-  ModuloModuleIdRoute: ModuloModuleIdRoute,
+  ModuloModuleIdRoute: ModuloModuleIdRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

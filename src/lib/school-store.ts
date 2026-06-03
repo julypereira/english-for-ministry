@@ -66,15 +66,80 @@ export const useSchoolStore = create<SchoolStore>()(
       ],
       lessons: [
         // INICIANTE (14 aulas)
-        ...Array.from({ length: 14 }, (_, i) => ({
-          id: `l1-${i + 1}`,
+        {
+          id: `l1-1`,
           moduleId: 1,
-          title: i === 0 ? "Introdução" : i === 1 ? "Saudações e Apresentações" : i === 2 ? "Vocabulário Bíblico Básico" : `Aula ${i + 1}`,
-          order: i + 1,
-          theory: i === 0 ? "Seja bem-vindo ao curso ENGLISH FOR MINISTRY.\n\nNesta aula introdutória..." : `Conteúdo teórico da aula ${i + 1}...`,
-          exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`,
-          canvaUrl: i === 0 ? "https://canva.link/ag3jyi13rb43top" : undefined,
+          title: "Aula 001 - Alfabeto",
+          order: 1,
+          theory: `## The English Alphabet
+        
+O alfabeto inglês possui **26 letras**. É a base para a comunicação no ministério, essencial para soletrar nomes (spelling names), endereços e termos bíblicos.
+
+### Pronúncia das Letras (A-Z)
+
+Abaixo está a guia de pronúncia aproximada para brasileiros:
+
+*   **A** /ei/
+*   **B** /bi/
+*   **C** /si/
+*   **D** /di/
+*   **E** /i/
+*   **F** /éf/
+*   **G** /dji/
+*   **H** /eitch/
+*   **I** /ai/
+*   **J** /djei/
+*   **K** /kei/
+*   **L** /él/
+*   **M** /ém/
+*   **N** /én/
+*   **O** /ou/
+*   **P** /pi/
+*   **Q** /kiu/
+*   **R** /ar/
+*   **S** /és/
+*   **T** /ti/
+*   **U** /iu/
+*   **V** /vi/
+*   **W** /dábliu/
+*   **X** /éks/
+*   **Y** /uai/
+*   **Z** /zi/ (Americano) ou /zed/ (Britânico)
+
+### Prática Ministerial: Spelling
+No ministério, você frequentemente precisará soletrar:
+1. **Your name:** "My name is John, that's J-O-H-N."
+2. **Biblical terms:** "Can you spell 'Grace'?" "G-R-A-C-E."
+
+### Video Lesson
+Assista ao vídeo para praticar a sonoridade e o ritmo das letras.`,
+          exercises: `### Exercise 1: Spelling Names
+Soletre os seguintes nomes bíblicos em voz alta:
+1. NOAH (N-O-A-H)
+2. MARY (M-A-R-Y)
+3. PETER (P-E-T-E-R)
+4. RUTH (R-U-T-H)
+
+### Exercise 2: Dictation
+Ouça o professor soletrar 3 palavras e escreva-as:
+1. _ _ _ _ _
+2. _ _ _ _ _
+3. _ _ _ _ _`,
+          homework: `### Homework: My Ministry Profile
+1. Escreva seu nome completo e grave um áudio soletre-o.
+2. Escolha seu versículo favorito e soletre a primeira palavra dele.
+3. Pratique a pronúncia das vogais (A, E, I, O, U) que são as mais diferentes do português.`,
+          canvaUrl: "https://www.youtube.com/watch?v=um3YrKRfsr0",
+          status: "released" as LessonStatus
+        },
+        ...Array.from({ length: 13 }, (_, i) => ({
+          id: `l1-${i + 2}`,
+          moduleId: 1,
+          title: i === 0 ? "Saudações e Apresentações" : i === 1 ? "Vocabulário Bíblico Básico" : `Aula ${i + 2}`,
+          order: i + 2,
+          theory: `Conteúdo teórico da aula ${i + 2}...`,
+          exercises: `Exercícios práticos da aula ${i + 2}...`,
+          homework: `Dever de casa da aula ${i + 2}...`,
           status: "released" as LessonStatus
         })),
         // BÁSICO (18 aulas)
