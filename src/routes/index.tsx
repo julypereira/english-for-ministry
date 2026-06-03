@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
 const translations = {
   pt: {
     nav: {
-      join: "Login",
+      join: "Entrar",
     },
     hero: {
       tag: "Capacitando Líderes do Reino",
@@ -181,7 +181,7 @@ function Index() {
                     to="/login"
                     className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary"
                   >
-                    Entrar
+                    {t.nav.join}
                   </Link>
                 </div>
               )}
