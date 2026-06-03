@@ -257,7 +257,31 @@ function Index() {
               </div>
 
               <div className="relative lg:w-2/5 w-full max-w-lg mx-auto hidden md:block animate-in fade-in zoom-in duration-1000">
-                <div className=\"relative z-10 [perspective:1000px] group\">\n                  <div className=\"relative rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.8)] border border-white/10 aspect-[4/5] sm:aspect-square lg:aspect-[4/5] transition-all duration-[2s] [transform-style:preserve-3d] group-hover:[transform:rotateY(15deg)_rotateX(5deg)_scale(1.02)]\">\n                    <img \n                      src=\"https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200\" \n                      alt=\"Pessoas em serviço missionário\" \n                      className=\"w-full h-full object-cover grayscale-[30%] transition-all duration-[2s] scale-105 group-hover:scale-110\"\n                      loading=\"lazy\"\n                    />\n                    <div className=\"absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80\"></div>\n                    <div className=\"absolute bottom-8 left-8 right-8 text-white p-6 bg-black/40 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl\">\n                      <div className=\"flex gap-1.5 mb-4\" aria-label=\"Avaliação 5 estrelas\">\n                         {[1,2,3,4,5].map(s => <Star key={s} size={14} className=\"fill-primary text-primary\" aria-hidden=\"true\" />)}\n                      </div>\n                      <p className=\"text-base font-bold italic leading-relaxed mb-4 text-white/95\">\"{t.hero.testimonial}\"</p>\n                      <div className=\"flex items-center gap-3\">\n                        <span className=\"w-8 h-[2px] bg-primary\"></span>\n                        <p className=\"text-[10px] opacity-70 uppercase tracking-[0.2em] font-black\">\n                          {t.hero.testimonialAuthor}\n                        </p>\n                      </div>\n                    </div>\n                  </div>\n                  {/* Decorative 3D elements */}\n                  <div className=\"absolute -z-10 top-0 left-0 w-full h-full border border-primary/20 rounded-[2.5rem] transform translate-x-4 translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-700\"></div>\n                </div>
+                <div className=\"relative z-10 [perspective:1000px] group\">
+                  <div className=\"relative rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.8)] border border-white/10 aspect-[4/5] sm:aspect-square lg:aspect-[4/5] transition-all duration-[2s] [transform-style:preserve-3d] group-hover:[transform:rotateY(15deg)_rotateX(5deg)_scale(1.02)]\">
+                    <img 
+                      src=\"https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200\" 
+                      alt=\"Pessoas em serviço missionário\" 
+                      className=\"w-full h-full object-cover grayscale-[30%] transition-all duration-[2s] scale-105 group-hover:scale-110\"
+                      loading=\"lazy\"
+                    />
+                    <div className=\"absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80\"></div>
+                    <div className=\"absolute bottom-8 left-8 right-8 text-white p-6 bg-black/40 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl\">
+                      <div className=\"flex gap-1.5 mb-4\" aria-label=\"Avaliação 5 estrelas\">
+                         {[1,2,3,4,5].map(s => <Star key={s} size={14} className=\"fill-primary text-primary\" aria-hidden=\"true\" />)}
+                      </div>
+                      <p className=\"text-base font-bold italic leading-relaxed mb-4 text-white/95\">\"{t.hero.testimonial}\"</p>
+                      <div className=\"flex items-center gap-3\">
+                        <span className=\"w-8 h-[2px] bg-primary\"></span>
+                        <p className=\"text-[10px] opacity-70 uppercase tracking-[0.2em] font-black\">
+                          {t.hero.testimonialAuthor}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Decorative 3D elements */}
+                  <div className=\"absolute -z-10 top-0 left-0 w-full h-full border border-primary/20 rounded-[2.5rem] transform translate-x-4 translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-700\"></div>
+                </div>
                 {/* Visual enhancements */}
                 <div className="absolute -top-12 -right-12 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
                 <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
