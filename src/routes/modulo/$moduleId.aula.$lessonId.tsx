@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuthStore } from "@/lib/auth-store";
 import { useSchoolStore } from "@/lib/school-store";
 import { useLanguageStore } from "@/lib/language-store";
@@ -10,7 +10,10 @@ import {
   Home as HomeIcon, 
   PlayCircle,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  Maximize2,
+  Minimize2,
+  X
 } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 
@@ -22,9 +25,15 @@ function LessonComponent() {
   const { moduleId, lessonId } = Route.useParams();
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const { lessons, completeLesson } = useSchoolStore();
+  const { lessons, updateLessonProgress, progress } = useSchoolStore();
   const { lang } = useLanguageStore();
   const [activeTab, setActiveTab] = useState<'theory' | 'exercises' | 'homework'>('theory');
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const lessonProgress = progress.find(p => p.studentId === user?.id && p.lessonId === lessonId);
+  const currentProgress = lessonProgress?.score || 0;
 
   const lesson = lessons.find(l => l.id === lessonId);
 
@@ -37,15 +46,45 @@ function LessonComponent() {
   if (!user || !lesson) return null;
 
   const handleComplete = () => {
-    completeLesson(user.id, lesson.id, 100);
+    updateLessonProgress(user.id, lesson.id, 100, 100);
     navigate({ to: "/modulo/$moduleId", params: { moduleId } });
   };
 
-  const getYoutubeId = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
   };
+
+  // Simulação de detecção de progresso do Canva
+  // Como o Canva iframe não envia mensagens de progresso facilmente sem API oficial
+  // Vamos simular o progresso baseado no tempo de visualização ou interação para este exemplo
+  // Em uma implementação real com Canva SDK seria diferente.
+  useEffect(() => {
+    if (iframeLoaded && user && lesson) {
+      const timer = setInterval(() => {
+        if (currentProgress < 100) {
+          const nextProgress = Math.min(currentProgress + 10, 100);
+          updateLessonProgress(user.id, lesson.id, nextProgress, 100);
+        }
+      }, 10000); // Aumenta 10% a cada 10 segundos para simular leitura
+      return () => clearInterval(timer);
+    }
+  }, [iframeLoaded, currentProgress, user, lesson]);
+
+  const getCanvaEmbedUrl = (url: string) => {
+    if (!url) return null;
+    // Se já for um link de embed, retorna
+    if (url.includes('canva.com') && url.includes('view?embed')) return url;
+    
+    // Tenta converter link de compartilhamento para link de embed
+    // Exemplo: https://www.canva.com/design/DAF.../view -> https://www.canva.com/design/DAF.../view?embed
+    if (url.includes('canva.com/design/')) {
+      const baseUrl = url.split('?')[0];
+      return `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}view?embed`;
+    }
+    return null;
+  };
+
+  const canvaEmbedUrl = getCanvaEmbedUrl(lesson.canvaUrl || "");
 
   return (
     <div className="min-h-screen bg-[#050505] text-slate-100 flex flex-col">
@@ -70,18 +109,62 @@ function LessonComponent() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {lesson.canvaUrl && getYoutubeId(lesson.canvaUrl) && (
-              <div className="aspect-video w-full rounded-3xl overflow-hidden border border-white/10 bg-black shadow-2xl">
+            {canvaEmbedUrl && (
+              <div 
+                ref={containerRef}
+                className={`${
+                  isFullscreen 
+                  ? 'fixed inset-0 z-[100] bg-black p-4 flex flex-col' 
+                  : 'aspect-video w-full rounded-3xl overflow-hidden border border-white/10 bg-black shadow-2xl relative'
+                }`}
+              >
+                <div className="absolute top-4 right-4 z-[110] flex gap-2">
+                  <button 
+                    onClick={toggleFullscreen}
+                    className="p-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white hover:bg-primary transition-all"
+                    title={isFullscreen ? "Minimizar" : "Maximizar"}
+                  >
+                    {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+                  </button>
+                  {isFullscreen && (
+                    <button 
+                      onClick={() => setIsFullscreen(false)}
+                      className="p-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white hover:bg-red-500 transition-all"
+                    >
+                      <X size={18} />
+                    </button>
+                  )}
+                </div>
+
                 <iframe 
+                  loading="lazy"
                   width="100%" 
                   height="100%" 
-                  src={`https://www.youtube.com/embed/${getYoutubeId(lesson.canvaUrl)}`}
-                  title="YouTube video player" 
+                  src={canvaEmbedUrl}
+                  title="Canva Presentation" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   allowFullScreen
+                  onLoad={() => setIframeLoaded(true)}
+                  className={`${isFullscreen ? 'flex-1 rounded-2xl' : ''}`}
                 ></iframe>
+                
+                {/* Barra de Progresso Customizada */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10">
+                  <div 
+                    className="h-full bg-primary transition-all duration-500" 
+                    style={{ width: `${currentProgress}%` }}
+                  />
+                </div>
               </div>
+            )}
+
+            {!canvaEmbedUrl && lesson.canvaUrl && (
+               <div className="aspect-video w-full rounded-3xl overflow-hidden border border-white/10 bg-black flex items-center justify-center text-slate-500 flex-col gap-4">
+                 <AlertCircle size={48} />
+                 <p>O link do material não é um link válido do Canva.</p>
+                 <a href={lesson.canvaUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Abrir link original</a>
+               </div>
             )}
 
             <div className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
