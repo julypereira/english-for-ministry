@@ -157,12 +157,14 @@ function Index() {
                 </p>
 
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                <div className="grid grid-cols-1 gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
                   {t.levels.map((level, i) => (
-                    <div key={i} className="group/card relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-primary/50 transition-all duration-300">
-                      <div className="text-sm font-black text-white uppercase tracking-wider mb-1">{level.name}</div>
-                      <div className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase opacity-80">{level.lessons}</div>
-                      <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-primary/20 group-hover/card:bg-primary transition-colors"></div>
+                    <div key={i} className="group/card relative bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between hover:bg-white/10 hover:border-primary/50 transition-all duration-300">
+                      <div className="flex flex-col">
+                        <div className="text-xs font-black text-white uppercase tracking-wider">{level.name}</div>
+                        <div className="text-[9px] font-bold text-primary tracking-[0.2em] uppercase opacity-80">{level.lessons}</div>
+                      </div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover/card:bg-primary transition-colors"></div>
                     </div>
                   ))}
                 </div>
