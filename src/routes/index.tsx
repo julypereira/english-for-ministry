@@ -51,7 +51,7 @@ const translations = {
   },
   en: {
     nav: {
-      join: "Student Area",
+      join: "Login",
     },
     hero: {
       tag: "Empowering Kingdom Leaders",
