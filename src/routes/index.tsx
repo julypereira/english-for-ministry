@@ -284,57 +284,6 @@ function Index() {
           </div>
         </section>
 
-        <section id="methodology" className="py-24 md:py-40 relative overflow-hidden">
-          <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div className="order-2 lg:order-1 relative group">
-              <div className="bg-white/5 backdrop-blur-2xl rounded-[3rem] p-8 md:p-14 text-white relative z-10 overflow-hidden border border-white/10 shadow-3xl">
-                 <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/world-map.png')] grayscale invert"></div>
-                 
-                 <div className="relative z-10">
-                   <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-12 flex items-center gap-4">
-                     <span className="w-12 h-1 bg-primary"></span>
-                     {t.methodology.cardTitle}
-                   </h3>
-                   <div className="space-y-10">
-                     {t.methodology.cards.map((item, i) => (
-                       <div key={i} className="flex gap-6 md:gap-8 items-start group/item">
-                         <div className="bg-primary/10 text-primary p-4 rounded-2xl group-hover/item:bg-primary group-hover/item:text-white transition-all duration-300 transform group-hover/item:scale-110">
-                           {i === 0 ? <BookOpen size={24} /> : i === 1 ? <Headphones size={24} /> : <Globe size={24} />}
-                         </div>
-                         <div>
-                           <h4 className="text-xl font-black uppercase tracking-tight mb-2 group-hover/item:text-primary transition-colors">{item.title}</h4>
-                           <p className="text-slate-400 font-medium leading-relaxed">{item.desc}</p>
-                         </div>
-                       </div>
-                     ))}
-                   </div>
-                 </div>
-              </div>
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-[120px]"></div>
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <h2 className="text-5xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
-                {t.methodology.title1} <br />
-                <span className="text-primary italic">{t.methodology.title2}</span>
-              </h2>
-              <p className="text-xl text-slate-400 mb-10 leading-relaxed font-medium">
-                {t.methodology.desc}
-              </p>
-              <ul className="space-y-4 mb-12">
-                {t.methodology.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 font-black uppercase tracking-tight text-white">
-                    <CheckCircle className="text-primary" size={20} />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/login" className="inline-flex items-center gap-4 text-white font-black uppercase tracking-widest text-lg group">
-                {t.methodology.cta} <ArrowRight className="group-hover:translate-x-2 transition-transform text-primary" />
-              </Link>
-            </div>
-          </div>
-        </section>
 
         <footer className="bg-black/90 backdrop-blur-xl text-white pt-32 pb-16 relative overflow-hidden border-t border-white/10">
           <div className="absolute -bottom-20 -right-20 text-[20vw] font-black text-white/5 uppercase select-none pointer-events-none tracking-tighter">
