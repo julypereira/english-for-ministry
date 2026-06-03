@@ -82,25 +82,26 @@ function LoginComponent() {
               </div>
             )}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Email</label>
+              <label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1 block">Email</label>
               <input 
+                id="email"
                 type="email" 
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-black/40 dark:bg-black/40 light:bg-slate-50 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white dark:text-white light:text-slate-900 placeholder:text-slate-600" 
-
+                className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-white placeholder:text-slate-600" 
                 placeholder="seu@email.com"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Senha</label>
+              <label htmlFor="password" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1 block">Senha</label>
               <input 
+                id="password"
                 type="password" 
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-black/40 dark:bg-black/40 light:bg-slate-50 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white dark:text-white light:text-slate-900 placeholder:text-slate-600"
+                className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-white placeholder:text-slate-600"
                 placeholder="••••••••"
               />
             </div>
