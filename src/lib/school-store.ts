@@ -45,6 +45,9 @@ interface SchoolStore {
   releaseModule: (id: number) => void;
   lockModule: (id: number) => void;
   completeLesson: (studentId: string, lessonId: string, score: number) => void;
+  addLesson: (lesson: Lesson) => void;
+  updateLesson: (lesson: Lesson) => void;
+  deleteLesson: (id: string) => void;
 }
 
 export const useSchoolStore = create<SchoolStore>()(
