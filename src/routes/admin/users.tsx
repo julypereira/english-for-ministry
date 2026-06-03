@@ -200,17 +200,22 @@ function AdminUsersComponent() {
 
   const handleLessonSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingLesson) {
-      updateLesson({ ...editingLesson, ...lessonFormData });
-    } else {
-      const newLesson: Lesson = {
-        id: Math.random().toString(36).substr(2, 9),
-        order: lessons.filter(l => l.moduleId === lessonFormData.moduleId).length + 1,
-        ...lessonFormData
-      };
-      addLesson(newLesson);
+    try {
+      if (editingLesson) {
+        updateLesson({ ...editingLesson, ...lessonFormData });
+      } else {
+        const newLesson: Lesson = {
+          id: Math.random().toString(36).substr(2, 9),
+          order: lessons.filter(l => l.moduleId === lessonFormData.moduleId).length + 1,
+          ...lessonFormData
+        };
+        addLesson(newLesson);
+      }
+      setIsLessonModalOpen(false);
+    } catch (err) {
+      console.error("Erro ao salvar aula:", err);
+      setError(lang === 'pt' ? "Erro ao salvar aula." : "Error saving lesson.");
     }
-    setIsLessonModalOpen(false);
   };
 
   const handleDeleteLesson = (id: string) => {
