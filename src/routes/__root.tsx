@@ -117,20 +117,12 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const theme = useThemeStore((state) => state.theme);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-  }, [theme]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={theme}>
-        <Outlet />
-      </div>
+      <Outlet />
     </QueryClientProvider>
   );
 }
+
 
