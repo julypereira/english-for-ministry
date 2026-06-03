@@ -166,13 +166,15 @@ function LessonComponent() {
                </div>
             )}
 
-            <div className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
-              <div className="p-8 md:p-12 prose prose-invert max-w-none">
-                <ReactMarkdown>
-                  {lesson.theory}
-                </ReactMarkdown>
+            {lesson.theory && (
+              <div className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
+                <div className="p-8 md:p-12 prose prose-invert max-w-none">
+                  <ReactMarkdown>
+                    {lesson.theory}
+                  </ReactMarkdown>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Sidebar */}
