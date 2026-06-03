@@ -132,7 +132,7 @@ Ouça o professor soletrar 3 palavras e escreva-as:
 1. Escreva seu nome completo e grave um áudio soletre-o.
 2. Escolha seu versículo favorito e soletre a primeira palavra dele.
 3. Pratique a pronúncia das vogais (A, E, I, O, U) que são as mais diferentes do português.`,
-          canvaUrl: "https://www.canva.com/design/DAGX60lR6K0/N1n7pL799M6r1aB7L7-7vQ/view?embed",
+          canvaUrl: "https://canva.link/82k4vlu18tcaicv",
           status: "released" as LessonStatus
         },
         ...Array.from({ length: 13 }, (_, i) => ({
