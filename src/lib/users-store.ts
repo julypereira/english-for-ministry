@@ -15,6 +15,7 @@ export const useUsersStore = create<UsersState>()(
       users: [
         { id: "1", name: "Administrador", email: "adm@adm.com", password: "adm1234", profile: "Administrador", createdAt: "2024-03-20" },
         { id: "2", name: "Maria Oliveira", email: "maria@example.com", password: "123", profile: "Aluno", createdAt: "2024-03-21" },
+        { id: "3", name: "Aluno Teste", email: "aluno@aluno.com", password: "aluno1234", profile: "Aluno", createdAt: "2026-06-03" },
       ],
       addUser: (user) => set((state) => ({ users: [...state.users, user] })),
       updateUser: (user) => set((state) => ({ users: state.users.map((u) => (u.id === user.id ? user : u)) })),
