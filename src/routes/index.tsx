@@ -106,98 +106,98 @@ function Index() {
         ></div>
       </div>
 
-      <div className=\"relative z-10 flex flex-col h-full\">
-        <nav className=\"px-6 py-8\">
-          <div className=\"container mx-auto flex items-center justify-between\">
-            <Link to=\"/\" className=\"flex items-center gap-3 group focus:outline-none\">
-              <div className=\"w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500\">
-                <Globe className=\"text-white\" size={24} />
+      <div className="relative z-10 flex flex-col h-full">
+        <nav className="px-6 py-8">
+          <div className="container mx-auto flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-3 group focus:outline-none">
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                <Globe className="text-white" size={24} />
               </div>
-              <div className=\"flex flex-col\">
-                <span className=\"font-black text-xl leading-none uppercase tracking-tighter text-white\">Amigo Intimo</span>
-                <span className=\"text-primary text-[9px] tracking-[0.3em] font-black uppercase opacity-80\">English for Ministry</span>
+              <div className="flex flex-col">
+                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
+                <span className="text-primary text-[9px] tracking-[0.3em] font-black uppercase opacity-80">English for Ministry</span>
               </div>
             </Link>
 
-            <div className=\"flex items-center gap-4\">
+            <div className="flex items-center gap-4">
               <button 
                 onClick={toggleLang}
-                className=\"relative overflow-hidden group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-95\"
+                className="relative overflow-hidden group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-95"
               >
-                <Languages size={14} className=\"text-primary\" />
+                <Languages size={14} className="text-primary" />
                 <span>{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
               </button>
               
               <Link 
-                to=\"/login\" 
-                className=\"flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-[10px] font-black uppercase tracking-widest px-8 py-3.5 rounded-xl shadow-[0_10px_30px_rgba(234,88,12,0.3)] hover:-translate-y-0.5 transition-all active:scale-95\"
+                to="/login" 
+                className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-[10px] font-black uppercase tracking-widest px-8 py-3.5 rounded-xl shadow-[0_10px_30px_rgba(234,88,12,0.3)] hover:-translate-y-0.5 transition-all active:scale-95"
               >
-                <Users size={14} className=\"text-white\" />
+                <Users size={14} className="text-white" />
                 <span>{t.nav.join}</span>
               </Link>
             </div>
           </div>
         </nav>
 
-        <section className=\"flex-1 flex items-center\">
-          <div className=\"container mx-auto px-6\">
-            <div className=\"grid lg:grid-cols-2 gap-12 items-center\">
-              <div className=\"space-y-8\">
-                <div className=\"inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-lg backdrop-blur-sm animate-in fade-in slide-in-from-left-8 duration-700\">
-                  <div className=\"w-2 h-2 rounded-full bg-primary animate-ping\"></div>
-                  <span className=\"text-[10px] font-black uppercase tracking-[0.2em] text-slate-300\">{t.hero.tag}</span>
+        <section className="flex-1 flex items-center">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-8">
+                <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-lg backdrop-blur-sm animate-in fade-in slide-in-from-left-8 duration-700">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-ping"></div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">{t.hero.tag}</span>
                 </div>
 
-                <h1 className=\"text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000\">
+                <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000">
                   {t.hero.title1} <br />
-                  <span className=\"text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400\">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
                     {t.hero.title2}
                   </span>
                 </h1>
 
-                <p className=\"text-lg text-slate-400 max-w-lg leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000\">
-                  {t.hero.desc} <span className=\"text-white font-bold\">{t.hero.descHighlight}</span>
+                <p className="text-lg text-slate-400 max-w-lg leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000">
+                  {t.hero.desc} <span className="text-white font-bold">{t.hero.descHighlight}</span>
                 </p>
 
-                <div className=\"flex flex-wrap gap-6 items-center animate-in fade-in slide-in-from-left-14 duration-1000\">
+                <div className="flex flex-wrap gap-6 items-center animate-in fade-in slide-in-from-left-14 duration-1000">
                   <Link 
-                    to=\"/login\" 
-                    className=\"group relative bg-white text-black font-black uppercase tracking-[0.2em] text-xs px-10 py-5 rounded-2xl overflow-hidden shadow-2xl transition-all hover:scale-105 active:scale-95\"
+                    to="/login" 
+                    className="group relative bg-white text-black font-black uppercase tracking-[0.2em] text-xs px-10 py-5 rounded-2xl overflow-hidden shadow-2xl transition-all hover:scale-105 active:scale-95"
                   >
-                    <div className=\"relative z-10 flex items-center gap-3\">
+                    <div className="relative z-10 flex items-center gap-3">
                       {t.nav.join}
-                      <ArrowRight size={16} className=\"group-hover:translate-x-1 transition-transform\" />
+                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                     </div>
                   </Link>
 
-                  <div className=\"flex items-center gap-4\">
-                    <div className=\"flex -space-x-3\">
+                  <div className="flex items-center gap-4">
+                    <div className="flex -space-x-3">
                       {[1,2,3,4].map(i => (
-                        <div key={i} className=\"w-10 h-10 rounded-full border-2 border-black bg-slate-800 overflow-hidden ring-2 ring-white/5\">
-                          <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt=\"\" />
+                        <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-slate-800 overflow-hidden ring-2 ring-white/5">
+                          <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="" />
                         </div>
                       ))}
                     </div>
-                    <div className=\"text-[10px] font-bold text-slate-500 uppercase tracking-widest\">
-                      <span className=\"text-white block\">+500 LÍDERES</span>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                      <span className="text-white block">+500 LÍDERES</span>
                       EM TREINAMENTO
                     </div>
                   </div>
                 </div>
 
-                <div className=\"grid grid-cols-3 gap-8 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000\">
+                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
                   {t.stats.map((stat, i) => (
-                    <div key={i} className=\"space-y-1\">
-                      <div className=\"text-2xl font-black text-white\">{stat.value}</div>
-                      <div className=\"text-[9px] font-bold text-slate-500 tracking-[0.2em]\">{stat.label}</div>
+                    <div key={i} className="space-y-1">
+                      <div className="text-2xl font-black text-white">{stat.value}</div>
+                      <div className="text-[9px] font-bold text-slate-500 tracking-[0.2em]">{stat.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className=\"relative hidden lg:block perspective-[2000px] animate-in fade-in zoom-in duration-1000\">
+              <div className="relative hidden lg:block [perspective:2000px] animate-in fade-in zoom-in duration-1000">
                 <div 
-                  className=\"relative z-10 w-full aspect-[4/5] max-w-md mx-auto\"
+                  className="relative z-10 w-full aspect-[4/5] max-w-md mx-auto"
                   style={{ 
                     transform: `rotateY(${mousePos.x * 0.5}deg) rotateX(${-mousePos.y * 0.5}deg)`,
                     transformStyle: 'preserve-3d',
@@ -205,67 +205,67 @@ function Index() {
                   }}
                 >
                   {/* Glass Card 1 */}
-                  <div className=\"absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl border border-white/10 rounded-[3rem] shadow-2xl p-8 flex flex-col justify-end overflow-hidden group\">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl border border-white/10 rounded-[3rem] shadow-2xl p-8 flex flex-col justify-end overflow-hidden group">
                     <img 
-                      src=\"https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200\" 
-                      className=\"absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:scale-110 transition-transform duration-[3s]\"
-                      alt=\"\"
+                      src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
+                      className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:scale-110 transition-transform duration-[3s]"
+                      alt=""
                     />
-                    <div className=\"relative z-10 space-y-4\">
-                      <div className=\"flex gap-1\">
-                        {[1,2,3,4,5].map(i => <Star key={i} size={14} className=\"fill-primary text-primary\" />)}
+                    <div className="relative z-10 space-y-4">
+                      <div className="flex gap-1">
+                        {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-primary text-primary" />)}
                       </div>
-                      <p className=\"text-2xl font-bold italic leading-tight\">\"{t.hero.testimonial}\"</p>
-                      <div className=\"flex items-center gap-3 pt-4\">
-                        <span className=\"w-10 h-[1px] bg-primary\"></span>
-                        <span className=\"text-[10px] font-black uppercase tracking-[0.2em] opacity-60\">{t.hero.testimonialAuthor}</span>
+                      <p className="text-2xl font-bold italic leading-tight">"{t.hero.testimonial}"</p>
+                      <div className="flex items-center gap-3 pt-4">
+                        <span className="w-10 h-[1px] bg-primary"></span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">{t.hero.testimonialAuthor}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Floating Elements */}
                   <div 
-                    className=\"absolute -top-10 -right-10 w-32 h-32 bg-primary/20 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center p-6 shadow-2xl animate-bounce\"
+                    className="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center p-6 shadow-2xl animate-bounce"
                     style={{ animationDuration: '4s', transform: 'translateZ(50px)' }}
                   >
-                    <div className=\"text-center\">
-                      <Zap className=\"text-primary mx-auto mb-2\" size={24} />
-                      <div className=\"text-[8px] font-black uppercase tracking-widest\">FLUIDEZ TOTAL</div>
+                    <div className="text-center">
+                      <Zap className="text-primary mx-auto mb-2" size={24} />
+                      <div className="text-[8px] font-black uppercase tracking-widest">FLUIDEZ TOTAL</div>
                     </div>
                   </div>
 
                   <div 
-                    className=\"absolute -bottom-6 -left-12 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl animate-float\"
+                    className="absolute -bottom-6 -left-12 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl animate-float"
                     style={{ transform: 'translateZ(80px)' }}
                   >
-                    <div className=\"flex items-center gap-4\">
-                      <div className=\"w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center\">
-                        <ShieldCheck className=\"text-green-500\" size={20} />
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                        <ShieldCheck className="text-green-500" size={20} />
                       </div>
                       <div>
-                        <div className=\"text-[10px] font-black uppercase tracking-widest\">CERTIFICADO</div>
-                        <div className=\"text-[8px] text-slate-400\">RECONHECIDO INTERNACIONALMENTE</div>
+                        <div className="text-[10px] font-black uppercase tracking-widest">CERTIFICADO</div>
+                        <div className="text-[8px] text-slate-400">RECONHECIDO INTERNACIONALMENTE</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Background Shadow */}
-                <div className=\"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 rounded-full blur-[120px] -z-10\"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 rounded-full blur-[120px] -z-10"></div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Footer info */}
-        <div className=\"absolute bottom-8 left-8 flex items-center gap-6 animate-in fade-in duration-1000\">
-          <div className=\"text-[9px] font-black uppercase tracking-[0.4em] text-white/20\">
+        <div className="absolute bottom-8 left-8 flex items-center gap-6 animate-in fade-in duration-1000">
+          <div className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">
             © 2026 ENGLISH FOR MINISTRY
           </div>
-          <div className=\"h-[1px] w-12 bg-white/10\"></div>
-          <div className=\"flex items-center gap-6\">
-            <a href=\"#\" className=\"text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors\">INSTAGRAM</a>
-            <a href=\"#\" className=\"text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors\">WHATSAPP</a>
+          <div className="h-[1px] w-12 bg-white/10"></div>
+          <div className="flex items-center gap-6">
+            <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">INSTAGRAM</a>
+            <a href="https://web.whatsapp.com/send/?phone=5567984047848" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">WHATSAPP</a>
           </div>
         </div>
       </div>
