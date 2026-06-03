@@ -148,15 +148,20 @@ function AdminUsersComponent() {
 
   const handleClassSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingClass) {
-      updateClass({ ...editingClass, ...classFormData });
-    } else {
-      addClass({
-        id: Math.random().toString(36).substr(2, 9),
-        ...classFormData
-      });
+    try {
+      if (editingClass) {
+        updateClass({ ...editingClass, ...classFormData });
+      } else {
+        addClass({
+          id: Math.random().toString(36).substr(2, 9),
+          ...classFormData
+        });
+      }
+      setIsClassModalOpen(false);
+    } catch (err) {
+      console.error("Erro ao salvar turma:", err);
+      setError(lang === 'pt' ? "Erro ao salvar turma." : "Error saving class.");
     }
-    setIsClassModalOpen(false);
   };
 
   const handleDeleteClass = (id: string) => {
