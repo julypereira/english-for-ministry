@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export type LessonStatus = "released" | "locked";
 export type ModuleStatus = "released" | "locked";
 
 export interface Lesson {
@@ -12,6 +13,7 @@ export interface Lesson {
   exercises: string;
   homework: string;
   canvaUrl?: string;
+  status: LessonStatus;
 }
 
 export interface StudentProgress {
@@ -44,7 +46,12 @@ interface SchoolStore {
   deleteClass: (id: string) => void;
   releaseModule: (id: number) => void;
   lockModule: (id: number) => void;
+  releaseLesson: (id: string) => void;
+  lockLesson: (id: string) => void;
   completeLesson: (studentId: string, lessonId: string, score: number) => void;
+  addLesson: (lesson: Lesson) => void;
+  updateLesson: (lesson: Lesson) => void;
+  deleteLesson: (id: string) => void;
 }
 
 export const useSchoolStore = create<SchoolStore>()(
@@ -67,7 +74,8 @@ export const useSchoolStore = create<SchoolStore>()(
           theory: i === 0 ? "Seja bem-vindo ao curso ENGLISH FOR MINISTRY.\n\nNesta aula introdutória..." : `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
           homework: `Dever de casa da aula ${i + 1}...`,
-          canvaUrl: i === 0 ? "https://canva.link/ag3jyi13rb43top" : undefined
+          canvaUrl: i === 0 ? "https://canva.link/ag3jyi13rb43top" : undefined,
+          status: "released" as LessonStatus
         })),
         // BÁSICO (18 aulas)
         ...Array.from({ length: 18 }, (_, i) => ({
@@ -77,7 +85,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "released" as LessonStatus
         })),
         // INTERMEDIÁRIO (25 aulas)
         ...Array.from({ length: 25 }, (_, i) => ({
@@ -87,7 +96,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "locked" as LessonStatus
         })),
         // AVANÇADO (27 aulas)
         ...Array.from({ length: 27 }, (_, i) => ({
@@ -97,7 +107,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "locked" as LessonStatus
         })),
         // FLUENTE (Contínuo - simulando 50 inicialmente)
         ...Array.from({ length: 50 }, (_, i) => ({
@@ -107,7 +118,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "locked" as LessonStatus
         })),
       ],
       classes: [
@@ -127,6 +139,12 @@ export const useSchoolStore = create<SchoolStore>()(
       lockModule: (id) => set((state) => ({
         modules: state.modules.map(m => m.id === id ? { ...m, status: "locked" } : m)
       })),
+      releaseLesson: (id) => set((state) => ({
+        lessons: state.lessons.map(l => l.id === id ? { ...l, status: "released" } : l)
+      })),
+      lockLesson: (id) => set((state) => ({
+        lessons: state.lessons.map(l => l.id === id ? { ...l, status: "locked" } : l)
+      })),
       completeLesson: (studentId, lessonId, score) => set((state) => {
         const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
         if (existing) {
@@ -142,6 +160,13 @@ export const useSchoolStore = create<SchoolStore>()(
           progress: [...state.progress, { studentId, lessonId, completed: true, score }]
         };
       }),
+      addLesson: (lesson) => set((state) => ({ lessons: [...state.lessons, lesson] })),
+      updateLesson: (lesson) => set((state) => ({
+        lessons: state.lessons.map((l) => (l.id === lesson.id ? lesson : l))
+      })),
+      deleteLesson: (id) => set((state) => ({
+        lessons: state.lessons.filter((l) => l.id !== id)
+      })),
     }),
     {
       name: 'school-storage',
