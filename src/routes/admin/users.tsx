@@ -105,17 +105,22 @@ function AdminUsersComponent() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingUser) {
-      updateUser({ ...editingUser, ...formData });
-    } else {
-      const newUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        ...formData,
-        createdAt: new Date().toISOString().split('T')[0]
-      };
-      addUser(newUser);
+    try {
+      if (editingUser) {
+        updateUser({ ...editingUser, ...formData });
+      } else {
+        const newUser: User = {
+          id: Math.random().toString(36).substr(2, 9),
+          ...formData,
+          createdAt: new Date().toISOString().split('T')[0]
+        };
+        addUser(newUser);
+      }
+      handleCloseModal();
+    } catch (err) {
+      console.error("Erro ao salvar usuário:", err);
+      setError(lang === 'pt' ? "Erro ao salvar usuário. Tente novamente." : "Error saving user. Please try again.");
     }
-    handleCloseModal();
   };
 
   const handleDelete = (id: string) => {
