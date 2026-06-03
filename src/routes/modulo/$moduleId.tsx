@@ -11,7 +11,8 @@ import {
   BookOpen,
   PenTool,
   Home as HomeIcon,
-  Languages
+  Languages,
+  Video
 } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 import { useSchoolStore } from "@/lib/school-store";
