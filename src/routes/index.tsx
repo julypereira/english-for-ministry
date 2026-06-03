@@ -298,8 +298,6 @@ function Index() {
           <div className="flex items-center gap-6">
           </div>
         </div>
-          </div>
-        </div>
       </div>
 
       <style>{`
