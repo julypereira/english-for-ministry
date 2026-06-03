@@ -33,7 +33,8 @@ const translations = {
       { name: "Iniciante", lessons: "14 aulas" },
       { name: "Básico", lessons: "18 aulas" },
       { name: "Intermediário", lessons: "25 aulas" },
-      { name: "Avançado", lessons: "27 aulas" }
+      { name: "Avançado", lessons: "27 aulas" },
+      { name: "Fluente", lessons: "Final" }
     ]
   },
   en: {
@@ -53,7 +54,8 @@ const translations = {
       { name: "Beginner", lessons: "14 lessons" },
       { name: "Basic", lessons: "18 lessons" },
       { name: "Intermediate", lessons: "25 lessons" },
-      { name: "Advanced", lessons: "27 lessons" }
+      { name: "Advanced", lessons: "27 lessons" },
+      { name: "Fluent", lessons: "Final" }
     ]
   }
 };
@@ -157,14 +159,18 @@ function Index() {
                 </p>
 
 
-                <div className="grid grid-cols-1 gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                <div className="flex flex-wrap lg:flex-nowrap gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative">
                   {t.levels.map((level, i) => (
-                    <div key={i} className="group/card relative bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between hover:bg-white/10 hover:border-primary/50 transition-all duration-300">
-                      <div className="flex flex-col">
-                        <div className="text-xs font-black text-white uppercase tracking-wider">{level.name}</div>
-                        <div className="text-[9px] font-bold text-primary tracking-[0.2em] uppercase opacity-80">{level.lessons}</div>
+                    <div key={i} className="group/card relative flex-1 min-w-[120px] bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col items-center text-center">
+                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 group-hover/card:bg-primary group-hover/card:border-primary transition-colors">
+                        <span className="text-[10px] font-black text-primary group-hover/card:text-white">{i + 1}</span>
                       </div>
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover/card:bg-primary transition-colors"></div>
+                      <div className="text-[10px] font-black text-white uppercase tracking-wider mb-1 line-clamp-1">{level.name}</div>
+                      <div className="text-[8px] font-bold text-primary tracking-[0.1em] uppercase opacity-80">{level.lessons}</div>
+                      
+                      {i < t.levels.length - 1 && (
+                        <div className="hidden lg:block absolute top-8 -right-4 w-8 h-[1px] bg-gradient-to-r from-primary/50 to-transparent z-0"></div>
+                      )}
                     </div>
                   ))}
                 </div>
