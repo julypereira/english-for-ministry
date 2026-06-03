@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
 
 const translations = {
   pt: {
-    topBanner: "Expanda seu ministério. Alcance as nações.",
+    topBanner: "APRENDER PARA SERVIR. SERVIR PARA TRANSFORMAR",
     topBannerCTA: "",
     nav: {
       methodology: "Metodologia",
@@ -77,7 +77,7 @@ const translations = {
     }
   },
   en: {
-    topBanner: "Expand your ministry. Reach the nations.",
+    topBanner: "LEARN TO SERVE. SERVE TO TRANSFORM",
     topBannerCTA: "",
     nav: {
       methodology: "Methodology",
