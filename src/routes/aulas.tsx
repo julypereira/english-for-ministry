@@ -33,22 +33,12 @@ function AulasComponent() {
 
   if (!user) return null;
 
-  const aulas = [
-    { 
-      id: 1, 
-      title: lang === 'pt' ? "English for Missions 101" : "English for Missions 101", 
-      description: lang === 'pt' ? "Vocabulário básico para missões." : "Basic vocabulary for missions." 
-    },
-    { 
-      id: 2, 
-      title: lang === 'pt' ? "Preaching in English" : "Preaching in English", 
-      description: lang === 'pt' ? "Como estruturar uma mensagem curta em inglês." : "How to structure a short message in English." 
-    },
-    { 
-      id: 3, 
-      title: lang === 'pt' ? "Prayer and Intercession" : "Prayer and Intercession", 
-      description: lang === 'pt' ? "Termos e frases comuns para oração." : "Common terms and phrases for prayer." 
-    },
+  const modules = [
+    { id: 1, title: "INICIANTE", status: "released" },
+    { id: 2, title: "BÁSICO", status: "released" },
+    { id: 3, title: "INTERMEDIÁRIO", status: "locked" },
+    { id: 4, title: "AVANÇADO", status: "locked" },
+    { id: 5, title: "FLUENTE", status: "locked" },
   ];
 
   return (
