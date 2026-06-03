@@ -325,9 +325,6 @@ function Index() {
               <div>
                 <h4 className="text-primary font-black uppercase tracking-widest text-sm mb-8">{t.footer.navTitle}</h4>
                 <ul className="space-y-4 text-slate-400 font-bold uppercase tracking-tight text-sm">
-                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.methodology}</Link></li>
-                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.courses}</Link></li>
-                  <li><Link to="/" className="hover:text-white transition-colors">{t.nav.missions}</Link></li>
                   <li><Link to="/login" className="hover:text-white transition-colors">{t.nav.join}</Link></li>
                 </ul>
               </div>
