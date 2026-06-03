@@ -245,8 +245,14 @@ function Index() {
           </div>
           <div className="hidden sm:block h-[1px] w-12 bg-white/10"></div>
           <div className="flex items-center gap-6">
-            <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">INSTAGRAM</a>
-            <a href="https://web.whatsapp.com/send/?phone=5567984047848" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">WHATSAPP</a>
+            <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              INSTAGRAM
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5567984047848" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">
+              <MessageCircle size={14} />
+              WHATSAPP
+            </a>
           </div>
         </div>
       </div>
