@@ -38,7 +38,7 @@ function LoginComponent() {
         navigate({ to: "/aulas" });
       }
     } else {
-      setError("Email ou senha incorretos.");
+      setError(lang === 'pt' ? "Email ou senha incorretos." : "Incorrect email or password.");
     }
   };
 
@@ -76,15 +76,15 @@ function LoginComponent() {
       <div className="relative z-10 w-full max-w-md animate-in fade-in zoom-in duration-700">
         <div className="bg-white/[0.03] dark:bg-white/[0.03] light:bg-white backdrop-blur-xl border border-white/10 dark:border-white/10 light:border-slate-200 rounded-[2.5rem] shadow-2xl overflow-hidden p-8 md:p-12 transition-colors">
           <div className="text-center mb-10">
-            <Link to="/" className="inline-flex items-center gap-3 group mb-6 focus:outline-none">
+            <Link to="/" className="inline-flex items-center gap-3 group mb-6 focus:outline-none" aria-label={lang === 'pt' ? "Voltar para o início" : "Back to home"}>
               <div className="w-12 h-12 bg-white/10 dark:bg-white/10 light:bg-slate-100 rounded-xl flex items-center justify-center border border-white/10 dark:border-white/10 light:border-slate-200 group-hover:scale-110 transition-all duration-500 overflow-hidden">
                 <span className="text-white dark:text-white light:text-slate-900 font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
               </div>
             </Link>
             <h1 className="text-3xl font-black text-white dark:text-white light:text-slate-900 uppercase tracking-tighter leading-none mb-2">
-              Login
+              {lang === 'pt' ? 'Login' : 'Login'}
             </h1>
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 opacity-80">English for Ministry</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 opacity-80">{lang === 'pt' ? 'English for Ministry' : 'English for Ministry'}</p>
           </div>
 
           <form className="space-y-6" onSubmit={handleLogin}>
@@ -97,7 +97,7 @@ function LoginComponent() {
               </div>
             )}
             <div className="space-y-2">
-              <label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1 block">Email</label>
+              <label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1 block">{lang === 'pt' ? 'Email' : 'Email'}</label>
               <input 
                 id="email"
                 type="email" 
@@ -105,11 +105,11 @@ function LoginComponent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-white placeholder:text-slate-600" 
-                placeholder="seu@email.com"
+                placeholder={lang === 'pt' ? "seu@email.com" : "your@email.com"}
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="password" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1 block">Senha</label>
+              <label htmlFor="password" className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1 block">{lang === 'pt' ? 'Senha' : 'Password'}</label>
               <input 
                 id="password"
                 type="password" 
@@ -125,14 +125,14 @@ function LoginComponent() {
               type="submit"
               className="w-full group relative flex items-center justify-center gap-3 bg-orange-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:shadow-[0_0_25px_rgba(234,88,12,0.3)] active:scale-95 shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
             >
-              <span>Entrar na Plataforma</span>
+              <span>{lang === 'pt' ? 'Entrar na Plataforma' : 'Enter the Platform'}</span>
             </button>
           </form>
 
 
           <div className="mt-10 text-center">
             <Link to="/" className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors">
-              ← Voltar para o início
+              {lang === 'pt' ? '← Voltar para o início' : '← Back to home'}
             </Link>
           </div>
         </div>

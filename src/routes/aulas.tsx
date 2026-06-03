@@ -34,16 +34,28 @@ function AulasComponent() {
   if (!user) return null;
 
   const aulas = [
-    { id: 1, title: "English for Missions 101", description: "Vocabulário básico para missões." },
-    { id: 2, title: "Preaching in English", description: "Como estruturar uma mensagem curta em inglês." },
-    { id: 3, title: "Prayer and Intercession", description: "Termos e frases comuns para oração." },
+    { 
+      id: 1, 
+      title: lang === 'pt' ? "English for Missions 101" : "English for Missions 101", 
+      description: lang === 'pt' ? "Vocabulário básico para missões." : "Basic vocabulary for missions." 
+    },
+    { 
+      id: 2, 
+      title: lang === 'pt' ? "Preaching in English" : "Preaching in English", 
+      description: lang === 'pt' ? "Como estruturar uma mensagem curta em inglês." : "How to structure a short message in English." 
+    },
+    { 
+      id: 3, 
+      title: lang === 'pt' ? "Prayer and Intercession" : "Prayer and Intercession", 
+      description: lang === 'pt' ? "Termos e frases comuns para oração." : "Common terms and phrases for prayer." 
+    },
   ];
 
   return (
     <div className="min-h-screen bg-[#050505] text-slate-100 selection:bg-primary/30 flex flex-col">
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-lg px-6 py-4">
         <div className="container mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group" aria-label={lang === 'pt' ? "Voltar para o início" : "Back to home"}>
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:rotate-3 transition-transform">
               <span className="text-white font-black text-xl italic select-none">A</span>
             </div>
@@ -61,15 +73,16 @@ function AulasComponent() {
             </button>
             <div className="hidden md:flex flex-col items-end">
 
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Estudante</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-primary">{lang === 'pt' ? 'Estudante' : 'Student'}</span>
               <span className="text-sm font-bold">{user.name}</span>
             </div>
             <button 
               onClick={handleLogout} 
               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all text-xs font-black uppercase tracking-widest"
+              title={lang === 'pt' ? "Sair" : "Logout"}
             >
               <LogOut size={14} />
-              <span className="hidden sm:inline">Sair</span>
+              <span className="hidden sm:inline">{lang === 'pt' ? 'Sair' : 'Logout'}</span>
             </button>
           </div>
         </div>
@@ -79,10 +92,12 @@ function AulasComponent() {
         <header className="mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4">
             <GraduationCap size={12} className="text-primary" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-primary">Dashboard do Aluno</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-primary">{lang === 'pt' ? 'Dashboard do Aluno' : 'Student Dashboard'}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">Minhas Aulas</h1>
-          <p className="text-slate-400 mt-2 max-w-xl">Bem-vindo de volta! Continue sua jornada de aprendizado do inglês ministerial.</p>
+          <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">{lang === 'pt' ? 'Minhas Aulas' : 'My Classes'}</h1>
+          <p className="text-slate-400 mt-2 max-w-xl">
+            {lang === 'pt' ? 'Bem-vindo de volta! Continue sua jornada de aprendizado do inglês ministerial.' : 'Welcome back! Continue your journey of ministerial English learning.'}
+          </p>
         </header>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -94,7 +109,7 @@ function AulasComponent() {
               <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">{aula.title}</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-8">{aula.description}</p>
               <button className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest group-hover:bg-primary group-hover:border-primary transition-all">
-                Assistir Aula
+                {lang === 'pt' ? 'Assistir Aula' : 'Watch Class'}
                 <ArrowRight size={14} />
               </button>
             </div>
