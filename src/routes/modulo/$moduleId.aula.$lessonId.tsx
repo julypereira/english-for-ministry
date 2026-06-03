@@ -27,7 +27,6 @@ function LessonComponent() {
   const { user } = useAuthStore();
   const { lessons, updateLessonProgress, progress } = useSchoolStore();
   const { lang } = useLanguageStore();
-  const [activeTab, setActiveTab] = useState<'theory' | 'exercises' | 'homework'>('theory');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -168,33 +167,9 @@ function LessonComponent() {
             )}
 
             <div className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
-              <div className="flex border-b border-white/5 bg-white/[0.01]">
-                <button 
-                  onClick={() => setActiveTab('theory')}
-                  className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'theory' ? 'bg-primary/10 text-primary border-b-2 border-primary' : 'text-slate-500 hover:text-white'}`}
-                >
-                  <BookOpen size={14} />
-                  {lang === 'pt' ? 'Teoria' : 'Theory'}
-                </button>
-                <button 
-                  onClick={() => setActiveTab('exercises')}
-                  className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'exercises' ? 'bg-primary/10 text-primary border-b-2 border-primary' : 'text-slate-500 hover:text-white'}`}
-                >
-                  <PenTool size={14} />
-                  {lang === 'pt' ? 'Exercícios' : 'Exercises'}
-                </button>
-                <button 
-                  onClick={() => setActiveTab('homework')}
-                  className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'homework' ? 'bg-primary/10 text-primary border-b-2 border-primary' : 'text-slate-500 hover:text-white'}`}
-                >
-                  <HomeIcon size={14} />
-                  {lang === 'pt' ? 'Homework' : 'Homework'}
-                </button>
-              </div>
-
               <div className="p-8 md:p-12 prose prose-invert max-w-none">
                 <ReactMarkdown>
-                  {activeTab === 'theory' ? lesson.theory : activeTab === 'exercises' ? lesson.exercises : lesson.homework}
+                  {lesson.theory}
                 </ReactMarkdown>
               </div>
             </div>
