@@ -25,7 +25,8 @@ import {
   ArrowLeft,
   Lock,
   Unlock,
-  Video
+  Video,
+  AlertCircle
 } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 
@@ -44,6 +45,7 @@ function AdminUsersComponent() {
   const { users, addUser, updateUser, deleteUser } = useUsersStore();
   const { lang, toggleLang } = useLanguageStore();
   const { modules, classes, addClass, updateClass, deleteClass, lessons, addLesson, updateLesson, deleteLesson, releaseLesson, lockLesson } = useSchoolStore();
+  const [error, setError] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<"users" | "classes" | "lessons">("users");
 
@@ -103,22 +105,32 @@ function AdminUsersComponent() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingUser) {
-      updateUser({ ...editingUser, ...formData });
-    } else {
-      const newUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        ...formData,
-        createdAt: new Date().toISOString().split('T')[0]
-      };
-      addUser(newUser);
+    try {
+      if (editingUser) {
+        updateUser({ ...editingUser, ...formData });
+      } else {
+        const newUser: User = {
+          id: Math.random().toString(36).substr(2, 9),
+          ...formData,
+          createdAt: new Date().toISOString().split('T')[0]
+        };
+        addUser(newUser);
+      }
+      handleCloseModal();
+    } catch (err) {
+      console.error("Erro ao salvar usuário:", err);
+      setError(lang === 'pt' ? "Erro ao salvar usuário. Tente novamente." : "Error saving user. Please try again.");
     }
-    handleCloseModal();
   };
 
   const handleDelete = (id: string) => {
-    if (window.confirm(lang === 'pt' ? "Tem certeza que deseja excluir este usuário?" : "Are you sure you want to delete this user?")) {
-      deleteUser(id);
+    try {
+      if (window.confirm(lang === 'pt' ? "Tem certeza que deseja excluir este usuário?" : "Are you sure you want to delete this user?")) {
+        deleteUser(id);
+      }
+    } catch (err) {
+      console.error("Erro ao excluir usuário:", err);
+      setError(lang === 'pt' ? "Erro ao excluir usuário." : "Error deleting user.");
     }
   };
 
@@ -136,15 +148,20 @@ function AdminUsersComponent() {
 
   const handleClassSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingClass) {
-      updateClass({ ...editingClass, ...classFormData });
-    } else {
-      addClass({
-        id: Math.random().toString(36).substr(2, 9),
-        ...classFormData
-      });
+    try {
+      if (editingClass) {
+        updateClass({ ...editingClass, ...classFormData });
+      } else {
+        addClass({
+          id: Math.random().toString(36).substr(2, 9),
+          ...classFormData
+        });
+      }
+      setIsClassModalOpen(false);
+    } catch (err) {
+      console.error("Erro ao salvar turma:", err);
+      setError(lang === 'pt' ? "Erro ao salvar turma." : "Error saving class.");
     }
-    setIsClassModalOpen(false);
   };
 
   const handleDeleteClass = (id: string) => {
@@ -183,17 +200,22 @@ function AdminUsersComponent() {
 
   const handleLessonSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingLesson) {
-      updateLesson({ ...editingLesson, ...lessonFormData });
-    } else {
-      const newLesson: Lesson = {
-        id: Math.random().toString(36).substr(2, 9),
-        order: lessons.filter(l => l.moduleId === lessonFormData.moduleId).length + 1,
-        ...lessonFormData
-      };
-      addLesson(newLesson);
+    try {
+      if (editingLesson) {
+        updateLesson({ ...editingLesson, ...lessonFormData });
+      } else {
+        const newLesson: Lesson = {
+          id: Math.random().toString(36).substr(2, 9),
+          order: lessons.filter(l => l.moduleId === lessonFormData.moduleId).length + 1,
+          ...lessonFormData
+        };
+        addLesson(newLesson);
+      }
+      setIsLessonModalOpen(false);
+    } catch (err) {
+      console.error("Erro ao salvar aula:", err);
+      setError(lang === 'pt' ? "Erro ao salvar aula." : "Error saving lesson.");
     }
-    setIsLessonModalOpen(false);
   };
 
   const handleDeleteLesson = (id: string) => {
@@ -222,6 +244,20 @@ function AdminUsersComponent() {
 
       <div className="container mx-auto max-w-6xl">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          {error && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[100] w-full max-w-lg bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] p-4 rounded-xl flex items-center justify-between gap-3 animate-in fade-in slide-in-from-top duration-300">
+              <div className="flex items-center gap-3">
+                <AlertCircle size={16} />
+                <p className="font-black uppercase tracking-widest">{error}</p>
+              </div>
+              <button 
+                onClick={() => setError(null)}
+                className="text-red-500 hover:text-white transition-colors font-black uppercase tracking-widest text-[8px]"
+              >
+                [X]
+              </button>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <button onClick={handleLogout} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
 

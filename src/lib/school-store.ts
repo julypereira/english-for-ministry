@@ -126,13 +126,34 @@ export const useSchoolStore = create<SchoolStore>()(
         { id: "1", name: "Turma Alpha", moduleIds: [1, 2], studentIds: ["2"] },
       ],
       progress: [],
-      addClass: (newClass) => set((state) => ({ classes: [...state.classes, newClass] })),
-      updateClass: (updatedClass) => set((state) => ({ 
-        classes: state.classes.map((c) => (c.id === updatedClass.id ? updatedClass : c)) 
-      })),
-      deleteClass: (id) => set((state) => ({ 
-        classes: state.classes.filter((c) => c.id !== id) 
-      })),
+      addClass: (newClass) => set((state) => {
+        try {
+          return { classes: [...state.classes, newClass] };
+        } catch (err) {
+          console.error("Erro ao adicionar turma:", err);
+          return state;
+        }
+      }),
+      updateClass: (updatedClass) => set((state) => {
+        try {
+          return { 
+            classes: state.classes.map((c) => (c.id === updatedClass.id ? updatedClass : c)) 
+          };
+        } catch (err) {
+          console.error("Erro ao atualizar turma:", err);
+          return state;
+        }
+      }),
+      deleteClass: (id) => set((state) => {
+        try {
+          return { 
+            classes: state.classes.filter((c) => c.id !== id) 
+          };
+        } catch (err) {
+          console.error("Erro ao deletar turma:", err);
+          return state;
+        }
+      }),
       releaseModule: (id) => set((state) => ({
         modules: state.modules.map(m => m.id === id ? { ...m, status: "released" } : m)
       })),
@@ -146,27 +167,53 @@ export const useSchoolStore = create<SchoolStore>()(
         lessons: state.lessons.map(l => l.id === id ? { ...l, status: "locked" } : l)
       })),
       completeLesson: (studentId, lessonId, score) => set((state) => {
-        const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
-        if (existing) {
+        try {
+          const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
+          if (existing) {
+            return {
+              progress: state.progress.map(p => 
+                (p.studentId === studentId && p.lessonId === lessonId) 
+                  ? { ...p, completed: true, score: Math.max(p.score, score) } 
+                  : p
+              )
+            };
+          }
           return {
-            progress: state.progress.map(p => 
-              (p.studentId === studentId && p.lessonId === lessonId) 
-                ? { ...p, completed: true, score: Math.max(p.score, score) } 
-                : p
-            )
+            progress: [...state.progress, { studentId, lessonId, completed: true, score }]
           };
+        } catch (err) {
+          console.error("Erro ao completar aula:", err);
+          return state;
         }
-        return {
-          progress: [...state.progress, { studentId, lessonId, completed: true, score }]
-        };
       }),
-      addLesson: (lesson) => set((state) => ({ lessons: [...state.lessons, lesson] })),
-      updateLesson: (lesson) => set((state) => ({
-        lessons: state.lessons.map((l) => (l.id === lesson.id ? lesson : l))
-      })),
-      deleteLesson: (id) => set((state) => ({
-        lessons: state.lessons.filter((l) => l.id !== id)
-      })),
+      addLesson: (lesson) => set((state) => {
+        try {
+          return { lessons: [...state.lessons, lesson] };
+        } catch (err) {
+          console.error("Erro ao adicionar aula:", err);
+          return state;
+        }
+      }),
+      updateLesson: (lesson) => set((state) => {
+        try {
+          return {
+            lessons: state.lessons.map((l) => (l.id === lesson.id ? lesson : l))
+          };
+        } catch (err) {
+          console.error("Erro ao atualizar aula:", err);
+          return state;
+        }
+      }),
+      deleteLesson: (id) => set((state) => {
+        try {
+          return {
+            lessons: state.lessons.filter((l) => l.id !== id)
+          };
+        } catch (err) {
+          console.error("Erro ao deletar aula:", err);
+          return state;
+        }
+      }),
     }),
     {
       name: 'school-storage',

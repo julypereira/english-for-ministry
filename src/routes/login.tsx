@@ -28,24 +28,32 @@ function LoginComponent() {
     e.preventDefault();
     setError("");
 
-    // Se houver email e senha, tenta autenticar normalmente
-    if (email && password) {
-      const user = users.find(u => u.email === email && u.password === password);
-      if (user) {
-        login(user);
-        if (user.profile === "Administrador") {
-          navigate({ to: "/admin/users" });
-        } else {
-          navigate({ to: "/aulas" });
+    try {
+      // Se houver email e senha, tenta autenticar normalmente
+      if (email && password) {
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+          login(user);
+          if (user.profile === "Administrador") {
+            navigate({ to: "/admin/users" });
+          } else {
+            navigate({ to: "/aulas" });
+          }
+          return;
         }
-        return;
       }
-    }
 
-    // Se não houver validação (ou falhar), permite login como Aluno padrão para facilitar o acesso
-    const defaultUser = users.find(u => u.profile === "Aluno") || users[0];
-    login(defaultUser);
-    navigate({ to: "/aulas" });
+      // Se não houver validação (ou falhar), permite login como Aluno padrão para facilitar o acesso
+      const defaultUser = users.find(u => u.profile === "Aluno") || users[0];
+      if (!defaultUser) {
+        throw new Error("Nenhum usuário disponível para login.");
+      }
+      login(defaultUser);
+      navigate({ to: "/aulas" });
+    } catch (err) {
+      console.error("Erro no login:", err);
+      setError(lang === 'pt' ? "Ocorreu um erro ao tentar entrar. Tente novamente." : "An error occurred while trying to log in. Please try again.");
+    }
   };
 
   const handleAdminQuickLogin = () => {

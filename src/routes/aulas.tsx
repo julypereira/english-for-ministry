@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/auth-store";
-import { LogOut, GraduationCap, Lock, ArrowRight, Languages, LayoutGrid } from "lucide-react";
+import { LogOut, GraduationCap, Lock, ArrowRight, Languages, LayoutGrid, AlertCircle } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 import { useSchoolStore } from "@/lib/school-store";
 
@@ -14,6 +14,7 @@ function AulasComponent() {
   const { user, logout } = useAuthStore();
   const { lang, toggleLang } = useLanguageStore();
   const { modules, classes } = useSchoolStore();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!user) {
@@ -80,6 +81,20 @@ function AulasComponent() {
 
       <main className="flex-1 container mx-auto py-12 px-6">
         <header className="mb-12">
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] p-4 rounded-xl flex items-center justify-between gap-3 mb-6 animate-in fade-in zoom-in duration-300">
+              <div className="flex items-center gap-3">
+                <AlertCircle size={16} />
+                <p className="font-black uppercase tracking-widest">{error}</p>
+              </div>
+              <button 
+                onClick={() => setError(null)}
+                className="text-red-500 hover:text-white transition-colors font-black uppercase tracking-widest text-[8px]"
+              >
+                [X]
+              </button>
+            </div>
+          )}
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4">
             <GraduationCap size={12} className="text-primary" />
             <span className="text-[10px] font-black uppercase tracking-widest text-primary">
