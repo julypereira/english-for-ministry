@@ -63,7 +63,7 @@ function LoginComponent() {
         <div className="bg-white/5 dark:bg-white/5 light:bg-white backdrop-blur-xl border border-white/10 dark:border-white/10 light:border-slate-200 rounded-[2.5rem] shadow-2xl overflow-hidden p-8 md:p-12 transition-colors">
           <div className="text-center mb-10">
             <Link to="/" className="inline-flex items-center gap-3 group mb-6 focus:outline-none">
-              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-110 transition-all duration-500 overflow-hidden">
+              <div className="w-12 h-12 bg-white/10 dark:bg-white/10 light:bg-slate-100 rounded-xl flex items-center justify-center border border-white/10 dark:border-white/10 light:border-slate-200 group-hover:scale-110 transition-all duration-500 overflow-hidden">
                 <span className="text-white dark:text-white light:text-slate-900 font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
               </div>
             </Link>
@@ -97,7 +97,8 @@ function LoginComponent() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white placeholder:text-slate-600" 
+                className="w-full bg-black/40 dark:bg-black/40 light:bg-slate-50 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white dark:text-white light:text-slate-900 placeholder:text-slate-600" 
+
                 placeholder="seu@email.com"
               />
             </div>
@@ -108,7 +109,7 @@ function LoginComponent() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white placeholder:text-slate-600"
+                className="w-full bg-black/40 dark:bg-black/40 light:bg-slate-50 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white dark:text-white light:text-slate-900 placeholder:text-slate-600"
                 placeholder="••••••••"
               />
             </div>
