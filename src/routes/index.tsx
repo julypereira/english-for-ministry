@@ -169,8 +169,13 @@ function Index() {
       />
       
       <div className="relative z-10">
-        <div className="bg-primary/90 backdrop-blur-sm text-white py-2 text-center text-xs font-bold uppercase tracking-widest px-4">
-          {t.topBanner}
+        <div className="bg-primary/90 backdrop-blur-sm text-white py-2 overflow-hidden whitespace-nowrap text-xs font-bold uppercase tracking-widest">
+          <div className="inline-block animate-marquee">
+            <span className="px-4">{t.topBanner}</span>
+            <span className="px-4">{t.topBanner}</span>
+            <span className="px-4">{t.topBanner}</span>
+            <span className="px-4">{t.topBanner}</span>
+          </div>
         </div>
 
         <nav className="sticky top-0 z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5 px-6 py-4">
