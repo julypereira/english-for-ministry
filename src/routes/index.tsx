@@ -262,7 +262,7 @@ function Index() {
                   >
                     <div className="text-center">
                       <Signpost className="text-primary mx-auto mb-2" size={24} />
-                      <div className="text-[8px] font-black uppercase tracking-widest leading-tight">MARCOS 16:15</div>
+                      <div className="text-[8px] font-black uppercase tracking-widest leading-tight">{t.floating.verse}</div>
                     </div>
                   </div>
 
@@ -275,8 +275,8 @@ function Index() {
                         <ShieldCheck className="text-green-500" size={20} />
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-widest">CERTIFICADO</div>
-                        <div className="text-[8px] text-slate-400">DE CONCLUSÃO A CADA MÓDULO</div>
+                        <div className="text-[10px] font-black uppercase tracking-widest">{t.floating.certificate}</div>
+                        <div className="text-[8px] text-slate-400">{t.floating.completion}</div>
                       </div>
                     </div>
                   </div>
