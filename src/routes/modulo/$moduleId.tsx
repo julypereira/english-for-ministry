@@ -137,15 +137,7 @@ function ModuloComponent() {
                     <div>
                       <h3 className="font-bold text-white">{lesson.title}</h3>
                       <div className="flex gap-4 mt-1">
-                        <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-1">
-                          <BookOpen size={10} /> {lang === 'pt' ? 'Teoria' : 'Theory'}
-                        </span>
-                        <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-1">
-                          <PenTool size={10} /> {lang === 'pt' ? 'Exercícios' : 'Exercises'}
-                        </span>
-                        <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 flex items-center gap-1">
-                          <HomeIcon size={10} /> {lang === 'pt' ? 'Homework' : 'Homework'}
-                        </span>
+                        {/* Removido Teoria, Exercícios e Homework conforme solicitado */}
                       </div>
                     </div>
                   </div>
