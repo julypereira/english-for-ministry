@@ -1,10 +1,39 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { useAuthStore } from "@/lib/auth-store";
+import { useUsersStore } from "@/lib/users-store";
+import { AlertCircle } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   component: LoginComponent,
 });
 
 function LoginComponent() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const login = useAuthStore((state) => state.login);
+  const users = useUsersStore((state) => state.users);
+  const navigate = useNavigate();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (user) {
+      login(user);
+      if (user.profile === "Administrador") {
+        navigate({ to: "/admin/users" });
+      } else {
+        navigate({ to: "/aulas" });
+      }
+    } else {
+      setError("Email ou senha incorretos.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-hidden flex items-center justify-center p-4">
       {/* Background Elements directly from Index for consistency */}
@@ -37,11 +66,20 @@ function LoginComponent() {
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 opacity-80">English for Ministry</p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleLogin}>
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] p-4 rounded-xl flex items-center gap-3 animate-in fade-in zoom-in duration-300">
+                <AlertCircle size={16} />
+                <p className="font-black uppercase tracking-widest">{error}</p>
+              </div>
+            )}
             <div className="space-y-2">
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Email</label>
               <input 
                 type="email" 
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white placeholder:text-slate-600" 
                 placeholder="seu@email.com"
               />
@@ -50,18 +88,22 @@ function LoginComponent() {
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-1">Senha</label>
               <input 
                 type="password" 
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:border-primary/50 transition-all text-white placeholder:text-slate-600"
                 placeholder="••••••••"
               />
             </div>
             
-            <Link 
-              to="/admin/users"
+            <button 
+              type="submit"
               className="w-full group relative flex items-center justify-center gap-3 bg-orange-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:shadow-[0_0_25px_rgba(234,88,12,0.3)] active:scale-95 shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
             >
               <span>Entrar na Plataforma</span>
-            </Link>
+            </button>
           </form>
+
 
           <div className="mt-10 text-center">
             <Link to="/" className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-colors">

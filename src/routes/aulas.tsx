@@ -1,10 +1,30 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { useAuthStore } from "@/lib/auth-store";
+import { LogOut } from "lucide-react";
 
 export const Route = createFileRoute("/aulas")({
   component: AulasComponent,
 });
 
+
 function AulasComponent() {
+  const navigate = useNavigate();
+  const { user, logout } = useAuthStore();
+
+  useEffect(() => {
+    if (!user) {
+      navigate({ to: "/login" });
+    }
+  }, [user, navigate]);
+
+  const handleLogout = () => {
+    logout();
+    navigate({ to: "/login" });
+  };
+
+  if (!user) return null;
+
   const aulas = [
     { id: 1, title: "English for Missions 101", description: "Vocabulário básico para missões." },
     { id: 2, title: "Preaching in English", description: "Como estruturar uma mensagem curta em inglês." },
@@ -17,8 +37,12 @@ function AulasComponent() {
         <div className="container mx-auto flex items-center justify-between">
           <div className="font-bold text-xl text-primary">English for Ministry</div>
           <div className="space-x-4">
-            <span className="text-muted-foreground">Olá, Aluno</span>
-            <Link to="/" className="text-destructive hover:underline">Sair</Link>
+            <span className="text-muted-foreground">Olá, {user.name}</span>
+            <button onClick={handleLogout} className="text-destructive hover:underline flex items-center gap-2">
+              <LogOut size={16} />
+              Sair
+            </button>
+
           </div>
         </div>
       </nav>
