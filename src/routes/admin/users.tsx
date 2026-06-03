@@ -26,7 +26,8 @@ import {
   Lock,
   Unlock,
   Video,
-  AlertCircle
+  AlertCircle,
+  Play
 } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 
