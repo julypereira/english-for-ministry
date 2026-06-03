@@ -5,7 +5,7 @@ import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
 import { useSchoolStore } from "@/lib/school-store";
 import type { User, UserProfile } from "@/lib/auth-store";
-import type { Class } from "@/lib/school-store";
+import type { Class, Lesson, LessonStatus } from "@/lib/school-store";
 import { 
   Users, 
   UserPlus, 
@@ -22,7 +22,10 @@ import {
   Users2,
   BookOpen,
   Plus,
-  ArrowLeft
+  ArrowLeft,
+  Lock,
+  Unlock,
+  Video
 } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 
@@ -40,9 +43,9 @@ function AdminUsersComponent() {
   const { user: currentUser, logout } = useAuthStore();
   const { users, addUser, updateUser, deleteUser } = useUsersStore();
   const { lang, toggleLang } = useLanguageStore();
-  const { modules, classes, addClass, updateClass, deleteClass } = useSchoolStore();
+  const { modules, classes, addClass, updateClass, deleteClass, lessons, addLesson, updateLesson, deleteLesson, releaseLesson, lockLesson } = useSchoolStore();
 
-  const [activeTab, setActiveTab] = useState<"users" | "classes">("users");
+  const [activeTab, setActiveTab] = useState<"users" | "classes" | "lessons">("users");
 
   useEffect(() => {
     if (!currentUser || currentUser.profile !== "Administrador") {
@@ -62,6 +65,19 @@ function AdminUsersComponent() {
     name: "", 
     moduleIds: [] as number[], 
     studentIds: [] as string[] 
+  });
+
+  // Lesson Management State
+  const [isLessonModalOpen, setIsLessonModalOpen] = useState(false);
+  const [editingLesson, setEditingLesson] = useState<Lesson | null>(null);
+  const [lessonFormData, setLessonFormData] = useState({
+    title: "",
+    moduleId: 1,
+    theory: "",
+    exercises: "",
+    homework: "",
+    canvaUrl: "",
+    status: "locked" as LessonStatus
   });
 
   const filteredUsers = users.filter(user => 
@@ -137,6 +153,63 @@ function AdminUsersComponent() {
     }
   };
 
+  // Lesson management handlers
+  const handleOpenLessonModal = (lesson?: Lesson) => {
+    if (lesson) {
+      setEditingLesson(lesson);
+      setLessonFormData({
+        title: lesson.title,
+        moduleId: lesson.moduleId,
+        theory: lesson.theory,
+        exercises: lesson.exercises,
+        homework: lesson.homework,
+        canvaUrl: lesson.canvaUrl || "",
+        status: lesson.status
+      });
+    } else {
+      setEditingLesson(null);
+      setLessonFormData({
+        title: "",
+        moduleId: 1,
+        theory: "",
+        exercises: "",
+        homework: "",
+        canvaUrl: "",
+        status: "locked"
+      });
+    }
+    setIsLessonModalOpen(true);
+  };
+
+  const handleLessonSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editingLesson) {
+      updateLesson({ ...editingLesson, ...lessonFormData });
+    } else {
+      const newLesson: Lesson = {
+        id: Math.random().toString(36).substr(2, 9),
+        order: lessons.filter(l => l.moduleId === lessonFormData.moduleId).length + 1,
+        ...lessonFormData
+      };
+      addLesson(newLesson);
+    }
+    setIsLessonModalOpen(false);
+  };
+
+  const handleDeleteLesson = (id: string) => {
+    if (window.confirm(lang === 'pt' ? "Tem certeza que deseja excluir esta aula?" : "Are you sure you want to delete this lesson?")) {
+      deleteLesson(id);
+    }
+  };
+
+  const toggleLessonStatus = (lesson: Lesson) => {
+    if (lesson.status === "released") {
+      lockLesson(lesson.id);
+    } else {
+      releaseLesson(lesson.id);
+    }
+  };
+
   const handleLogout = () => {
     logout();
     navigate({ to: "/login" });
@@ -174,6 +247,12 @@ function AdminUsersComponent() {
                 >
                   {lang === 'pt' ? 'Turmas' : 'Classes'}
                 </button>
+                <button 
+                  onClick={() => setActiveTab("lessons")}
+                  className={`text-[10px] font-black uppercase tracking-widest transition-colors ${activeTab === 'lessons' ? 'text-primary' : 'text-slate-500 hover:text-slate-300'}`}
+                >
+                  {lang === 'pt' ? 'Aulas' : 'Lessons'}
+                </button>
               </div>
             </div>
 
@@ -196,11 +275,17 @@ function AdminUsersComponent() {
                 {lang === 'pt' ? 'Voltar' : 'Back'}
               </Link>
               <button 
-                onClick={() => activeTab === 'users' ? handleOpenModal() : handleOpenClassModal()}
+                onClick={() => {
+                  if (activeTab === 'users') handleOpenModal();
+                  else if (activeTab === 'classes') handleOpenClassModal();
+                  else handleOpenLessonModal();
+                }}
                 className="flex items-center justify-center gap-2 bg-primary hover:bg-orange-500 text-white px-6 py-2.5 rounded-xl font-black uppercase tracking-widest text-[10px] transition-all active:scale-95 shadow-lg shadow-primary/20"
               >
                 <Plus size={16} />
-                {activeTab === 'users' ? (lang === 'pt' ? 'Novo Usuário' : 'New User') : (lang === 'pt' ? 'Nova Turma' : 'New Class')}
+                {activeTab === 'users' ? (lang === 'pt' ? 'Novo Usuário' : 'New User') : 
+                 activeTab === 'classes' ? (lang === 'pt' ? 'Nova Turma' : 'New Class') : 
+                 (lang === 'pt' ? 'Nova Aula' : 'New Lesson')}
               </button>
 
           </div>
