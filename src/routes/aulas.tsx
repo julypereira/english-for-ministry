@@ -115,7 +115,9 @@ function AulasComponent() {
                 <p className="text-slate-400 text-sm leading-relaxed mb-8">
                   {lang === 'pt' ? `Acesse o conteúdo completo do módulo ${module.title}.` : `Access the full content of the ${module.title} module.`}
                 </p>
-                <button 
+                <Link 
+                  to="/modulo/$moduleId"
+                  params={{ moduleId: module.id.toString() }}
                   disabled={!accessible}
                   className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${
                     accessible 
@@ -125,7 +127,7 @@ function AulasComponent() {
                 >
                   {lang === 'pt' ? 'Acessar Módulo' : 'Access Module'}
                   <ArrowRight size={14} />
-                </button>
+                </Link>
               </div>
             );
           })}
