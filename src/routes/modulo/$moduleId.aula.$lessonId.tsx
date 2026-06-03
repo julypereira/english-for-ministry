@@ -71,16 +71,22 @@ function LessonComponent() {
 
   const getCanvaEmbedUrl = (url: string) => {
     if (!url) return null;
-    // Se já for um link de embed, retorna
+    
+    // Se já for um link de embed do Canva, retorna
     if (url.includes('canva.com') && url.includes('view?embed')) return url;
     
-    // Tenta converter link de compartilhamento para link de embed
-    // Exemplo: https://www.canva.com/design/DAF.../view -> https://www.canva.com/design/DAF.../view?embed
+    // Se for um link curto do canva.link
+    if (url.includes('canva.link')) {
+      return url; // Navegadores lidam com o redirecionamento ou o iframe tenta carregar
+    }
+    
+    // Tenta converter link de compartilhamento padrão para link de embed
     if (url.includes('canva.com/design/')) {
       const baseUrl = url.split('?')[0];
       return `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}view?embed`;
     }
-    return null;
+    
+    return url; // Fallback para a URL original
   };
 
   const canvaEmbedUrl = getCanvaEmbedUrl(lesson.canvaUrl || "");
