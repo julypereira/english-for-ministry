@@ -112,9 +112,9 @@ function AdminUsersComponent() {
             <div>
               <h1 className="text-2xl font-black uppercase tracking-tight text-white dark:text-white light:text-slate-900 flex items-center gap-2">
                 <Users className="text-primary" />
-                Gestão de Usuários
+                {lang === 'pt' ? 'Gestão de Usuários' : 'User Management'}
               </h1>
-              <p className="text-xs text-slate-400 uppercase tracking-widest font-bold opacity-60">Painel Administrativo</p>
+              <p className="text-xs text-slate-400 uppercase tracking-widest font-bold opacity-60">{lang === 'pt' ? 'Painel Administrativo' : 'Admin Panel'}</p>
             </div>
           </div>
           
@@ -127,13 +127,13 @@ function AdminUsersComponent() {
               <Languages size={14} className="text-primary" />
               <span>{lang === 'pt' ? 'PT' : 'EN'}</span>
             </button>
-            <button 
-              onClick={() => handleOpenModal()}
-              className="flex items-center justify-center gap-2 bg-primary hover:bg-orange-500 text-white px-6 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all active:scale-95 shadow-lg shadow-primary/20"
-            >
-              <UserPlus size={18} />
-              Novo Usuário
-            </button>
+              <button 
+                onClick={() => handleOpenModal()}
+                className="flex items-center justify-center gap-2 bg-primary hover:bg-orange-500 text-white px-6 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all active:scale-95 shadow-lg shadow-primary/20"
+              >
+                <UserPlus size={18} />
+                {lang === 'pt' ? 'Novo Usuário' : 'New User'}
+              </button>
           </div>
 
         </header>
@@ -145,7 +145,7 @@ function AdminUsersComponent() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
               <input 
                 type="text" 
-                placeholder="Pesquisar por nome ou email..."
+                placeholder={lang === 'pt' ? "Pesquisar por nome ou email..." : "Search by name or email..."}
                 className="w-full bg-slate-900/50 dark:bg-slate-900/50 light:bg-slate-50 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-slate-100 dark:text-slate-100 light:text-slate-900"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -157,10 +157,10 @@ function AdminUsersComponent() {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-white/[0.02] text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
-                  <th className="px-6 py-4">Usuário</th>
-                  <th className="px-6 py-4">Perfil</th>
-                  <th className="px-6 py-4">Criado em</th>
-                  <th className="px-6 py-4 text-right">Ações</th>
+                  <th className="px-6 py-4">{lang === 'pt' ? 'Usuário' : 'User'}</th>
+                  <th className="px-6 py-4">{lang === 'pt' ? 'Perfil' : 'Profile'}</th>
+                  <th className="px-6 py-4">{lang === 'pt' ? 'Criado em' : 'Created at'}</th>
+                  <th className="px-6 py-4 text-right">{lang === 'pt' ? 'Ações' : 'Actions'}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
