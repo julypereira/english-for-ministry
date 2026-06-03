@@ -2,7 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Languages } from "lucide-react";
+import { useLanguageStore } from "@/lib/language-store";
+
 
 
 
@@ -17,6 +19,8 @@ function LoginComponent() {
   const login = useAuthStore((state) => state.login);
   const users = useUsersStore((state) => state.users);
   const navigate = useNavigate();
+  const { lang, toggleLang } = useLanguageStore();
+
 
 
 
@@ -40,6 +44,17 @@ function LoginComponent() {
 
   return (
     <div className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-hidden flex items-center justify-center p-4 transition-colors duration-300">
+      <div className="absolute top-6 right-6 z-50">
+        <button 
+          onClick={toggleLang}
+          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all focus-visible:ring-2 focus-visible:ring-primary text-white"
+          aria-label="Trocar Idioma"
+        >
+          <Languages size={14} className="text-primary" />
+          <span>{lang === 'pt' ? 'PT' : 'EN'}</span>
+        </button>
+      </div>
+
       {/* Background Elements directly from Index for consistency */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 
