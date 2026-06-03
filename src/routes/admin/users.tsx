@@ -27,6 +27,8 @@ function AdminUsersComponent() {
   const navigate = useNavigate();
   const { user: currentUser, logout } = useAuthStore();
   const { users, addUser, updateUser, deleteUser } = useUsersStore();
+  const { theme, toggleTheme } = useThemeStore();
+
 
   useEffect(() => {
     if (!currentUser || currentUser.profile !== "Administrador") {
@@ -89,11 +91,19 @@ function AdminUsersComponent() {
 
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
+    <div className="min-h-screen bg-slate-950 dark:bg-slate-950 light:bg-slate-50 text-slate-100 dark:text-slate-100 light:text-slate-900 p-4 md:p-8 font-sans transition-colors duration-300">
+
       <div className="container mx-auto max-w-6xl">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={toggleTheme}
+              className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white dark:text-white light:text-slate-900"
+            >
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
             <button onClick={handleLogout} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
+
               <LogOut size={24} />
             </button>
 
