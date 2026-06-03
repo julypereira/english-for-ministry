@@ -56,6 +56,14 @@ function LoginComponent() {
     }
   };
 
+  const handleStudentQuickLogin = () => {
+    const studentUser = users.find(u => u.profile === "Aluno") || users[0];
+    if (studentUser) {
+      login(studentUser);
+      navigate({ to: "/aulas" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-hidden flex items-center justify-center p-4 transition-colors duration-300">
       <div className="absolute top-6 right-6 z-50">
@@ -142,13 +150,23 @@ function LoginComponent() {
               <span>{lang === 'pt' ? 'Entrar na Plataforma' : 'Enter the Platform'}</span>
             </button>
 
-            <button 
-              type="button"
-              onClick={handleAdminQuickLogin}
-              className="w-full group relative flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white/10 active:scale-95 mt-2"
-            >
-              <span>{lang === 'pt' ? 'Logar como ADM' : 'Login as Admin'}</span>
-            </button>
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              <button 
+                type="button"
+                onClick={handleAdminQuickLogin}
+                className="w-full group relative flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[9px] transition-all hover:bg-white/10 active:scale-95"
+              >
+                <span>{lang === 'pt' ? 'Logar como ADM' : 'Admin Access'}</span>
+              </button>
+
+              <button 
+                type="button"
+                onClick={handleStudentQuickLogin}
+                className="w-full group relative flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[9px] transition-all hover:bg-white/10 active:scale-95"
+              >
+                <span>{lang === 'pt' ? 'Logar como Aluno' : 'Student Access'}</span>
+              </button>
+            </div>
           </form>
 
 
