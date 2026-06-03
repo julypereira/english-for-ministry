@@ -46,7 +46,7 @@ function LessonComponent() {
 
   const handleComplete = () => {
     updateLessonProgress(user.id, lesson.id, 100, 100);
-    navigate({ to: "/modulo/$moduleId", params: { moduleId } });
+    navigate({ to: "/modulo/$moduleId", params: { moduleId: moduleId.toString() } });
   };
 
   const toggleFullscreen = () => {
@@ -91,7 +91,7 @@ function LessonComponent() {
         <div className="container mx-auto flex items-center justify-between">
           <Link 
             to="/modulo/$moduleId" 
-            params={{ moduleId }}
+            params={{ moduleId: moduleId.toString() }}
             className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors"
           >
             <ChevronLeft size={20} />
@@ -166,13 +166,15 @@ function LessonComponent() {
                </div>
             )}
 
-            <div className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
-              <div className="p-8 md:p-12 prose prose-invert max-w-none">
-                <ReactMarkdown>
-                  {lesson.theory}
-                </ReactMarkdown>
+            {lesson.theory && (
+              <div className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
+                <div className="p-8 md:p-12 prose prose-invert max-w-none">
+                  <ReactMarkdown>
+                    {lesson.theory}
+                  </ReactMarkdown>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Sidebar */}

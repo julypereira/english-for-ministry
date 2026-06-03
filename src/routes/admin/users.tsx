@@ -804,30 +804,19 @@ function AdminUsersComponent() {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Teoria' : 'Theory'}</label>
-                  <textarea 
-                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white h-24 resize-none"
-                    value={lessonFormData.theory}
-                    onChange={(e) => setLessonFormData({ ...lessonFormData, theory: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Exercícios' : 'Exercises'}</label>
-                  <textarea 
-                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white h-24 resize-none"
-                    value={lessonFormData.exercises}
-                    onChange={(e) => setLessonFormData({ ...lessonFormData, exercises: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Home Work' : 'Home Work'}</label>
-                  <textarea 
-                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white h-24 resize-none"
-                    value={lessonFormData.homework}
-                    onChange={(e) => setLessonFormData({ ...lessonFormData, homework: e.target.value })}
-                  />
+              <div className="space-y-4 md:col-span-2">
+                <div className="p-8 border-2 border-dashed border-white/5 rounded-3xl flex flex-col items-center justify-center text-center gap-4">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Video size={32} />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold">{lang === 'pt' ? 'Configuração de Conteúdo' : 'Content Configuration'}</h4>
+                    <p className="text-slate-500 text-xs mt-1 max-w-xs">
+                      {lang === 'pt' 
+                        ? 'O conteúdo desta aula será exibido diretamente através do link do Canva fornecido.' 
+                        : 'The content for this lesson will be displayed directly through the provided Canva link.'}
+                    </p>
+                  </div>
                 </div>
               </div>
 
