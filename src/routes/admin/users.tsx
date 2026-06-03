@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
+import { useThemeStore } from "@/lib/theme-store";
 import type { User, UserProfile } from "@/lib/auth-store";
 import { 
   Users, 
@@ -15,8 +16,11 @@ import {
   GraduationCap,
   X,
   Check,
-  LogOut
+  LogOut,
+  Sun,
+  Moon
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/admin/users")({
   component: AdminUsersComponent,

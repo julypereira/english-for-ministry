@@ -206,7 +206,7 @@ function Index() {
 
                 <div className="flex flex-wrap lg:flex-nowrap gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative">
                   {t.levels.map((level, i) => (
-                    <div key={i} className="group/card relative flex-1 min-w-[120px] bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col items-center text-center">
+                    <div key={i} className="group/card relative flex-1 min-w-[120px] bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 rounded-xl p-4 hover:bg-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col items-center text-center">
                       <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 group-hover/card:bg-primary group-hover/card:border-primary transition-colors">
                         <span className="text-[10px] font-black text-primary group-hover/card:text-white">{i + 1}</span>
                       </div>
@@ -231,7 +231,7 @@ function Index() {
                   }}
                 >
                   {/* Glass Card 1 */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl border border-white/10 rounded-[3rem] shadow-2xl p-8 flex flex-col justify-end overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl border border-white/10 dark:border-white/10 light:border-slate-200 rounded-[3rem] shadow-2xl p-8 flex flex-col justify-end overflow-hidden group transition-colors">
                     <img 
                       src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
                       className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:scale-110 transition-transform duration-[3s]"
