@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AulasRouteImport } from './routes/aulas'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ModuloModuleIdRouteImport } from './routes/modulo/$moduleId'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 
 const LoginRoute = LoginRouteImport.update({
@@ -29,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModuloModuleIdRoute = ModuloModuleIdRouteImport.update({
+  id: '/modulo/$moduleId',
+  path: '/modulo/$moduleId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/admin/users',
   path: '/admin/users',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/aulas': typeof AulasRoute
   '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
+  '/modulo/$moduleId': typeof ModuloModuleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aulas': typeof AulasRoute
   '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
+  '/modulo/$moduleId': typeof ModuloModuleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,20 @@ export interface FileRoutesById {
   '/aulas': typeof AulasRoute
   '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
+  '/modulo/$moduleId': typeof ModuloModuleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/aulas' | '/login' | '/admin/users'
+  fullPaths: '/' | '/aulas' | '/login' | '/admin/users' | '/modulo/$moduleId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aulas' | '/login' | '/admin/users'
-  id: '__root__' | '/' | '/aulas' | '/login' | '/admin/users'
+  to: '/' | '/aulas' | '/login' | '/admin/users' | '/modulo/$moduleId'
+  id:
+    | '__root__'
+    | '/'
+    | '/aulas'
+    | '/login'
+    | '/admin/users'
+    | '/modulo/$moduleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +82,7 @@ export interface RootRouteChildren {
   AulasRoute: typeof AulasRoute
   LoginRoute: typeof LoginRoute
   AdminUsersRoute: typeof AdminUsersRoute
+  ModuloModuleIdRoute: typeof ModuloModuleIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,6 +108,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modulo/$moduleId': {
+      id: '/modulo/$moduleId'
+      path: '/modulo/$moduleId'
+      fullPath: '/modulo/$moduleId'
+      preLoaderRoute: typeof ModuloModuleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/admin/users'
@@ -107,7 +130,18 @@ const rootRouteChildren: RootRouteChildren = {
   AulasRoute: AulasRoute,
   LoginRoute: LoginRoute,
   AdminUsersRoute: AdminUsersRoute,
+  ModuloModuleIdRoute: ModuloModuleIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
