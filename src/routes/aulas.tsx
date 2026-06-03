@@ -1,8 +1,8 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useAuthStore } from "@/lib/auth-store";
-import { useThemeStore } from "@/lib/theme-store";
-import { LogOut, Sun, Moon } from "lucide-react";
+import { LogOut } from "lucide-react";
+
 
 
 export const Route = createFileRoute("/aulas")({
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/aulas")({
 function AulasComponent() {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
-  const { theme, toggleTheme } = useThemeStore();
+
 
 
   useEffect(() => {
@@ -36,18 +36,13 @@ function AulasComponent() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      <nav className="border-b dark:border-white/10 bg-white dark:bg-slate-900 p-4">
+    <div className="min-h-screen bg-[#050505] text-slate-100 transition-colors duration-300">
+      <nav className="border-b border-white/10 bg-white/5 backdrop-blur-md p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="font-bold text-xl text-primary">English for Ministry</div>
           <div className="flex items-center gap-4">
-            <button 
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
-            >
-              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-            </button>
             <span className="text-muted-foreground">Olá, {user.name}</span>
+
             <button onClick={handleLogout} className="text-destructive hover:underline flex items-center gap-2">
               <LogOut size={16} />
               Sair

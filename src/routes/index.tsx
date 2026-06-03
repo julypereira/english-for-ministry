@@ -3,8 +3,8 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useAuthStore } from "@/lib/auth-store";
-import { useThemeStore } from "@/lib/theme-store";
-import { LogOut, Sun, Moon } from 'lucide-react';
+import { LogOut } from 'lucide-react';
+
 
 
 
@@ -67,7 +67,7 @@ const translations = {
 
 function Index() {
   const { user, logout } = useAuthStore();
-  const { theme, toggleTheme } = useThemeStore();
+
   const [lang, setLang] = useState<Language>('pt');
 
 
@@ -93,16 +93,15 @@ function Index() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-x-hidden flex flex-col transition-colors duration-300">
+    <div ref={containerRef} className="min-h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-x-hidden flex flex-col transition-colors duration-300">
 
       {/* 3D Animated Background Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 
           className="absolute inset-0" 
           style={{ 
-            backgroundImage: theme === 'dark' 
-              ? `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`
-              : `linear-gradient(to right, #00000011 1px, transparent 1px), linear-gradient(to bottom, #00000011 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`,
+
 
             backgroundSize: '40px 40px',
             transform: `perspective(1000px) rotateX(60deg) translateY(${mousePos.y * 2}px) translateZ(0)`,
@@ -140,14 +139,8 @@ function Index() {
             </Link>
 
             <div className="flex items-center gap-2">
-              <button 
-                onClick={toggleTheme}
-                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white dark:text-white light:text-slate-900"
-              >
-                {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-              </button>
-
               {user ? (
+
 
                 <div className="flex items-center gap-4">
                   <Link 
