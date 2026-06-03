@@ -46,7 +46,7 @@ function LessonComponent() {
 
   const handleComplete = () => {
     updateLessonProgress(user.id, lesson.id, 100, 100);
-    navigate({ to: "/modulo/$moduleId", params: { moduleId } });
+    navigate({ to: "/modulo/$moduleId", params: { moduleId: moduleId.toString() } });
   };
 
   const toggleFullscreen = () => {
