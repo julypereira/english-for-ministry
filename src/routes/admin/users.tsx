@@ -474,7 +474,7 @@ function AdminUsersComponent() {
                           </div>
                           <div>
                             <div className="text-sm font-bold text-white">{lesson.title}</div>
-                            <div className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Ref: {lesson.id}</div>
+                            
                           </div>
                         </div>
                       </td>

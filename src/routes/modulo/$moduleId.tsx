@@ -11,7 +11,8 @@ import {
   BookOpen,
   PenTool,
   Home as HomeIcon,
-  Languages
+  Languages,
+  Video
 } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 import { useSchoolStore } from "@/lib/school-store";
@@ -132,7 +133,7 @@ function ModuloComponent() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black ${completed ? 'bg-green-500/20 text-green-500' : (locked ? 'bg-white/5 text-white/20' : 'bg-primary/20 text-primary')}`}>
-                      {completed ? <CheckCircle2 size={20} /> : (locked ? <Lock size={20} /> : <Play size={20} />)}
+                      {completed ? <CheckCircle2 size={20} /> : (locked ? <Lock size={20} /> : <Video size={20} />)}
                     </div>
                     <div>
                       <h3 className="font-bold text-white">{lesson.title}</h3>
