@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
+import { useThemeStore } from "@/lib/theme-store";
 import type { User, UserProfile } from "@/lib/auth-store";
 import { 
   Users, 
@@ -15,8 +16,11 @@ import {
   GraduationCap,
   X,
   Check,
-  LogOut
+  LogOut,
+  Sun,
+  Moon
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/admin/users")({
   component: AdminUsersComponent,
@@ -27,6 +31,8 @@ function AdminUsersComponent() {
   const navigate = useNavigate();
   const { user: currentUser, logout } = useAuthStore();
   const { users, addUser, updateUser, deleteUser } = useUsersStore();
+  const { theme, toggleTheme } = useThemeStore();
+
 
   useEffect(() => {
     if (!currentUser || currentUser.profile !== "Administrador") {
@@ -89,16 +95,24 @@ function AdminUsersComponent() {
 
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
+    <div className="min-h-screen bg-slate-950 dark:bg-slate-950 light:bg-slate-50 text-slate-100 dark:text-slate-100 light:text-slate-900 p-4 md:p-8 font-sans transition-colors duration-300">
+
       <div className="container mx-auto max-w-6xl">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={toggleTheme}
+              className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white dark:text-white light:text-slate-900"
+            >
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
             <button onClick={handleLogout} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
+
               <LogOut size={24} />
             </button>
 
             <div>
-              <h1 className="text-2xl font-black uppercase tracking-tight text-white flex items-center gap-2">
+              <h1 className="text-2xl font-black uppercase tracking-tight text-white dark:text-white light:text-slate-900 flex items-center gap-2">
                 <Users className="text-primary" />
                 Gestão de Usuários
               </h1>
@@ -115,14 +129,15 @@ function AdminUsersComponent() {
           </button>
         </header>
 
-        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
-          <div className="p-4 border-b border-white/10 bg-white/[0.02]">
+        <div className="bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl overflow-hidden backdrop-blur-sm transition-colors">
+          <div className="p-4 border-b border-white/10 dark:border-white/10 light:border-slate-200 bg-white/[0.02]">
+
             <div className="relative max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
               <input 
                 type="text" 
                 placeholder="Pesquisar por nome ou email..."
-                className="w-full bg-slate-900/50 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-primary/50 transition-colors"
+                className="w-full bg-slate-900/50 dark:bg-slate-900/50 light:bg-slate-50 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-slate-100 dark:text-slate-100 light:text-slate-900"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -148,7 +163,8 @@ function AdminUsersComponent() {
                           {user.name.charAt(0)}
                         </div>
                         <div>
-                          <div className="text-sm font-bold text-white">{user.name}</div>
+                        <div className="text-sm font-bold text-white dark:text-white light:text-slate-900">{user.name}</div>
+
                           <div className="text-xs text-slate-500">{user.email}</div>
                         </div>
                       </div>

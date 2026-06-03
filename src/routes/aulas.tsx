@@ -1,7 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useAuthStore } from "@/lib/auth-store";
-import { LogOut } from "lucide-react";
+import { useThemeStore } from "@/lib/theme-store";
+import { LogOut, Sun, Moon } from "lucide-react";
+
 
 export const Route = createFileRoute("/aulas")({
   component: AulasComponent,
@@ -11,6 +13,8 @@ export const Route = createFileRoute("/aulas")({
 function AulasComponent() {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
+
 
   useEffect(() => {
     if (!user) {
@@ -32,26 +36,34 @@ function AulasComponent() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <nav className="border-b bg-white p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      <nav className="border-b dark:border-white/10 bg-white dark:bg-slate-900 p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="font-bold text-xl text-primary">English for Ministry</div>
-          <div className="space-x-4">
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+            >
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
             <span className="text-muted-foreground">Olá, {user.name}</span>
             <button onClick={handleLogout} className="text-destructive hover:underline flex items-center gap-2">
               <LogOut size={16} />
               Sair
             </button>
 
+
           </div>
         </div>
       </nav>
 
       <main className="container mx-auto py-8 px-4">
-        <h1 className="text-3xl font-bold mb-8 text-foreground">Minhas Aulas</h1>
+        <h1 className="text-3xl font-bold mb-8 text-foreground dark:text-white">Minhas Aulas</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {aulas.map(aula => (
-            <div key={aula.id} className="bg-white p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
+            <div key={aula.id} className="bg-white dark:bg-white/5 p-6 rounded-lg shadow-sm border border-border dark:border-white/10 hover:shadow-md transition-shadow">
+
               <h3 className="text-xl font-semibold mb-2 text-primary">{aula.title}</h3>
               <p className="text-muted-foreground mb-4">{aula.description}</p>
               <button className="text-primary font-medium hover:underline">Assistir Aula →</button>

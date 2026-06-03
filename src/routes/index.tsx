@@ -3,7 +3,9 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useAuthStore } from "@/lib/auth-store";
-import { LogOut } from 'lucide-react';
+import { useThemeStore } from "@/lib/theme-store";
+import { LogOut, Sun, Moon } from 'lucide-react';
+
 
 
 type Language = 'pt' | 'en';
@@ -65,7 +67,9 @@ const translations = {
 
 function Index() {
   const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
   const [lang, setLang] = useState<Language>('pt');
+
 
   const t = translations[lang];
   const containerRef = useRef<HTMLDivElement>(null);
@@ -89,13 +93,17 @@ function Index() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-x-hidden flex flex-col">
+    <div ref={containerRef} className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-x-hidden flex flex-col transition-colors duration-300">
+
       {/* 3D Animated Background Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 
           className="absolute inset-0" 
           style={{ 
-            backgroundImage: `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`,
+            backgroundImage: theme === 'dark' 
+              ? `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`
+              : `linear-gradient(to right, #00000011 1px, transparent 1px), linear-gradient(to bottom, #00000011 1px, transparent 1px)`,
+
             backgroundSize: '40px 40px',
             transform: `perspective(1000px) rotateX(60deg) translateY(${mousePos.y * 2}px) translateZ(0)`,
             transition: 'transform 0.1s ease-out'
@@ -119,20 +127,28 @@ function Index() {
         <nav className="px-6 py-8">
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
+              <div className="w-12 h-12 bg-primary dark:bg-primary light:bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
                 <div className="relative w-full h-full flex items-center justify-center">
                   <span className="text-white font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
                   <div className="absolute inset-0 bg-gradient-to-tr from-orange-600 to-orange-400 opacity-50"></div>
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
+                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white dark:text-white light:text-slate-900">Amigo Intimo</span>
                 <span className="text-primary text-[9px] tracking-[0.3em] font-black uppercase opacity-80">English for Ministry</span>
               </div>
             </Link>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={toggleTheme}
+                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white dark:text-white light:text-slate-900"
+              >
+                {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+              </button>
+
               {user ? (
+
                 <div className="flex items-center gap-4">
                   <Link 
                     to={user.profile === "Administrador" ? "/admin/users" : "/aulas"}
@@ -170,7 +186,7 @@ function Index() {
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">{t.hero.tag}</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000 pb-2">
+                <h1 className="text-6xl md:text-8xl font-black text-white dark:text-white light:text-slate-900 leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000 pb-2">
                   {t.hero.title1} <br />
                   <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-500 to-amber-500 py-2 pr-4">
                     {t.hero.title2}
@@ -178,7 +194,7 @@ function Index() {
                 </h1>
 
                 <p className="text-lg text-slate-400 max-w-lg leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000">
-                  {t.hero.desc} <span className="text-white font-bold">{t.hero.descHighlight}</span>
+                  {t.hero.desc} <span className="text-white dark:text-white light:text-slate-900 font-bold">{t.hero.descHighlight}</span>
                 </p>
 
                 <div className="animate-in fade-in slide-in-from-left-14 duration-1000">
@@ -194,7 +210,7 @@ function Index() {
 
                 <div className="flex flex-wrap lg:flex-nowrap gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative">
                   {t.levels.map((level, i) => (
-                    <div key={i} className="group/card relative flex-1 min-w-[120px] bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col items-center text-center">
+                    <div key={i} className="group/card relative flex-1 min-w-[120px] bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 rounded-xl p-4 hover:bg-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col items-center text-center">
                       <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 group-hover/card:bg-primary group-hover/card:border-primary transition-colors">
                         <span className="text-[10px] font-black text-primary group-hover/card:text-white">{i + 1}</span>
                       </div>
@@ -219,7 +235,7 @@ function Index() {
                   }}
                 >
                   {/* Glass Card 1 */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl border border-white/10 rounded-[3rem] shadow-2xl p-8 flex flex-col justify-end overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl border border-white/10 dark:border-white/10 light:border-slate-200 rounded-[3rem] shadow-2xl p-8 flex flex-col justify-end overflow-hidden group transition-colors">
                     <img 
                       src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1200" 
                       className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:scale-110 transition-transform duration-[3s]"
@@ -229,7 +245,7 @@ function Index() {
                       <div className="flex gap-1">
                         {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-primary text-primary" />)}
                       </div>
-                      <p className="text-2xl font-bold italic leading-tight">"{t.hero.testimonial}"</p>
+                      <p className="text-2xl font-bold italic leading-tight text-white dark:text-white light:text-slate-900">"{t.hero.testimonial}"</p>
                       <div className="flex items-center gap-3 pt-4">
                         <span className="w-10 h-[1px] bg-primary"></span>
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">{t.hero.testimonialAuthor}</span>
