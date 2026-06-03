@@ -23,20 +23,21 @@ interface User {
   id: string;
   name: string;
   email: string;
+  password?: string;
   profile: UserProfile;
   createdAt: string;
 }
 
 function AdminUsersComponent() {
   const [users, setUsers] = useState<User[]>([
-    { id: "1", name: "João Silva", email: "joao@example.com", profile: "Administrador", createdAt: "2024-03-20" },
+    { id: "1", name: "João Silva", email: "admin@church.com", password: "adm1234", profile: "Administrador", createdAt: "2024-03-20" },
     { id: "2", name: "Maria Oliveira", email: "maria@example.com", profile: "Aluno", createdAt: "2024-03-21" },
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
-  const [formData, setFormData] = useState({ name: "", email: "", profile: "Aluno" as UserProfile });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", profile: "Aluno" as UserProfile });
 
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -46,10 +47,10 @@ function AdminUsersComponent() {
   const handleOpenModal = (user?: User) => {
     if (user) {
       setEditingUser(user);
-      setFormData({ name: user.name, email: user.email, profile: user.profile });
+      setFormData({ name: user.name, email: user.email, password: user.password || "", profile: user.profile });
     } else {
       setEditingUser(null);
-      setFormData({ name: "", email: "", profile: "Aluno" });
+      setFormData({ name: "", email: "", password: "", profile: "Aluno" });
     }
     setIsModalOpen(true);
   };
@@ -216,6 +217,17 @@ function AdminUsersComponent() {
                   placeholder="email@exemplo.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Senha</label>
+                <input 
+                  type="password" 
+                  className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
               </div>
 
