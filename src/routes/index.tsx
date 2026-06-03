@@ -268,53 +268,26 @@ function Index() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid md:grid-cols-4 gap-16 mb-24">
-              <div className="col-span-2">
-                <div className="flex flex-col mb-8">
-                  <span className="font-black text-2xl leading-none uppercase tracking-tighter">Amigo Intimo</span>
-                  <span className="text-primary text-xs tracking-[0.3em] font-black uppercase italic">Church</span>
-                </div>
-                <p className="text-slate-400 text-lg max-w-sm mb-10 font-medium">
-                  {t.footer.desc}
-                </p>
-                <div className="flex gap-6">
-                   <a 
-                     href="https://www.instagram.com/amigointimochurch_cg/" 
-                     target="_blank" 
-                     rel="noopener noreferrer" 
-                     className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
-                   >
-                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                     Instagram
-                   </a>
-                   <a 
-                     href="https://web.whatsapp.com/send/?phone=5567984047848" 
-                     target="_blank" 
-                     rel="noopener noreferrer" 
-                     className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
-                   >
-                     <MessageCircle size={18} />
-                     WhatsApp
-                   </a>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-primary font-black uppercase tracking-widest text-sm mb-8">{t.footer.navTitle}</h4>
-                <ul className="space-y-4 text-slate-400 font-bold uppercase tracking-tight text-sm">
-                  <li><Link to="/login" className="hover:text-white transition-colors">{t.nav.join}</Link></li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-primary font-black uppercase tracking-widest text-sm mb-8">{t.footer.baseTitle}</h4>
-                <div className="flex gap-4 text-slate-400 items-start">
-                  <MapPin className="shrink-0 text-primary" size={20} />
-                  <p className="text-sm font-bold uppercase tracking-tight">
-                    📍 R. dos Pássaros, 46, Bonjardim <br />
-                    Campo Grande/MS - Brasil
-                  </p>
-                </div>
+            <div className="flex flex-col items-center justify-center mb-24">
+              <div className="flex gap-8">
+                 <a 
+                   href="https://www.instagram.com/amigointimochurch_cg/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
+                 >
+                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                   Instagram
+                 </a>
+                 <a 
+                   href="https://web.whatsapp.com/send/?phone=5567984047848" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="text-white hover:text-primary transition-colors text-sm font-black uppercase tracking-widest flex items-center gap-2"
+                 >
+                   <MessageCircle size={18} />
+                   WhatsApp
+                 </a>
               </div>
             </div>
 
