@@ -232,8 +232,8 @@ function Index() {
                     style={{ animationDuration: '4s', transform: 'translateZ(50px)' }}
                   >
                     <div className="text-center">
-                      <Zap className="text-primary mx-auto mb-2" size={24} />
-                      <div className="text-[8px] font-black uppercase tracking-widest">FLUIDEZ TOTAL</div>
+                      <Globe className="text-primary mx-auto mb-2" size={24} />
+                      <div className="text-[8px] font-black uppercase tracking-widest leading-tight">MARCOS 16:15</div>
                     </div>
                   </div>
 
