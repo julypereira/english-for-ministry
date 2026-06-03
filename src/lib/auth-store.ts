@@ -24,8 +24,20 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       isAuthenticated: false,
-      login: (user) => set({ user, isAuthenticated: true }),
-      logout: () => set({ user: null, isAuthenticated: false }),
+      login: (user) => {
+        try {
+          set({ user, isAuthenticated: true });
+        } catch (err) {
+          console.error("Erro ao realizar login no store:", err);
+        }
+      },
+      logout: () => {
+        try {
+          set({ user: null, isAuthenticated: false });
+        } catch (err) {
+          console.error("Erro ao realizar logout no store:", err);
+        }
+      },
     }),
     {
       name: 'auth-storage',
