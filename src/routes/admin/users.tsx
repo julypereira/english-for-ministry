@@ -367,7 +367,7 @@ function AdminUsersComponent() {
                 </table>
               </div>
             </>
-          ) : (
+          ) : activeTab === 'classes' ? (
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
@@ -406,6 +406,70 @@ function AdminUsersComponent() {
                           </button>
                           <button 
                             onClick={() => handleDeleteClass(cls.id)}
+                            className="p-2 hover:bg-red-500/10 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-white/[0.02] text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                    <th className="px-6 py-4">{lang === 'pt' ? 'Aula' : 'Lesson'}</th>
+                    <th className="px-6 py-4">{lang === 'pt' ? 'Módulo' : 'Module'}</th>
+                    <th className="px-6 py-4">{lang === 'pt' ? 'Status' : 'Status'}</th>
+                    <th className="px-6 py-4 text-right">{lang === 'pt' ? 'Ações' : 'Actions'}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {lessons.map((lesson) => (
+                    <tr key={lesson.id} className="hover:bg-white/[0.02] transition-colors group">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${lesson.canvaUrl ? 'bg-blue-500/10 text-blue-400' : 'bg-white/5 text-slate-500'}`}>
+                            <Video size={14} />
+                          </div>
+                          <div>
+                            <div className="text-sm font-bold text-white">{lesson.title}</div>
+                            <div className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Ordem: {lesson.order}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-2 py-1 bg-white/5 border border-white/10 rounded">
+                          {modules.find(m => m.id === lesson.moduleId)?.title}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <button 
+                          onClick={() => toggleLessonStatus(lesson)}
+                          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider transition-all ${
+                            lesson.status === "released" 
+                              ? "bg-green-500/10 text-green-400 border border-green-500/20" 
+                              : "bg-red-500/10 text-red-400 border border-red-500/20"
+                          }`}
+                        >
+                          {lesson.status === "released" ? <Unlock size={10} /> : <Lock size={10} />}
+                          {lesson.status === "released" ? (lang === 'pt' ? 'Liberada' : 'Released') : (lang === 'pt' ? 'Bloqueada' : 'Locked')}
+                        </button>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button 
+                            onClick={() => handleOpenLessonModal(lesson)}
+                            className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-white transition-colors"
+                          >
+                            <Edit2 size={16} />
+                          </button>
+                          <button 
+                            onClick={() => handleDeleteLesson(lesson.id)}
                             className="p-2 hover:bg-red-500/10 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
                           >
                             <Trash2 size={16} />
