@@ -151,10 +151,14 @@ function ModuloComponent() {
                   </div>
                   
                   {!locked && (
-                    <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-primary/20">
+                    <Link 
+                      to="/modulo/$moduleId/aula/$lessonId"
+                      params={{ moduleId: moduleId, lessonId: lesson.id }}
+                      className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-primary/20"
+                    >
                       <Play size={14} fill="currentColor" />
                       {lang === 'pt' ? 'Acessar' : 'Access'}
-                    </button>
+                    </Link>
                   )}
                 </div>
                 
