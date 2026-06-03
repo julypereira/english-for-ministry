@@ -291,12 +291,13 @@ function Index() {
         </section>
 
         {/* Footer info */}
-        <div className="relative mt-auto p-8 flex flex-col sm:flex-row items-center gap-6 animate-in fade-in duration-1000">
-          <div className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">
+        <div className="relative mt-auto p-8 flex flex-col items-center gap-6 animate-in fade-in duration-1000">
+          <div className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20 text-center">
             © 2026 ENGLISH FOR MINISTRY
           </div>
-          <div className="hidden sm:block h-[1px] w-12 bg-white/10"></div>
           <div className="flex items-center gap-6">
+          </div>
+        </div>
           </div>
         </div>
       </div>
