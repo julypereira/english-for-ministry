@@ -39,15 +39,6 @@ function AdminUsersComponent() {
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", password: "", profile: "Aluno" as UserProfile });
 
-  if (!currentUser || currentUser.profile !== "Administrador") {
-    return null;
-  }
-
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingUser, setEditingUser] = useState<User | null>(null);
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", profile: "Aluno" as UserProfile });
 
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
