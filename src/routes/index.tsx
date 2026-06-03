@@ -190,8 +190,8 @@ function Index() {
                 <span className="hidden sm:inline">{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
               </button>
               
-              <Link to="/login" className="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full border border-white/10 transition-all active:scale-95 group">
-                <Users size={14} className="text-primary group-hover:scale-110 transition-transform" />
+              <Link to="/login" className="flex items-center gap-2 bg-white/5 hover:bg-primary text-white text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full border border-white/10 transition-all active:scale-95 group">
+                <Users size={14} className="text-primary group-hover:text-white group-hover:scale-110 transition-transform" />
                 {t.nav.join}
               </Link>
             </div>
