@@ -56,9 +56,15 @@ export const useSchoolStore = create<SchoolStore>()(
         { id: 4, title: "AVANÇADO", status: "locked" },
         { id: 5, title: "FLUENTE", status: "locked" },
       ],
+      lessons: [
+        { id: "l1", moduleId: 1, title: "Introdução", order: 1, theory: "Teoria da introdução...", exercises: "Exercícios...", homework: "Dever de casa..." },
+        { id: "l2", moduleId: 1, title: "Saudações", order: 2, theory: "Como cumprimentar...", exercises: "Exercícios saudações...", homework: "Dever de casa saudações..." },
+        { id: "l3", moduleId: 2, title: "Verbo To Be", order: 1, theory: "I am, you are...", exercises: "Exercícios To Be...", homework: "Dever de casa To Be..." },
+      ],
       classes: [
         { id: "1", name: "Turma Alpha", moduleIds: [1, 2], studentIds: ["2"] },
       ],
+      progress: [],
       addClass: (newClass) => set((state) => ({ classes: [...state.classes, newClass] })),
       updateClass: (updatedClass) => set((state) => ({ 
         classes: state.classes.map((c) => (c.id === updatedClass.id ? updatedClass : c)) 
@@ -72,6 +78,21 @@ export const useSchoolStore = create<SchoolStore>()(
       lockModule: (id) => set((state) => ({
         modules: state.modules.map(m => m.id === id ? { ...m, status: "locked" } : m)
       })),
+      completeLesson: (studentId, lessonId, score) => set((state) => {
+        const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
+        if (existing) {
+          return {
+            progress: state.progress.map(p => 
+              (p.studentId === studentId && p.lessonId === lessonId) 
+                ? { ...p, completed: true, score: Math.max(p.score, score) } 
+                : p
+            )
+          };
+        }
+        return {
+          progress: [...state.progress, { studentId, lessonId, completed: true, score }]
+        };
+      }),
     }),
     {
       name: 'school-storage',
