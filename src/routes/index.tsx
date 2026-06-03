@@ -250,44 +250,6 @@ function Index() {
           </div>
         </section>
 
-        <section className="bg-white/5 backdrop-blur-md py-24">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">{t.globalCommunity.title}</h2>
-              <div className="w-20 h-2 bg-primary mx-auto mb-6"></div>
-            </div>
-
-            <div className="relative group">
-              <div className="overflow-hidden rounded-[32px] shadow-2xl" ref={emblaRef}>
-                <div className="flex">
-                  {t.carousel.map((item, index) => (
-                    <div key={index} className="flex-[0_0_100%] min-w-0 relative h-[500px] md:h-[700px]">
-                      <img 
-                        src={carouselImages[index]} 
-                        alt={item.title}
-                        className="w-full h-full object-cover grayscale-[20%] opacity-80"
-                      />
-                      <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-8 text-center">
-                        <h3 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-6">{item.title}</h3>
-                        <p className="text-xl text-white/90 max-w-2xl font-medium mb-10">{item.desc}</p>
-                        <button className="bg-primary text-white px-10 py-4 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform">
-                          {t.globalCommunity.cta}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <button onClick={scrollPrev} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white backdrop-blur-md p-5 rounded-full text-white hover:text-black transition-all group/btn border border-white/20">
-                <ChevronLeft size={32} />
-              </button>
-              <button onClick={scrollNext} className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white backdrop-blur-md p-5 rounded-full text-white hover:text-black transition-all group/btn border border-white/20">
-                <ChevronRight size={32} />
-              </button>
-            </div>
-          </div>
-        </section>
 
 
         <footer className="bg-black/90 backdrop-blur-xl text-white pt-32 pb-16 relative overflow-hidden border-t border-white/10">
