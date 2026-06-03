@@ -116,7 +116,8 @@ function AulasComponent() {
                   {lang === 'pt' ? `Acesse o conteúdo completo do módulo ${module.title}.` : `Access the full content of the ${module.title} module.`}
                 </p>
                 <Link 
-                  to={`/modulo/${module.id}`}
+                  to="/modulo/$moduleId"
+                  params={{ moduleId: module.id.toString() }}
                   disabled={!accessible}
                   className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl border text-[10px] font-black uppercase tracking-widest transition-all ${
                     accessible 
