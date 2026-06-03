@@ -110,8 +110,11 @@ function Index() {
         <nav className="px-6 py-8">
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                <span className="text-white font-black text-2xl italic select-none">A</span>
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <span className="text-white font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-orange-600 to-orange-400 opacity-50"></div>
+                </div>
               </div>
               <div className="flex flex-col">
                 <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
