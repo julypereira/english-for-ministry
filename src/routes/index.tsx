@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
 import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
+import { useAuthStore } from "@/lib/auth-store";
+import { LogOut } from 'lucide-react';
+
 
 type Language = 'pt' | 'en';
 
@@ -61,7 +64,9 @@ const translations = {
 };
 
 function Index() {
+  const { user, logout } = useAuthStore();
   const [lang, setLang] = useState<Language>('pt');
+
   const t = translations[lang];
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -127,14 +132,32 @@ function Index() {
             </Link>
 
             <div className="flex items-center gap-4">
-              <button 
-                onClick={toggleLang}
-                className="relative overflow-hidden group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-95"
-              >
-                <Languages size={14} className="text-primary" />
-                <span>{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
-              </button>
+              {user ? (
+                <div className="flex items-center gap-4">
+                  <Link 
+                    to={user.profile === "Administrador" ? "/admin/users" : "/aulas"}
+                    className="text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white"
+                  >
+                    Área do {user.profile}
+                  </Link>
+                  <button 
+                    onClick={() => logout()}
+                    className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                  >
+                    <LogOut size={14} />
+                  </button>
+                </div>
+              ) : (
+                <button 
+                  onClick={toggleLang}
+                  className="relative overflow-hidden group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-95"
+                >
+                  <Languages size={14} className="text-primary" />
+                  <span>{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
+                </button>
+              )}
             </div>
+
           </div>
         </nav>
 
