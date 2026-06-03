@@ -100,7 +100,10 @@ function Index() {
         <div 
           className="absolute inset-0" 
           style={{ 
-            backgroundImage: `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`,
+            backgroundImage: theme === 'dark' 
+              ? `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`
+              : `linear-gradient(to right, #00000011 1px, transparent 1px), linear-gradient(to bottom, #00000011 1px, transparent 1px)`,
+
             backgroundSize: '40px 40px',
             transform: `perspective(1000px) rotateX(60deg) translateY(${mousePos.y * 2}px) translateZ(0)`,
             transition: 'transform 0.1s ease-out'
