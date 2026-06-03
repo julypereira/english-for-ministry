@@ -181,9 +181,6 @@ function Index() {
             </Link>
 
             <div className="hidden lg:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest">
-              <Link to="/" className="text-white hover:text-primary transition-colors py-2 border-b-2 border-primary">{t.nav.methodology}</Link>
-              <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.courses}</Link>
-              <Link to="/" className="text-slate-400 hover:text-white transition-colors py-2 border-b-2 border-transparent hover:border-white/20">{t.nav.missions}</Link>
             </div>
 
             <div className="flex items-center gap-3 md:gap-6">
