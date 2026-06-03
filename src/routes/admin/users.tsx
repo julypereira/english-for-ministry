@@ -685,6 +685,135 @@ function AdminUsersComponent() {
           </div>
         </div>
       )}
+      {/* Lesson Modal */}
+      {isLessonModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="w-full max-w-4xl bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+            <div className="p-6 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
+              <h2 className="text-lg font-black uppercase tracking-tight text-white flex items-center gap-2">
+                <Video className="text-primary" size={20} />
+                {editingLesson ? (lang === 'pt' ? "Editar Aula" : "Edit Lesson") : (lang === 'pt' ? "Nova Aula" : "New Lesson")}
+              </h2>
+              <button onClick={() => setIsLessonModalOpen(false)} className="p-2 hover:bg-white/5 rounded-full text-slate-400 hover:text-white transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            
+            <form onSubmit={handleLessonSubmit} className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto max-h-[80vh]">
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Título da Aula' : 'Lesson Title'}</label>
+                  <input 
+                    required
+                    type="text" 
+                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white"
+                    placeholder="Ex: Introdução ao Verbo To Be"
+                    value={lessonFormData.title}
+                    onChange={(e) => setLessonFormData({ ...lessonFormData, title: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Módulo' : 'Module'}</label>
+                  <select 
+                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white"
+                    value={lessonFormData.moduleId}
+                    onChange={(e) => setLessonFormData({ ...lessonFormData, moduleId: parseInt(e.target.value) })}
+                  >
+                    {modules.map(m => (
+                      <option key={m.id} value={m.id}>{m.title}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Link do Canva' : 'Canva Link'}</label>
+                  <input 
+                    type="url" 
+                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white"
+                    placeholder="https://canva.link/..."
+                    value={lessonFormData.canvaUrl}
+                    onChange={(e) => setLessonFormData({ ...lessonFormData, canvaUrl: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Status</label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setLessonFormData({ ...lessonFormData, status: "released" })}
+                      className={`flex items-center justify-center gap-2 py-3 rounded-xl border text-[10px] font-black uppercase tracking-widest transition-all ${
+                        lessonFormData.status === "released" 
+                          ? "bg-green-500/10 text-green-400 border-green-500/20" 
+                          : "bg-slate-950 border-white/10 text-slate-500"
+                      }`}
+                    >
+                      <Unlock size={14} />
+                      {lang === 'pt' ? 'Liberada' : 'Released'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLessonFormData({ ...lessonFormData, status: "locked" })}
+                      className={`flex items-center justify-center gap-2 py-3 rounded-xl border text-[10px] font-black uppercase tracking-widest transition-all ${
+                        lessonFormData.status === "locked" 
+                          ? "bg-red-500/10 text-red-400 border-red-500/20" 
+                          : "bg-slate-950 border-white/10 text-slate-500"
+                      }`}
+                    >
+                      <Lock size={14} />
+                      {lang === 'pt' ? 'Bloqueada' : 'Locked'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Teoria' : 'Theory'}</label>
+                  <textarea 
+                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white h-24 resize-none"
+                    value={lessonFormData.theory}
+                    onChange={(e) => setLessonFormData({ ...lessonFormData, theory: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Exercícios' : 'Exercises'}</label>
+                  <textarea 
+                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white h-24 resize-none"
+                    value={lessonFormData.exercises}
+                    onChange={(e) => setLessonFormData({ ...lessonFormData, exercises: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">{lang === 'pt' ? 'Home Work' : 'Home Work'}</label>
+                  <textarea 
+                    className="w-full bg-slate-950 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-primary/50 transition-colors text-white h-24 resize-none"
+                    value={lessonFormData.homework}
+                    onChange={(e) => setLessonFormData({ ...lessonFormData, homework: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="md:col-span-2 pt-4 flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsLessonModalOpen(false)}
+                  className="flex-1 py-3 rounded-xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all text-white"
+                >
+                  {lang === 'pt' ? 'Cancelar' : 'Cancel'}
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-3 rounded-xl bg-primary text-white text-[10px] font-black uppercase tracking-widest hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                >
+                  <Check size={14} />
+                  {editingLesson ? (lang === 'pt' ? "Salvar Aula" : "Save Lesson") : (lang === 'pt' ? "Criar Aula" : "Create Lesson")}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
     </div>
 
   );
