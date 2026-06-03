@@ -47,10 +47,10 @@ function AdminUsersComponent() {
   const handleOpenModal = (user?: User) => {
     if (user) {
       setEditingUser(user);
-      setFormData({ name: user.name, email: user.email, profile: user.profile });
+      setFormData({ name: user.name, email: user.email, password: user.password || "", profile: user.profile });
     } else {
       setEditingUser(null);
-      setFormData({ name: "", email: "", profile: "Aluno" });
+      setFormData({ name: "", email: "", password: "", profile: "Aluno" });
     }
     setIsModalOpen(true);
   };
