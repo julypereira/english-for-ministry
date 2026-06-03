@@ -27,9 +27,8 @@ function LoginComponent() {
         <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] shadow-2xl overflow-hidden p-8 md:p-12">
           <div className="text-center mb-10">
             <Link to="/" className="inline-flex items-center gap-3 group mb-6 focus:outline-none">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 transition-all duration-500 overflow-hidden">
+              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-110 transition-all duration-500 overflow-hidden">
                 <span className="text-white font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-600 to-orange-400 opacity-50"></div>
               </div>
             </Link>
             <h1 className="text-3xl font-black text-white uppercase tracking-tighter leading-none mb-2">
