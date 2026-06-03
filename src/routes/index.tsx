@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
-import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 
 type Language = 'pt' | 'en';
@@ -232,7 +232,7 @@ function Index() {
                     style={{ animationDuration: '4s', transform: 'translateZ(50px)' }}
                   >
                     <div className="text-center">
-                      <Globe className="text-primary mx-auto mb-2" size={24} />
+                      <Signpost className="text-primary mx-auto mb-2" size={24} />
                       <div className="text-[8px] font-black uppercase tracking-widest leading-tight">MARCOS 16:15</div>
                     </div>
                   </div>
