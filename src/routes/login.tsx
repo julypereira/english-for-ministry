@@ -20,7 +20,7 @@ function LoginComponent() {
       </div>
 
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-pulse"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md animate-in fade-in zoom-in duration-700">
