@@ -34,7 +34,7 @@ function LoginComponent() {
             <h1 className="text-3xl font-black text-white uppercase tracking-tighter leading-none mb-2">
               Login
             </h1>
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary opacity-80">English for Ministry</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 opacity-80">English for Ministry</p>
           </div>
 
           <form className="space-y-6">
