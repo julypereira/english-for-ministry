@@ -58,7 +58,7 @@ function LoginComponent() {
             
             <Link 
               to="/admin/users"
-              className="w-full group relative flex items-center justify-center gap-3 bg-primary hover:bg-orange-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:shadow-[0_0_25px_rgba(234,88,12,0.3)] active:scale-95 shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
+              className="w-full group relative flex items-center justify-center gap-3 bg-orange-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:shadow-[0_0_25px_rgba(234,88,12,0.3)] active:scale-95 shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
             >
               <span>Entrar na Plataforma</span>
             </Link>
