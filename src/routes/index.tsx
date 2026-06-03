@@ -247,7 +247,7 @@ function Index() {
                       </div>
                       <div>
                         <div className="text-[10px] font-black uppercase tracking-widest">CERTIFICADO</div>
-                        <div className="text-[8px] text-slate-400">RECONHECIDO INTERNACIONALMENTE</div>
+                        <div className="text-[8px] text-slate-400">DE CONCLUSÃO A CADA MÓDULO</div>
                       </div>
                     </div>
                   </div>
