@@ -11,6 +11,7 @@ export interface Lesson {
   theory: string;
   exercises: string;
   homework: string;
+  canvaUrl?: string;
 }
 
 export interface StudentProgress {
@@ -65,7 +66,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: i === 0 ? "Seja bem-vindo ao curso ENGLISH FOR MINISTRY.\n\nNesta aula introdutória..." : `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          canvaUrl: i === 0 ? "https://canva.link/ag3jyi13rb43top" : undefined
         })),
         // BÁSICO (18 aulas)
         ...Array.from({ length: 18 }, (_, i) => ({
