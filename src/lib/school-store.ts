@@ -35,12 +35,15 @@ export interface Class {
 
 interface SchoolStore {
   modules: Module[];
+  lessons: Lesson[];
   classes: Class[];
+  progress: StudentProgress[];
   addClass: (newClass: Class) => void;
   updateClass: (updatedClass: Class) => void;
   deleteClass: (id: string) => void;
   releaseModule: (id: number) => void;
   lockModule: (id: number) => void;
+  completeLesson: (studentId: string, lessonId: string, score: number) => void;
 }
 
 export const useSchoolStore = create<SchoolStore>()(
