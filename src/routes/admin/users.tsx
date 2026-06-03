@@ -23,20 +23,21 @@ interface User {
   id: string;
   name: string;
   email: string;
+  password?: string;
   profile: UserProfile;
   createdAt: string;
 }
 
 function AdminUsersComponent() {
   const [users, setUsers] = useState<User[]>([
-    { id: "1", name: "João Silva", email: "joao@example.com", profile: "Administrador", createdAt: "2024-03-20" },
+    { id: "1", name: "João Silva", email: "admin@church.com", password: "adm1234", profile: "Administrador", createdAt: "2024-03-20" },
     { id: "2", name: "Maria Oliveira", email: "maria@example.com", profile: "Aluno", createdAt: "2024-03-21" },
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
-  const [formData, setFormData] = useState({ name: "", email: "", profile: "Aluno" as UserProfile });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", profile: "Aluno" as UserProfile });
 
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
