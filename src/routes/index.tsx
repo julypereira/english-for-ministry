@@ -132,14 +132,6 @@ function Index() {
                 <Languages size={14} className="text-primary" />
                 <span>{lang === 'pt' ? 'EN-US' : 'PT-BR'}</span>
               </button>
-              
-              <Link 
-                to="/login" 
-                className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-[10px] font-black uppercase tracking-widest px-8 py-3.5 rounded-xl shadow-[0_10px_30px_rgba(234,88,12,0.3)] hover:-translate-y-0.5 transition-all active:scale-95"
-              >
-                <Users size={14} className="text-white" />
-                <span>{t.nav.join}</span>
-              </Link>
             </div>
           </div>
         </nav>
@@ -167,35 +159,21 @@ function Index() {
                 <div className="flex flex-wrap gap-6 items-center animate-in fade-in slide-in-from-left-14 duration-1000">
                   <Link 
                     to="/login" 
-                    className="group relative bg-white text-black font-black uppercase tracking-[0.2em] text-xs px-10 py-5 rounded-2xl overflow-hidden shadow-2xl transition-all hover:scale-105 active:scale-95"
+                    className="group relative bg-white text-black font-black uppercase tracking-[0.2em] text-sm px-12 py-6 rounded-2xl overflow-hidden shadow-2xl transition-all hover:scale-105 active:scale-95"
                   >
                     <div className="relative z-10 flex items-center gap-3">
                       {t.nav.join}
-                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </div>
                   </Link>
-
-                  <div className="flex items-center gap-4">
-                    <div className="flex -space-x-3">
-                      {[1,2,3,4].map(i => (
-                        <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-slate-800 overflow-hidden ring-2 ring-white/5">
-                          <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="" />
-                        </div>
-                      ))}
-                    </div>
-                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                      <span className="text-white block">+500 LÍDERES</span>
-                      EM TREINAMENTO
-                    </div>
-                  </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                <div className="grid grid-cols-2 gap-4 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-8 duration-1000">
                   {t.levels.map((level, i) => (
-                    <div key={i} className="group/card relative bg-white/5 border border-white/10 rounded-xl p-3 hover:bg-white/10 hover:border-primary/50 transition-all duration-300">
-                      <div className="text-[10px] font-black text-white uppercase tracking-tighter mb-0.5">{level.name}</div>
-                      <div className="text-[8px] font-bold text-primary tracking-widest uppercase opacity-80">{level.lessons}</div>
-                      <div className="absolute top-2 right-2 w-1 h-1 rounded-full bg-primary/20 group-hover/card:bg-primary transition-colors"></div>
+                    <div key={i} className="group/card relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-primary/50 transition-all duration-300">
+                      <div className="text-sm font-black text-white uppercase tracking-wider mb-1">{level.name}</div>
+                      <div className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase opacity-80">{level.lessons}</div>
+                      <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-primary/20 group-hover/card:bg-primary transition-colors"></div>
                     </div>
                   ))}
                 </div>
