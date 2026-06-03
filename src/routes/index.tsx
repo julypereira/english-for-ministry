@@ -3,7 +3,9 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useAuthStore } from "@/lib/auth-store";
-import { LogOut } from 'lucide-react';
+import { useThemeStore } from "@/lib/theme-store";
+import { LogOut, Sun, Moon } from 'lucide-react';
+
 
 
 type Language = 'pt' | 'en';
@@ -65,7 +67,9 @@ const translations = {
 
 function Index() {
   const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
   const [lang, setLang] = useState<Language>('pt');
+
 
   const t = translations[lang];
   const containerRef = useRef<HTMLDivElement>(null);
@@ -131,8 +135,16 @@ function Index() {
               </div>
             </Link>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={toggleTheme}
+                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white dark:text-white light:text-slate-900"
+              >
+                {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+              </button>
+
               {user ? (
+
                 <div className="flex items-center gap-4">
                   <Link 
                     to={user.profile === "Administrador" ? "/admin/users" : "/aulas"}
