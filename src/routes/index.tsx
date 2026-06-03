@@ -172,12 +172,9 @@ function Index() {
 
         <nav className="sticky top-0 z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5 px-6 py-4">
           <div className="container mx-auto flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-3 group">
-              <img src="/church-logo.png" alt="Amigo Intimo Logo" className="h-10 w-auto object-contain" />
-              <div className="flex flex-col">
-                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white group-hover:text-primary transition-colors">Amigo Intimo</span>
-                <span className="text-primary text-[9px] tracking-[0.3em] font-black uppercase opacity-80">English for Ministry</span>
-              </div>
+            <Link to="/" className="flex flex-col group">
+              <span className="font-black text-2xl leading-none uppercase tracking-tighter text-white group-hover:text-primary transition-colors">Amigo Intimo</span>
+              <span className="text-primary text-[10px] tracking-[0.4em] font-black uppercase opacity-80">English for Ministry</span>
             </Link>
 
             <div className="hidden lg:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest">
