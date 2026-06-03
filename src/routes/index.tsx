@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useEmblaCarousel from 'embla-carousel-react';
-import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
+import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost, Instagram } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 
 type Language = 'pt' | 'en';
@@ -245,8 +245,14 @@ function Index() {
           </div>
           <div className="hidden sm:block h-[1px] w-12 bg-white/10"></div>
           <div className="flex items-center gap-6">
-            <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">INSTAGRAM</a>
-            <a href="https://web.whatsapp.com/send/?phone=5567984047848" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">WHATSAPP</a>
+            <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">
+              <Instagram size={14} />
+              INSTAGRAM
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5567984047848" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">
+              <MessageCircle size={14} />
+              WHATSAPP
+            </a>
           </div>
         </div>
       </div>
