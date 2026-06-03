@@ -42,7 +42,12 @@ const translations = {
       { name: "Intermediário", lessons: "25 aulas" },
       { name: "Avançado", lessons: "27 aulas" },
       { name: "Fluente", lessons: "Final" }
-    ]
+    ],
+    floating: {
+      verse: "MARCOS 16:15",
+      certificate: "CERTIFICADO",
+      completion: "DE CONCLUSÃO A CADA MÓDULO"
+    }
   },
   en: {
     nav: {
@@ -63,7 +68,12 @@ const translations = {
       { name: "Intermediate", lessons: "25 lessons" },
       { name: "Advanced", lessons: "27 lessons" },
       { name: "Fluent", lessons: "Final" }
-    ]
+    ],
+    floating: {
+      verse: "MARK 16:15",
+      certificate: "CERTIFICATE",
+      completion: "OF COMPLETION FOR EACH MODULE"
+    }
   }
 };
 
