@@ -37,7 +37,7 @@ function AulasComponent() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-slate-100 transition-colors duration-300">
-      <nav className="border-b border-white/10 bg-white/5 backdrop-blur-md p-4">
+      <nav className="border-b border-white/10 bg-white/[0.03] backdrop-blur-md p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="font-bold text-xl text-primary">English for Ministry</div>
           <div className="flex items-center gap-4">
@@ -57,7 +57,7 @@ function AulasComponent() {
         <h1 className="text-3xl font-bold mb-8 text-foreground dark:text-white">Minhas Aulas</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {aulas.map(aula => (
-            <div key={aula.id} className="bg-white dark:bg-white/5 p-6 rounded-lg shadow-sm border border-border dark:border-white/10 hover:shadow-md transition-shadow">
+            <div key={aula.id} className="bg-white/[0.03] dark:bg-white/[0.03] p-6 rounded-lg shadow-sm border border-border dark:border-white/10 hover:shadow-md transition-shadow">
 
               <h3 className="text-xl font-semibold mb-2 text-primary">{aula.title}</h3>
               <p className="text-muted-foreground mb-4">{aula.description}</p>

@@ -122,7 +122,7 @@ function AdminUsersComponent() {
           </button>
         </header>
 
-        <div className="bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl overflow-hidden backdrop-blur-sm transition-colors">
+        <div className="bg-white/[0.03] dark:bg-white/[0.03] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl overflow-hidden backdrop-blur-sm transition-colors">
           <div className="p-4 border-b border-white/10 dark:border-white/10 light:border-slate-200 bg-white/[0.02]">
 
             <div className="relative max-w-md">

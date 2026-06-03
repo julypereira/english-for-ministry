@@ -59,7 +59,7 @@ function LoginComponent() {
       </div>
 
       <div className="relative z-10 w-full max-w-md animate-in fade-in zoom-in duration-700">
-        <div className="bg-white/5 dark:bg-white/5 light:bg-white backdrop-blur-xl border border-white/10 dark:border-white/10 light:border-slate-200 rounded-[2.5rem] shadow-2xl overflow-hidden p-8 md:p-12 transition-colors">
+        <div className="bg-white/[0.03] dark:bg-white/[0.03] light:bg-white backdrop-blur-xl border border-white/10 dark:border-white/10 light:border-slate-200 rounded-[2.5rem] shadow-2xl overflow-hidden p-8 md:p-12 transition-colors">
           <div className="text-center mb-10">
             <Link to="/" className="inline-flex items-center gap-3 group mb-6 focus:outline-none">
               <div className="w-12 h-12 bg-white/10 dark:bg-white/10 light:bg-slate-100 rounded-xl flex items-center justify-center border border-white/10 dark:border-white/10 light:border-slate-200 group-hover:scale-110 transition-all duration-500 overflow-hidden">
