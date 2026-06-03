@@ -91,7 +91,7 @@ function LessonComponent() {
         <div className="container mx-auto flex items-center justify-between">
           <Link 
             to="/modulo/$moduleId" 
-            params={{ moduleId }}
+            params={{ moduleId: moduleId.toString() }}
             className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors"
           >
             <ChevronLeft size={20} />
