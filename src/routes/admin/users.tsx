@@ -15,8 +15,11 @@ import {
   GraduationCap,
   X,
   Check,
-  LogOut
+  LogOut,
+  Languages
 } from "lucide-react";
+import { useLanguageStore } from "@/lib/language-store";
+
 
 
 
@@ -29,6 +32,8 @@ function AdminUsersComponent() {
   const navigate = useNavigate();
   const { user: currentUser, logout } = useAuthStore();
   const { users, addUser, updateUser, deleteUser } = useUsersStore();
+  const { lang, toggleLang } = useLanguageStore();
+
 
 
 
@@ -113,13 +118,24 @@ function AdminUsersComponent() {
             </div>
           </div>
           
-          <button 
-            onClick={() => handleOpenModal()}
-            className="flex items-center justify-center gap-2 bg-primary hover:bg-orange-500 text-white px-6 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all active:scale-95 shadow-lg shadow-primary/20"
-          >
-            <UserPlus size={18} />
-            Novo Usuário
-          </button>
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={toggleLang}
+              className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all focus-visible:ring-2 focus-visible:ring-primary text-white"
+              aria-label="Trocar Idioma"
+            >
+              <Languages size={14} className="text-primary" />
+              <span>{lang === 'pt' ? 'PT' : 'EN'}</span>
+            </button>
+            <button 
+              onClick={() => handleOpenModal()}
+              className="flex items-center justify-center gap-2 bg-primary hover:bg-orange-500 text-white px-6 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all active:scale-95 shadow-lg shadow-primary/20"
+            >
+              <UserPlus size={18} />
+              Novo Usuário
+            </button>
+          </div>
+
         </header>
 
         <div className="bg-white/[0.03] dark:bg-white/[0.03] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 rounded-2xl overflow-hidden backdrop-blur-sm transition-colors">
