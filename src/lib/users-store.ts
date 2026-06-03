@@ -13,7 +13,7 @@ export const useUsersStore = create<UsersState>()(
   persist(
     (set) => ({
       users: [
-        { id: "1", name: "Administrador", email: "adm@adm.com", password: "Ch@nge1234", profile: "Administrador", createdAt: "2024-03-20" },
+        { id: "1", name: "Administrador", email: "adm@adm.com", password: "Ch@nge0987", profile: "Administrador", createdAt: "2024-03-20" },
         { id: "2", name: "Maria Oliveira", email: "maria@example.com", password: "123", profile: "Aluno", createdAt: "2024-03-21" },
         { id: "3", name: "Aluno Teste", email: "aluno@aluno.com", password: "Ch@nge1234", profile: "Aluno", createdAt: "2026-06-03" },
       ],
