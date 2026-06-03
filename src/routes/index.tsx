@@ -82,7 +82,7 @@ function Index() {
   };
 
   return (
-    <div ref={containerRef} className="h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-hidden flex flex-col">
+    <div ref={containerRef} className="min-h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-x-hidden flex flex-col">
       {/* 3D Animated Background Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 
@@ -136,7 +136,7 @@ function Index() {
           </div>
         </nav>
 
-        <section className="flex-1 flex items-center">
+        <section className="flex-1 flex items-center py-12 md:py-20">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
@@ -231,11 +231,11 @@ function Index() {
         </section>
 
         {/* Footer info */}
-        <div className="absolute bottom-8 left-8 flex items-center gap-6 animate-in fade-in duration-1000">
+        <div className="relative mt-auto p-8 flex flex-col sm:flex-row items-center gap-6 animate-in fade-in duration-1000">
           <div className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">
             © 2026 ENGLISH FOR MINISTRY
           </div>
-          <div className="h-[1px] w-12 bg-white/10"></div>
+          <div className="hidden sm:block h-[1px] w-12 bg-white/10"></div>
           <div className="flex items-center gap-6">
             <a href="https://www.instagram.com/amigointimochurch_cg/" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">INSTAGRAM</a>
             <a href="https://web.whatsapp.com/send/?phone=5567984047848" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors">WHATSAPP</a>
