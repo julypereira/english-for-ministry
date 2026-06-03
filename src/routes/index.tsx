@@ -147,9 +147,9 @@ function Index() {
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">{t.hero.tag}</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000">
+                <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000 pb-2">
                   {t.hero.title1} <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400 py-1">
                     {t.hero.title2}
                   </span>
                 </h1>
