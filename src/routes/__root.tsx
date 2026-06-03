@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { useThemeStore } from "../lib/theme-store";
+
 
 
 import appCss from "../styles.css?url";
