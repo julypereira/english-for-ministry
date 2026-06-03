@@ -94,6 +94,7 @@ function Index() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-x-hidden flex flex-col transition-colors duration-300">
+
       {/* 3D Animated Background Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 
@@ -123,14 +124,14 @@ function Index() {
         <nav className="px-6 py-8">
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
+              <div className="w-12 h-12 bg-primary dark:bg-primary light:bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
                 <div className="relative w-full h-full flex items-center justify-center">
                   <span className="text-white font-black text-3xl italic select-none z-10 -ml-0.5">A</span>
                   <div className="absolute inset-0 bg-gradient-to-tr from-orange-600 to-orange-400 opacity-50"></div>
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
+                <span className="font-black text-xl leading-none uppercase tracking-tighter text-white dark:text-white light:text-slate-900">Amigo Intimo</span>
                 <span className="text-primary text-[9px] tracking-[0.3em] font-black uppercase opacity-80">English for Ministry</span>
               </div>
             </Link>
@@ -182,7 +183,7 @@ function Index() {
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">{t.hero.tag}</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000 pb-2">
+                <h1 className="text-6xl md:text-8xl font-black text-white dark:text-white light:text-slate-900 leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-left-10 duration-1000 pb-2">
                   {t.hero.title1} <br />
                   <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-500 to-amber-500 py-2 pr-4">
                     {t.hero.title2}
@@ -190,7 +191,7 @@ function Index() {
                 </h1>
 
                 <p className="text-lg text-slate-400 max-w-lg leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000">
-                  {t.hero.desc} <span className="text-white font-bold">{t.hero.descHighlight}</span>
+                  {t.hero.desc} <span className="text-white dark:text-white light:text-slate-900 font-bold">{t.hero.descHighlight}</span>
                 </p>
 
                 <div className="animate-in fade-in slide-in-from-left-14 duration-1000">
@@ -241,7 +242,7 @@ function Index() {
                       <div className="flex gap-1">
                         {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-primary text-primary" />)}
                       </div>
-                      <p className="text-2xl font-bold italic leading-tight">"{t.hero.testimonial}"</p>
+                      <p className="text-2xl font-bold italic leading-tight text-white dark:text-white light:text-slate-900">"{t.hero.testimonial}"</p>
                       <div className="flex items-center gap-3 pt-4">
                         <span className="w-10 h-[1px] bg-primary"></span>
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">{t.hero.testimonialAuthor}</span>
