@@ -235,10 +235,25 @@ function ModuloComponent() {
             <div className="flex-1 overflow-y-auto p-8 text-slate-300 leading-relaxed">
               {activeTab === 'theory' && (
                 <div className="space-y-6 animate-in slide-in-from-left duration-500">
-                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">{lang === 'pt' ? 'Conteúdo Teórico' : 'Theoretical Content'}</h4>
-                    <p className="whitespace-pre-line">{selectedLesson.theory}</p>
-                  </div>
+                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                      <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">{lang === 'pt' ? 'Conteúdo Teórico' : 'Theoretical Content'}</h4>
+                      {selectedLesson.canvaUrl ? (
+                        <div className="space-y-4">
+                          <p className="whitespace-pre-line mb-4">{selectedLesson.theory}</p>
+                          <a 
+                            href={selectedLesson.canvaUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#00C4CC] text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg"
+                          >
+                            <Play size={14} fill="currentColor" />
+                            {lang === 'pt' ? 'Abrir Apresentação Canva' : 'Open Canva Presentation'}
+                          </a>
+                        </div>
+                      ) : (
+                        <p className="whitespace-pre-line">{selectedLesson.theory}</p>
+                      )}
+                    </div>
                 </div>
               )}
               {activeTab === 'exercises' && (
