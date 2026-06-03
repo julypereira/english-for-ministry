@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { useAuthStore } from "@/lib/auth-store";
+import { useUsersStore } from "@/lib/users-store";
+import type { User, UserProfile } from "@/lib/auth-store";
 import { 
   Users, 
   UserPlus, 
@@ -10,29 +14,35 @@ import {
   Shield,
   GraduationCap,
   X,
-  Check
+  Check,
+  LogOut
 } from "lucide-react";
 
 export const Route = createFileRoute("/admin/users")({
   component: AdminUsersComponent,
 });
 
-type UserProfile = "Administrador" | "Aluno";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  password?: string;
-  profile: UserProfile;
-  createdAt: string;
-}
 
 function AdminUsersComponent() {
-  const [users, setUsers] = useState<User[]>([
-    { id: "1", name: "João Silva", email: "admin@church.com", password: "adm1234", profile: "Administrador", createdAt: "2024-03-20" },
-    { id: "2", name: "Maria Oliveira", email: "maria@example.com", profile: "Aluno", createdAt: "2024-03-21" },
-  ]);
+  const navigate = useNavigate();
+  const { user: currentUser, logout } = useAuthStore();
+  const { users, addUser, updateUser, deleteUser } = useUsersStore();
+
+  useEffect(() => {
+    if (!currentUser || currentUser.profile !== "Administrador") {
+      navigate({ to: "/login" });
+    }
+  }, [currentUser, navigate]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", profile: "Aluno" as UserProfile });
+
+  if (!currentUser || currentUser.profile !== "Administrador") {
+    return null;
+  }
+
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,32 +73,39 @@ function AdminUsersComponent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editingUser) {
-      setUsers(users.map(u => u.id === editingUser.id ? { ...u, ...formData } : u));
+      updateUser({ ...editingUser, ...formData });
     } else {
       const newUser: User = {
         id: Math.random().toString(36).substr(2, 9),
         ...formData,
         createdAt: new Date().toISOString().split('T')[0]
       };
-      setUsers([...users, newUser]);
+      addUser(newUser);
     }
     handleCloseModal();
   };
 
   const handleDelete = (id: string) => {
     if (window.confirm("Tem certeza que deseja excluir este usuário?")) {
-      setUsers(users.filter(u => u.id !== id));
+      deleteUser(id);
     }
   };
+
+  const handleLogout = () => {
+    logout();
+    navigate({ to: "/login" });
+  };
+
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
       <div className="container mx-auto max-w-6xl">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-4">
-            <Link to="/login" className="p-2 hover:bg-white/5 rounded-full transition-colors">
-              <ChevronLeft size={24} />
-            </Link>
+            <button onClick={handleLogout} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
+              <LogOut size={24} />
+            </button>
+
             <div>
               <h1 className="text-2xl font-black uppercase tracking-tight text-white flex items-center gap-2">
                 <Users className="text-primary" />
