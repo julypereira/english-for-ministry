@@ -3,7 +3,9 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useAuthStore } from "@/lib/auth-store";
+import { useLanguageStore } from "@/lib/language-store";
 import { LogOut } from 'lucide-react';
+
 
 
 
@@ -68,7 +70,7 @@ const translations = {
 function Index() {
   const { user, logout } = useAuthStore();
 
-  const [lang, setLang] = useState<Language>('pt');
+  const { lang, toggleLang } = useLanguageStore();
 
 
   const t = translations[lang];
@@ -88,9 +90,8 @@ function Index() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const toggleLang = () => {
-    setLang(prev => prev === 'pt' ? 'en' : 'pt');
-  };
+  // toggleLang is now handled by useLanguageStore
+
 
   return (
     <div ref={containerRef} className="min-h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-x-hidden flex flex-col transition-colors duration-300">

@@ -1,7 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useAuthStore } from "@/lib/auth-store";
-import { LogOut, GraduationCap, BookOpen, ArrowRight } from "lucide-react";
+import { LogOut, GraduationCap, BookOpen, ArrowRight, Languages } from "lucide-react";
+import { useLanguageStore } from "@/lib/language-store";
+
 
 
 
@@ -13,6 +15,8 @@ export const Route = createFileRoute("/aulas")({
 function AulasComponent() {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
+  const { lang, toggleLang } = useLanguageStore();
+
 
 
 
@@ -46,8 +50,17 @@ function AulasComponent() {
             <div className="hidden sm:block font-black text-sm uppercase tracking-tighter">Amigo Intimo</div>
           </Link>
           
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <button 
+              onClick={toggleLang}
+              className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-3 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all focus-visible:ring-2 focus-visible:ring-primary text-white"
+              aria-label="Trocar Idioma"
+            >
+              <Languages size={14} className="text-primary" />
+              <span>{lang === 'pt' ? 'PT' : 'EN'}</span>
+            </button>
             <div className="hidden md:flex flex-col items-end">
+
               <span className="text-[10px] font-black uppercase tracking-widest text-primary">Estudante</span>
               <span className="text-sm font-bold">{user.name}</span>
             </div>
