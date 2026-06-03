@@ -93,7 +93,7 @@ function Index() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-x-hidden flex flex-col">
+    <div ref={containerRef} className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-x-hidden flex flex-col transition-colors duration-300">
       {/* 3D Animated Background Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 

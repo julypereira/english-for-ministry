@@ -1,7 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useAuthStore } from "@/lib/auth-store";
-import { LogOut } from "lucide-react";
+import { useThemeStore } from "@/lib/theme-store";
+import { LogOut, Sun, Moon } from "lucide-react";
+
 
 export const Route = createFileRoute("/aulas")({
   component: AulasComponent,
@@ -11,6 +13,8 @@ export const Route = createFileRoute("/aulas")({
 function AulasComponent() {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
+
 
   useEffect(() => {
     if (!user) {

@@ -2,7 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
-import { AlertCircle } from "lucide-react";
+import { useThemeStore } from "@/lib/theme-store";
+import { AlertCircle, Sun, Moon } from "lucide-react";
+
 
 export const Route = createFileRoute("/login")({
   component: LoginComponent,
@@ -14,7 +16,9 @@ function LoginComponent() {
   const [error, setError] = useState("");
   const login = useAuthStore((state) => state.login);
   const users = useUsersStore((state) => state.users);
+  const { theme, toggleTheme } = useThemeStore();
   const navigate = useNavigate();
+
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,7 +70,17 @@ function LoginComponent() {
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 opacity-80">English for Ministry</p>
           </div>
 
+          <div className="flex justify-end mb-4">
+            <button 
+              onClick={toggleTheme}
+              className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white dark:text-white light:text-slate-900"
+            >
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+          </div>
+
           <form className="space-y-6" onSubmit={handleLogin}>
+
             {error && (
               <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] p-4 rounded-xl flex items-center gap-3 animate-in fade-in zoom-in duration-300">
                 <AlertCircle size={16} />
