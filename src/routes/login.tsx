@@ -56,6 +56,14 @@ function LoginComponent() {
     }
   };
 
+  const handleStudentQuickLogin = () => {
+    const studentUser = users.find(u => u.profile === "Aluno") || users[0];
+    if (studentUser) {
+      login(studentUser);
+      navigate({ to: "/aulas" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] dark:bg-[#050505] light:bg-slate-50 font-sans text-slate-100 dark:text-slate-100 light:text-slate-900 selection:bg-primary/30 relative overflow-hidden flex items-center justify-center p-4 transition-colors duration-300">
       <div className="absolute top-6 right-6 z-50">
