@@ -82,7 +82,6 @@ function ModuloComponent() {
 
   const handleCompleteLesson = () => {
     if (selectedLesson && user) {
-      // For simplicity, giving 100% score when clicking complete in this simulation
       completeLesson(user.id, selectedLesson.id, 100);
       setSelectedLesson(null);
     }
@@ -238,25 +237,44 @@ function ModuloComponent() {
             <div className="flex-1 overflow-y-auto p-8 text-slate-300 leading-relaxed">
               {activeTab === 'theory' && (
                 <div className="space-y-6 animate-in slide-in-from-left duration-500">
-                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-                      <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">{lang === 'pt' ? 'Conteúdo Teórico' : 'Theoretical Content'}</h4>
-                      {selectedLesson.canvaUrl ? (
-                        <div className="space-y-4">
-                          <p className="whitespace-pre-line mb-4">{selectedLesson.theory}</p>
-                          <a 
-                            href={selectedLesson.canvaUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#00C4CC] text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg"
-                          >
-                            <Play size={14} fill="currentColor" />
-                            {lang === 'pt' ? 'Abrir Apresentação Canva' : 'Open Canva Presentation'}
-                          </a>
+                  {selectedLesson.canvaUrl && (
+                    <div className="p-6 rounded-2xl bg-[#00C4CC]/10 border border-[#00C4CC]/20 flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#00C4CC] flex items-center justify-center text-white">
+                          <Play size={20} fill="currentColor" />
                         </div>
-                      ) : (
-                        <p className="whitespace-pre-line">{selectedLesson.theory}</p>
-                      )}
+                        <div>
+                          <h4 className="text-white font-bold text-sm">Material no Canva</h4>
+                          <p className="text-[10px] text-slate-400 uppercase tracking-widest">Acesse a apresentação da aula</p>
+                        </div>
+                      </div>
+                      <a 
+                        href={selectedLesson.canvaUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="px-6 py-3 rounded-xl bg-[#00C4CC] text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg w-full md:w-auto text-center"
+                      >
+                        Abrir Apresentação
+                      </a>
                     </div>
+                  )}
+                  
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">{lang === 'pt' ? 'Conteúdo Teórico' : 'Theoretical Content'}</h4>
+                    <p className="whitespace-pre-line">{selectedLesson.theory}</p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <h4 className="text-white font-bold mb-2 uppercase tracking-wider text-sm">Status do Estudo</h4>
+                    <p className="text-xs text-slate-400 mb-4">Após terminar de revisar o material no Canva e a teoria acima, clique no botão abaixo para avançar para os exercícios.</p>
+                    <button 
+                      onClick={() => setActiveTab('exercises')}
+                      className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:border-primary transition-all flex items-center justify-center gap-2"
+                    >
+                      Concluir Teoria & Ver Exercícios
+                      <ChevronLeft size={14} className="rotate-180" />
+                    </button>
+                  </div>
                 </div>
               )}
               {activeTab === 'exercises' && (
@@ -265,6 +283,18 @@ function ModuloComponent() {
                     <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">{lang === 'pt' ? 'Prática' : 'Practice'}</h4>
                     <p className="whitespace-pre-line">{selectedLesson.exercises}</p>
                   </div>
+                  
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <h4 className="text-white font-bold mb-2 uppercase tracking-wider text-sm">Status da Prática</h4>
+                    <p className="text-xs text-slate-400 mb-4">Finalizou os exercícios? Agora é hora de conferir o Homework.</p>
+                    <button 
+                      onClick={() => setActiveTab('homework')}
+                      className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:border-primary transition-all flex items-center justify-center gap-2"
+                    >
+                      Concluir Exercícios & Ver Homework
+                      <ChevronLeft size={14} className="rotate-180" />
+                    </button>
+                  </div>
                 </div>
               )}
               {activeTab === 'homework' && (
@@ -272,6 +302,14 @@ function ModuloComponent() {
                   <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
                     <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">{lang === 'pt' ? 'Tarefa de Casa' : 'Homework'}</h4>
                     <p className="whitespace-pre-line">{selectedLesson.homework}</p>
+                  </div>
+
+                  <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-2xl flex items-start gap-3">
+                    <CheckCircle2 size={18} className="text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-green-500 font-bold text-xs uppercase tracking-wider">Parabéns!</h4>
+                      <p className="text-[10px] text-slate-400">Você chegou ao final desta aula. Clique no botão "Finalizar Aula" abaixo para registrar seu progresso e liberar a próxima aula.</p>
+                    </div>
                   </div>
                 </div>
               )}
