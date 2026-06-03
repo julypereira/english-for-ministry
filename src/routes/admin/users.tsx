@@ -224,6 +224,20 @@ function AdminUsersComponent() {
 
       <div className="container mx-auto max-w-6xl">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          {error && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[100] w-full max-w-lg bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] p-4 rounded-xl flex items-center justify-between gap-3 animate-in fade-in slide-in-from-top duration-300">
+              <div className="flex items-center gap-3">
+                <AlertCircle size={16} />
+                <p className="font-black uppercase tracking-widest">{error}</p>
+              </div>
+              <button 
+                onClick={() => setError(null)}
+                className="text-red-500 hover:text-white transition-colors font-black uppercase tracking-widest text-[8px]"
+              >
+                [X]
+              </button>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <button onClick={handleLogout} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
 
