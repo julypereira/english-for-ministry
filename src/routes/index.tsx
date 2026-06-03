@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
 const translations = {
   pt: {
     nav: {
-      join: "Área do Aluno",
+      join: "Login",
     },
     hero: {
       tag: "Capacitando Líderes do Reino",
