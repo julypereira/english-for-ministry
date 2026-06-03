@@ -3,6 +3,23 @@ import { persist } from 'zustand/middleware';
 
 export type ModuleStatus = "released" | "locked";
 
+export interface Lesson {
+  id: string;
+  moduleId: number;
+  title: string;
+  order: number;
+  theory: string;
+  exercises: string;
+  homework: string;
+}
+
+export interface StudentProgress {
+  studentId: string;
+  lessonId: string;
+  completed: boolean;
+  score: number; // 0-100
+}
+
 export interface Module {
   id: number;
   title: string;
