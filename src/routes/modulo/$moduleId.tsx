@@ -165,6 +165,9 @@ function ModuloComponent() {
                   {!locked && (
                     <button 
                       onClick={() => {
+                        if (lesson.canvaUrl) {
+                          window.open(lesson.canvaUrl, '_blank');
+                        }
                         setSelectedLesson(lesson);
                         setActiveTab('theory');
                       }}
