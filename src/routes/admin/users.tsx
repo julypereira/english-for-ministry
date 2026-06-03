@@ -45,6 +45,7 @@ function AdminUsersComponent() {
   const { users, addUser, updateUser, deleteUser } = useUsersStore();
   const { lang, toggleLang } = useLanguageStore();
   const { modules, classes, addClass, updateClass, deleteClass, lessons, addLesson, updateLesson, deleteLesson, releaseLesson, lockLesson } = useSchoolStore();
+  const [error, setError] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<"users" | "classes" | "lessons">("users");
 
