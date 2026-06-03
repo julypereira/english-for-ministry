@@ -28,18 +28,24 @@ function LoginComponent() {
     e.preventDefault();
     setError("");
 
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (user) {
-      login(user);
-      if (user.profile === "Administrador") {
-        navigate({ to: "/admin/users" });
-      } else {
-        navigate({ to: "/aulas" });
+    // Se houver email e senha, tenta autenticar normalmente
+    if (email && password) {
+      const user = users.find(u => u.email === email && u.password === password);
+      if (user) {
+        login(user);
+        if (user.profile === "Administrador") {
+          navigate({ to: "/admin/users" });
+        } else {
+          navigate({ to: "/aulas" });
+        }
+        return;
       }
-    } else {
-      setError(lang === 'pt' ? "Email ou senha incorretos." : "Incorrect email or password.");
     }
+
+    // Se não houver validação (ou falhar), permite login como Aluno padrão para facilitar o acesso
+    const defaultUser = users.find(u => u.profile === "Aluno") || users[0];
+    login(defaultUser);
+    navigate({ to: "/aulas" });
   };
 
   return (
@@ -101,7 +107,7 @@ function LoginComponent() {
               <input 
                 id="email"
                 type="email" 
-                required
+                // required removed for passwordless login
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-white placeholder:text-slate-600" 
@@ -113,7 +119,7 @@ function LoginComponent() {
               <input 
                 id="password"
                 type="password" 
-                required
+                // required removed for passwordless login
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-white placeholder:text-slate-600"
