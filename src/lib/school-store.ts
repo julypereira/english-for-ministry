@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export type LessonStatus = "released" | "locked";
 export type ModuleStatus = "released" | "locked";
 
 export interface Lesson {
@@ -12,6 +13,7 @@ export interface Lesson {
   exercises: string;
   homework: string;
   canvaUrl?: string;
+  status: LessonStatus;
 }
 
 export interface StudentProgress {
@@ -44,6 +46,8 @@ interface SchoolStore {
   deleteClass: (id: string) => void;
   releaseModule: (id: number) => void;
   lockModule: (id: number) => void;
+  releaseLesson: (id: string) => void;
+  lockLesson: (id: string) => void;
   completeLesson: (studentId: string, lessonId: string, score: number) => void;
   addLesson: (lesson: Lesson) => void;
   updateLesson: (lesson: Lesson) => void;
@@ -70,7 +74,8 @@ export const useSchoolStore = create<SchoolStore>()(
           theory: i === 0 ? "Seja bem-vindo ao curso ENGLISH FOR MINISTRY.\n\nNesta aula introdutória..." : `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
           homework: `Dever de casa da aula ${i + 1}...`,
-          canvaUrl: i === 0 ? "https://canva.link/ag3jyi13rb43top" : undefined
+          canvaUrl: i === 0 ? "https://canva.link/ag3jyi13rb43top" : undefined,
+          status: "released" as LessonStatus
         })),
         // BÁSICO (18 aulas)
         ...Array.from({ length: 18 }, (_, i) => ({
@@ -80,7 +85,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "released" as LessonStatus
         })),
         // INTERMEDIÁRIO (25 aulas)
         ...Array.from({ length: 25 }, (_, i) => ({
@@ -90,7 +96,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "locked" as LessonStatus
         })),
         // AVANÇADO (27 aulas)
         ...Array.from({ length: 27 }, (_, i) => ({
@@ -100,7 +107,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "locked" as LessonStatus
         })),
         // FLUENTE (Contínuo - simulando 50 inicialmente)
         ...Array.from({ length: 50 }, (_, i) => ({
@@ -110,7 +118,8 @@ export const useSchoolStore = create<SchoolStore>()(
           order: i + 1,
           theory: `Conteúdo teórico da aula ${i + 1}...`,
           exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`
+          homework: `Dever de casa da aula ${i + 1}...`,
+          status: "locked" as LessonStatus
         })),
       ],
       classes: [
