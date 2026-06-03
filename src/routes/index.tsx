@@ -82,9 +82,9 @@ function Index() {
   return (
     <div ref={containerRef} className="h-screen bg-[#050505] font-sans text-slate-100 selection:bg-primary/30 relative overflow-hidden flex flex-col">
       {/* 3D Animated Background Grid */}
-      <div className=\"absolute inset-0 z-0 pointer-events-none opacity-20\">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <div 
-          className=\"absolute inset-0\" 
+          className="absolute inset-0" 
           style={{ 
             backgroundImage: `linear-gradient(to right, #ffffff11 1px, transparent 1px), linear-gradient(to bottom, #ffffff11 1px, transparent 1px)`,
             backgroundSize: '40px 40px',
@@ -95,13 +95,13 @@ function Index() {
       </div>
 
       {/* Floating Orbs */}
-      <div className=\"absolute inset-0 z-0 pointer-events-none overflow-hidden\">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div 
-          className=\"absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse\"
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse"
           style={{ transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)` }}
         ></div>
         <div 
-          className=\"absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse\"
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse"
           style={{ transform: `translate(${-mousePos.x * 1.5}px, ${-mousePos.y * 1.5}px)`, animationDelay: '2s' }}
         ></div>
       </div>
