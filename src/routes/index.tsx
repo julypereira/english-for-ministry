@@ -111,7 +111,7 @@ function Index() {
           <div className="container mx-auto flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group focus:outline-none">
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(234,88,12,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                <Globe className="text-white" size={24} />
+                <span className="text-white font-black text-2xl italic select-none">A</span>
               </div>
               <div className="flex flex-col">
                 <span className="font-black text-xl leading-none uppercase tracking-tighter text-white">Amigo Intimo</span>
