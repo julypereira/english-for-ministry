@@ -9,10 +9,17 @@ import { Label } from "@/components/ui/label";
 import { Shield, GraduationCap, ArrowLeft, Languages } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 
+/**
+ * Rota da página de login.
+ */
 export const Route = createFileRoute("/login")({
   component: LoginComponent,
 });
 
+/**
+ * Componente principal da página de login.
+ * Gerencia a entrada de credenciais e validação contra o store de usuários.
+ */
 function LoginComponent() {
   const navigate = useNavigate();
   const { login } = useAuthStore();
@@ -27,11 +34,16 @@ function LoginComponent() {
     console.log("Current users in store:", users);
   }, [users]);
 
+  /**
+   * Processa a tentativa de login.
+   * Busca o usuário no store e valida a senha.
+   */
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     const user = users.find(u => {
+      // Aceita tanto e-mail quanto nome de usuário para o login
       const matchUsername = u.email === username || u.name === username;
       const matchPassword = u.password === password;
       return matchUsername && matchPassword;

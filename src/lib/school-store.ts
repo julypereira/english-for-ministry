@@ -1,9 +1,15 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+/**
+ * Definições de tipos e interfaces para o sistema escolar.
+ */
 export type LessonStatus = "released" | "locked";
 export type ModuleStatus = "released" | "locked";
 
+/**
+ * Interface que representa uma aula individual.
+ */
 export interface Lesson {
   id: string;
   moduleId: number;
@@ -16,6 +22,9 @@ export interface Lesson {
   status: LessonStatus;
 }
 
+/**
+ * Interface que rastreia o progresso individual de um aluno em uma aula.
+ */
 export interface StudentProgress {
   studentId: string;
   lessonId: string;
@@ -25,12 +34,18 @@ export interface StudentProgress {
   totalSlides?: number;
 }
 
+/**
+ * Interface para módulos (agrupamentos de aulas).
+ */
 export interface Module {
   id: number;
   title: string;
   status: ModuleStatus;
 }
 
+/**
+ * Interface que representa uma turma de alunos.
+ */
 export interface Class {
   id: string;
   name: string;
@@ -57,6 +72,10 @@ interface SchoolStore {
   deleteLesson: (id: string) => void;
 }
 
+/**
+ * Store principal da escola (conteúdo e progresso) utilizando Zustand.
+ * Gerencia turmas, módulos, aulas e o progresso acadêmico dos alunos.
+ */
 export const useSchoolStore = create<SchoolStore>()(
   persist(
     (set) => ({
