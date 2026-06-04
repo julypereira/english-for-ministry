@@ -68,7 +68,6 @@ export const useSchoolStore = create<SchoolStore>()(
         { id: 5, title: "FLUENTE", status: "locked" },
       ],
       lessons: [
-        // INICIANTE (14 aulas)
         {
           id: `l1-1`,
           moduleId: 1,
@@ -135,60 +134,6 @@ Ouça o professor soletrar 3 palavras e escreva-as:
           canvaUrl: "https://canva.link/82k4vlu18tcaicv",
           status: "released" as LessonStatus
         },
-        ...Array.from({ length: 13 }, (_, i) => ({
-          id: `l1-${i + 2}`,
-          moduleId: 1,
-          title: i === 0 ? "Saudações e Apresentações" : i === 1 ? "Vocabulário Bíblico Básico" : `Aula ${i + 2}`,
-          order: i + 2,
-          theory: `Conteúdo teórico da aula ${i + 2}...`,
-          exercises: `Exercícios práticos da aula ${i + 2}...`,
-          homework: `Dever de casa da aula ${i + 2}...`,
-          status: "released" as LessonStatus
-        })),
-        // BÁSICO (18 aulas)
-        ...Array.from({ length: 18 }, (_, i) => ({
-          id: `l2-${i + 1}`,
-          moduleId: 2,
-          title: i === 0 ? "Verbo To Be no Ministério" : `Aula ${i + 1}`,
-          order: i + 1,
-          theory: `Conteúdo teórico da aula ${i + 1}...`,
-          exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`,
-          status: "released" as LessonStatus
-        })),
-        // INTERMEDIÁRIO (25 aulas)
-        ...Array.from({ length: 25 }, (_, i) => ({
-          id: `l3-${i + 1}`,
-          moduleId: 3,
-          title: `Aula ${i + 1}`,
-          order: i + 1,
-          theory: `Conteúdo teórico da aula ${i + 1}...`,
-          exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`,
-          status: "locked" as LessonStatus
-        })),
-        // AVANÇADO (27 aulas)
-        ...Array.from({ length: 27 }, (_, i) => ({
-          id: `l4-${i + 1}`,
-          moduleId: 4,
-          title: `Aula ${i + 1}`,
-          order: i + 1,
-          theory: `Conteúdo teórico da aula ${i + 1}...`,
-          exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`,
-          status: "locked" as LessonStatus
-        })),
-        // FLUENTE (Contínuo - simulando 50 inicialmente)
-        ...Array.from({ length: 50 }, (_, i) => ({
-          id: `l5-${i + 1}`,
-          moduleId: 5,
-          title: `Aula ${i + 1}`,
-          order: i + 1,
-          theory: `Conteúdo teórico da aula ${i + 1}...`,
-          exercises: `Exercícios práticos da aula ${i + 1}...`,
-          homework: `Dever de casa da aula ${i + 1}...`,
-          status: "locked" as LessonStatus
-        })),
       ],
       classes: [
         { id: "1", name: "Turma Alpha", moduleIds: [1, 2, 3, 4, 5], studentIds: ["3"] },
