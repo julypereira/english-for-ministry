@@ -243,13 +243,17 @@ function ModuloComponent() {
                 </div>
                 
                 <button 
-                   className="px-8 py-3 rounded-xl bg-primary text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-primary/20"
+                   className={`px-8 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest transition-all shadow-lg ${
+                     getLessonProgress(selectedLesson.id).completed 
+                       ? 'bg-green-500 hover:bg-green-600 shadow-green-500/20' 
+                       : 'bg-primary hover:scale-105 shadow-primary/20'
+                   }`}
                    onClick={() => {
-                     const { useSchoolStore } = require("@/lib/school-store");
-                     useSchoolStore.getState().completeLesson(user.id, selectedLesson.id, 100);
+                     const { completeLesson } = useSchoolStore.getState();
+                     completeLesson(user.id, selectedLesson.id, 100);
                    }}
                 >
-                  Concluir Aula
+                  {getLessonProgress(selectedLesson.id).completed ? (lang === 'pt' ? 'Aula Concluída' : 'Lesson Completed') : (lang === 'pt' ? 'Concluir Aula' : 'Complete Lesson')}
                 </button>
               </div>
             </div>
