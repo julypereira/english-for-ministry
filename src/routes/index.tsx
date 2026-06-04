@@ -151,14 +151,41 @@ function Index() {
             </Link>
 
             <div className="flex items-center gap-4">
-              {user ? (
-                <div className="flex items-center gap-3">
-                  <Link 
-                    to={user.profile === "Administrador" ? "/admin/users" : "/aulas"}
-                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    Painel
-                  </Link>
+              <div className="flex items-center gap-3">
+                <button 
+                  onClick={toggleLang}
+                  className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all focus-visible:ring-2 focus-visible:ring-primary"
+                  aria-label="Trocar Idioma"
+                >
+                  <Languages size={14} className="text-primary" />
+                  <span className="hidden sm:inline">{lang === 'pt' ? 'Português' : 'English'}</span>
+                  <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
+                </button>
+                <Link 
+                  to="/aulas"
+                  onClick={() => {
+                    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+                    if (studentUser) {
+                      useAuthStore.getState().login(studentUser);
+                    }
+                  }}
+                  className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
+                >
+                  {lang === 'pt' ? 'ÁREA DO ALUNO' : 'STUDENT AREA'}
+                </Link>
+                <Link 
+                  to="/admin/users"
+                  onClick={() => {
+                    const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
+                    if (adminUser) {
+                      useAuthStore.getState().login(adminUser);
+                    }
+                  }}
+                  className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
+                >
+                  {lang === 'pt' ? 'ADMINISTRATIVO' : 'ADMINISTRATIVE'}
+                </Link>
+                {user && (
                   <button 
                     onClick={() => logout()}
                     className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-red-500"
@@ -166,44 +193,8 @@ function Index() {
                   >
                     <LogOut size={16} />
                   </button>
-                </div>
-              ) : (
-                <div className="flex items-center gap-3">
-                  <button 
-                    onClick={toggleLang}
-                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all focus-visible:ring-2 focus-visible:ring-primary"
-                    aria-label="Trocar Idioma"
-                  >
-                    <Languages size={14} className="text-primary" />
-                    <span className="hidden sm:inline">{lang === 'pt' ? 'Português' : 'English'}</span>
-                    <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
-                  </button>
-                  <Link 
-                    to="/aulas"
-                    onClick={() => {
-                      const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
-                      if (studentUser) {
-                        useAuthStore.getState().login(studentUser);
-                      }
-                    }}
-                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
-                  >
-                    {lang === 'pt' ? 'ÁREA DO ALUNO' : 'STUDENT AREA'}
-                  </Link>
-                  <Link 
-                    to="/admin/users"
-                    onClick={() => {
-                      const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
-                      if (adminUser) {
-                        useAuthStore.getState().login(adminUser);
-                      }
-                    }}
-                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
-                  >
-                    {lang === 'pt' ? 'ADMINISTRATIVO' : 'ADMINISTRATIVE'}
-                  </Link>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </nav>
