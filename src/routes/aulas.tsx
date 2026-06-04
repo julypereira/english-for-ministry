@@ -174,6 +174,14 @@ function AulasComponent() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {modules.map(module => {
             const accessible = hasAccess(module.id);
+            const moduleTitle = lang === 'en' ? (
+              module.id === 1 ? "BEGINNER" :
+              module.id === 2 ? "BASIC" :
+              module.id === 3 ? "INTERMEDIATE" :
+              module.id === 4 ? "ADVANCED" :
+              module.id === 5 ? "FLUENT" : module.title
+            ) : module.title;
+
             return (
               <div key={module.id} className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-8 transition-all duration-300 overflow-hidden">
                 {!accessible && (
@@ -190,7 +198,7 @@ function AulasComponent() {
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all">
                   <LayoutGrid size={24} className="text-primary group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">{module.title}</h3>
+                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">{moduleTitle}</h3>
                 <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">
                   {module.id === 1 ? "Jun → Set/2026 • 14 Aulas" : 
                    module.id === 2 ? "Set/2026 → Jan/2027 • 18 Aulas" :
