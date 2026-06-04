@@ -178,18 +178,18 @@ function Index() {
                     <span className="hidden sm:inline">{lang === 'pt' ? 'Português' : 'English'}</span>
                     <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
                   </button>
-                  <button 
+                  <Link 
+                    to="/aulas"
                     onClick={() => {
                       const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
                       if (studentUser) {
                         useAuthStore.getState().login(studentUser);
-                        window.location.href = "/aulas";
                       }
                     }}
-                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary"
+                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
                   >
                     {lang === 'pt' ? 'ÁREA DO ALUNO' : 'STUDENT AREA'}
-                  </button>
+                  </Link>
                   <button 
                     onClick={() => {
                       const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
