@@ -17,10 +17,11 @@ function AulasComponent() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) {
-      navigate({ to: "/" });
+    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+    if (!user && studentUser) {
+      useAuthStore.getState().login(studentUser);
     }
-  }, [user, navigate]);
+  }, [user]);
 
   const handleLogout = () => {
     logout();

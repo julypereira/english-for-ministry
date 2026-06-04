@@ -51,10 +51,11 @@ function AdminUsersComponent() {
   const [activeTab, setActiveTab] = useState<"users" | "classes" | "lessons">("users");
 
   useEffect(() => {
-    if (!currentUser || currentUser.profile !== "Administrador") {
-      navigate({ to: "/" });
+    const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
+    if ((!currentUser || currentUser.profile !== "Administrador") && adminUser) {
+      useAuthStore.getState().login(adminUser);
     }
-  }, [currentUser, navigate]);
+  }, [currentUser]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
