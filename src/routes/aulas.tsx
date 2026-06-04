@@ -5,6 +5,7 @@ import { useUsersStore } from "@/lib/users-store";
 import { LogOut, GraduationCap, Lock, ArrowRight, Languages, LayoutGrid, AlertCircle } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 import { useSchoolStore } from "@/lib/school-store";
+import { handleError } from "@/lib/error-handler";
 
 export const Route = createFileRoute("/aulas")({
   component: AulasComponent,
@@ -24,8 +25,13 @@ function AulasComponent() {
   }, [user, navigate]);
 
   const handleLogout = () => {
-    logout();
-    navigate({ to: "/" });
+    try {
+      logout();
+      navigate({ to: "/" });
+    } catch (err) {
+      handleError(err, { component: "AulasComponent", action: "logout" });
+      setError(lang === 'pt' ? "Erro ao sair da conta." : "Error logging out.");
+    }
   };
 
   if (!user) return null;

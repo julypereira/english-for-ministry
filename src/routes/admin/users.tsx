@@ -4,6 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
 import { useSchoolStore } from "@/lib/school-store";
+import { handleError } from "@/lib/error-handler";
 import type { User, UserProfile } from "@/lib/auth-store";
 import type { Class, Lesson, LessonStatus } from "@/lib/school-store";
 import { 
@@ -119,7 +120,7 @@ function AdminUsersComponent() {
       }
       handleCloseModal();
     } catch (err) {
-      console.error("Erro ao salvar usuário:", err);
+      handleError(err, { component: "AdminUsers", action: "handleSubmit" });
       setError(lang === 'pt' ? "Erro ao salvar usuário. Tente novamente." : "Error saving user. Please try again.");
     }
   };

@@ -4,6 +4,7 @@ import { useAuthStore } from "@/lib/auth-store";
 import { useSchoolStore } from "@/lib/school-store";
 import { useUsersStore } from "@/lib/users-store";
 import { useLanguageStore } from "@/lib/language-store";
+import { handleError } from "@/lib/error-handler";
 import { 
   ChevronLeft, 
   Lock, 
@@ -15,7 +16,8 @@ import {
   Search,
   LayoutGrid,
   Menu,
-  ChevronRight
+  ChevronRight,
+  AlertCircle
 } from "lucide-react";
 
 export const Route = createFileRoute("/modulo/$moduleId")({
@@ -30,7 +32,7 @@ function ModuloComponent() {
   const { modules, lessons, progress, classes } = useSchoolStore();
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
   const mId = parseInt(moduleId);
   const module = modules.find((m) => m.id === mId);
@@ -249,8 +251,13 @@ function ModuloComponent() {
                        : 'bg-primary hover:scale-105 shadow-primary/20'
                    }`}
                    onClick={() => {
-                     const { completeLesson } = useSchoolStore.getState();
-                     completeLesson(user.id, selectedLesson.id, 100);
+                     try {
+                       const { completeLesson } = useSchoolStore.getState();
+                       completeLesson(user.id, selectedLesson.id, 100);
+                     } catch (err) {
+                       handleError(err, { component: "ModuloComponent", action: "completeLesson" });
+                       setError(lang === 'pt' ? "Erro ao concluir aula." : "Error completing lesson.");
+                     }
                    }}
                 >
                   {getLessonProgress(selectedLesson.id).completed ? (lang === 'pt' ? 'Aula Concluída' : 'Lesson Completed') : (lang === 'pt' ? 'Concluir Aula' : 'Complete Lesson')}
