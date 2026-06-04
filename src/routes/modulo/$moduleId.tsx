@@ -41,10 +41,11 @@ function ModuloComponent() {
   const isAdmin = user?.profile === "Administrador";
   
   useEffect(() => {
-    if (!user) {
-      navigate({ to: "/login" });
+    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+    if (!user && studentUser) {
+      useAuthStore.getState().login(studentUser);
     }
-  }, [user, navigate]);
+  }, [user]);
 
   useEffect(() => {
     if (!selectedLessonId && allLessons.length > 0) {

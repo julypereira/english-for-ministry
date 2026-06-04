@@ -37,10 +37,11 @@ function LessonComponent() {
   const lesson = lessons.find(l => l.id === lessonId);
 
   useEffect(() => {
-    if (!user) {
-      navigate({ to: "/login" });
+    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+    if (!user && studentUser) {
+      useAuthStore.getState().login(studentUser);
     }
-  }, [user, navigate]);
+  }, [user]);
 
   if (!user || !lesson) return null;
 
