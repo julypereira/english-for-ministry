@@ -194,13 +194,7 @@ function AulasComponent() {
                   <LayoutGrid size={24} className="text-primary group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">{moduleTitle}</h3>
-                <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">
-                  {module.id === 1 ? "Jun → Set/2026 • 14 Aulas" : 
-                   module.id === 2 ? "Set/2026 → Jan/2027 • 18 Aulas" :
-                   module.id === 3 ? "Jan → Jul/2027 • 25 Aulas" :
-                   module.id === 4 ? "Jul/2027 → Jan/2028 • 27 Aulas" :
-                   "Jan/2028 → Contínuo • ∞ Aulas"}
-                </p>
+
                 <p className="text-slate-400 text-sm leading-relaxed mb-8">
                   {lang === 'pt' ? `Acesse o conteúdo completo do nível ${module.title}.` : `Access the full content of the ${module.title} level.`}
                 </p>
