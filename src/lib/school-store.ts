@@ -266,7 +266,7 @@ Ouça o professor soletrar 3 palavras e escreva-as:
       }),
     }),
     {
-      name: 'school-storage',
+      name: 'school-storage-v2',
     }
   )
 );
