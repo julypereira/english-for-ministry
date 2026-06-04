@@ -191,7 +191,7 @@ Ouça o professor soletrar 3 palavras e escreva-as:
         })),
       ],
       classes: [
-        { id: "1", name: "Turma Alpha", moduleIds: [1, 2, 3, 4, 5], studentIds: ["2", "3"] },
+        { id: "1", name: "Turma Alpha", moduleIds: [1, 2, 3, 4, 5], studentIds: ["3"] },
       ],
       progress: [],
       addClass: (newClass) => set((state) => {
