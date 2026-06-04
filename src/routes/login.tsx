@@ -17,7 +17,7 @@ function LoginComponent() {
   const { login } = useAuthStore();
   const { users } = useUsersStore();
   const { lang, toggleLang } = useLanguageStore();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -25,7 +25,7 @@ function LoginComponent() {
     e.preventDefault();
     setError("");
 
-    const user = users.find(u => u.email === email && u.password === password);
+    const user = users.find(u => (u.email === username || u.name === username) && u.password === password);
 
     if (user) {
       login(user);
@@ -35,7 +35,7 @@ function LoginComponent() {
         navigate({ to: "/aulas" });
       }
     } else {
-      setError(lang === 'pt' ? "E-mail ou senha incorretos." : "Incorrect email or password.");
+      setError(lang === 'pt' ? "Usuário ou senha incorretos." : "Incorrect username or password.");
     }
   };
 
@@ -82,15 +82,15 @@ function LoginComponent() {
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                {lang === 'pt' ? 'E-mail' : 'Email'}
+              <Label htmlFor="username" className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                {lang === 'pt' ? 'Usuário / E-mail' : 'Username / Email'}
               </Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="exemplo@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="username"
+                type="text"
+                placeholder={lang === 'pt' ? "Nome de usuário ou e-mail" : "Username or email"}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-600 focus:ring-primary h-12 rounded-xl"
                 required
               />
