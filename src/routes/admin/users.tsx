@@ -51,10 +51,11 @@ function AdminUsersComponent() {
   const [activeTab, setActiveTab] = useState<"users" | "classes" | "lessons">("users");
 
   useEffect(() => {
-    if (!currentUser || currentUser.profile !== "Administrador") {
-      navigate({ to: "/" });
+    const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
+    if ((!currentUser || currentUser.profile !== "Administrador") && adminUser) {
+      useAuthStore.getState().login(adminUser);
     }
-  }, [currentUser, navigate]);
+  }, [currentUser]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -260,11 +261,6 @@ function AdminUsersComponent() {
             </div>
           )}
           <div className="flex items-center gap-2">
-            <button onClick={handleLogout} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
-
-
-              <LogOut size={24} />
-            </button>
 
             <div>
               <h1 className="text-2xl font-black uppercase tracking-tight text-white flex items-center gap-2">

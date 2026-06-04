@@ -185,15 +185,6 @@ function Index() {
                 >
                   {lang === 'pt' ? 'ADMINISTRATIVO' : 'ADMINISTRATIVE'}
                 </Link>
-                {user && (
-                  <button 
-                    onClick={() => logout()}
-                    className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-red-500"
-                    title="Sair"
-                  >
-                    <LogOut size={16} />
-                  </button>
-                )}
               </div>
             </div>
           </div>

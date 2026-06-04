@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/auth-store";
+import { useUsersStore } from "@/lib/users-store";
 import { LogOut, GraduationCap, Lock, ArrowRight, Languages, LayoutGrid, AlertCircle } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 import { useSchoolStore } from "@/lib/school-store";
@@ -17,10 +18,11 @@ function AulasComponent() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) {
-      navigate({ to: "/" });
+    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+    if (!user && studentUser) {
+      useAuthStore.getState().login(studentUser);
     }
-  }, [user, navigate]);
+  }, [user]);
 
   const handleLogout = () => {
     logout();
@@ -68,13 +70,6 @@ function AulasComponent() {
               <span className="text-[10px] font-black uppercase tracking-widest text-primary">{lang === 'pt' ? user.profile : (user.profile === 'Administrador' ? 'Admin' : 'Student')}</span>
               <span className="text-sm font-bold">{user.name}</span>
             </div>
-            <button 
-              onClick={handleLogout} 
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all text-xs font-black uppercase tracking-widest"
-            >
-              <LogOut size={14} />
-              <span className="hidden sm:inline">{lang === 'pt' ? 'Sair' : 'Logout'}</span>
-            </button>
           </div>
         </div>
       </nav>
