@@ -4,6 +4,7 @@ import { useAuthStore } from "@/lib/auth-store";
 import { useSchoolStore } from "@/lib/school-store";
 import { useUsersStore } from "@/lib/users-store";
 import { useLanguageStore } from "@/lib/language-store";
+import { handleError } from "@/lib/error-handler";
 import { 
   ChevronLeft, 
   Lock, 
@@ -15,7 +16,8 @@ import {
   Search,
   LayoutGrid,
   Menu,
-  ChevronRight
+  ChevronRight,
+  AlertCircle
 } from "lucide-react";
 
 export const Route = createFileRoute("/modulo/$moduleId")({
@@ -31,6 +33,7 @@ function ModuloComponent() {
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
   const mId = parseInt(moduleId);
   const module = modules.find((m) => m.id === mId);
@@ -167,7 +170,22 @@ function ModuloComponent() {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col relative overflow-hidden bg-black">
         {/* Top Header */}
-        <header className="h-16 border-b border-white/5 bg-[#050505]/80 backdrop-blur-lg flex items-center justify-between px-6 shrink-0">
+        <header className="h-16 border-b border-white/5 bg-[#050505]/80 backdrop-blur-lg flex flex-col shrink-0">
+          {error && (
+            <div className="bg-red-500/10 border-b border-red-500/20 text-red-500 text-[10px] px-4 py-2 flex items-center justify-between gap-3 animate-in fade-in duration-300">
+              <div className="flex items-center gap-2">
+                <AlertCircle size={14} />
+                <p className="font-black uppercase tracking-widest">{error}</p>
+              </div>
+              <button 
+                onClick={() => setError(null)}
+                className="text-red-500 hover:text-white transition-colors font-black uppercase tracking-widest text-[8px]"
+              >
+                [X]
+              </button>
+            </div>
+          )}
+          <div className="flex-1 flex items-center justify-between px-6">
           <div className="flex items-center gap-4">
             {!sidebarOpen && (
               <button 
@@ -197,6 +215,7 @@ function ModuloComponent() {
             >
               {isFullscreen ? <Minimize2 size={20} /> : <Maximize2 size={20} />}
             </button>
+          </div>
           </div>
         </header>
 
@@ -249,8 +268,13 @@ function ModuloComponent() {
                        : 'bg-primary hover:scale-105 shadow-primary/20'
                    }`}
                    onClick={() => {
-                     const { completeLesson } = useSchoolStore.getState();
-                     completeLesson(user.id, selectedLesson.id, 100);
+                     try {
+                       const { completeLesson } = useSchoolStore.getState();
+                       completeLesson(user.id, selectedLesson.id, 100);
+                     } catch (err) {
+                       handleError(err, { component: "ModuloComponent", action: "completeLesson" });
+                       setError(lang === 'pt' ? "Erro ao concluir aula." : "Error completing lesson.");
+                     }
                    }}
                 >
                   {getLessonProgress(selectedLesson.id).completed ? (lang === 'pt' ? 'Aula Concluída' : 'Lesson Completed') : (lang === 'pt' ? 'Concluir Aula' : 'Complete Lesson')}
