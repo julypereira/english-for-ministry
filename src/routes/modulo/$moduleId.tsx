@@ -73,8 +73,14 @@ function ModuloComponent() {
     return lesson.status === "locked";
   };
 
-  const getCanvaEmbedUrl = (url: string) => {
-    if (!url) return null;
+  const getCanvaEmbedUrl = (input: string) => {
+    if (!input) return null;
+    const value = input.trim();
+    if (value.startsWith('<')) {
+      const match = value.match(/src=["']([^"']+)["']/i);
+      return match ? match[1] : null;
+    }
+    const url = value;
     if (url.includes('canva.com') && url.includes('view?embed')) return url;
     if (url.includes('canva.link')) return url;
     if (url.includes('canva.com/design/')) {

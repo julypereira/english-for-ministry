@@ -71,9 +71,19 @@ function LessonComponent() {
     }
   }, [iframeLoaded, currentProgress, user, lesson]);
 
-  const getCanvaEmbedUrl = (url: string) => {
-    if (!url) return null;
-    
+  const getCanvaEmbedUrl = (input: string) => {
+    if (!input) return null;
+    const value = input.trim();
+
+    // Se for um código HTML completo (iframe), extrai o atributo src
+    if (value.startsWith('<')) {
+      const match = value.match(/src=["']([^"']+)["']/i);
+      if (match && match[1]) return match[1];
+      return null;
+    }
+
+    let url = value;
+
     // Se for um link curto do canva.link, convertemos para o formato de embed
     if (url.includes('canva.link/')) {
       const code = url.split('canva.link/')[1]?.split('?')[0];
@@ -81,10 +91,10 @@ function LessonComponent() {
         return `https://www.canva.com/design/${code}/view?embed`;
       }
     }
-    
+
     // Se já for um link de embed do Canva, retorna
     if (url.includes('canva.com') && url.includes('view?embed')) return url;
-    
+
     // Tenta converter link de compartilhamento padrão para link de embed
     if (url.includes('canva.com/design/')) {
       const parts = url.split('/design/')[1]?.split('/');
@@ -93,7 +103,7 @@ function LessonComponent() {
         return `https://www.canva.com/design/${designId}/view?embed`;
       }
     }
-    
+
     return url;
   };
 
