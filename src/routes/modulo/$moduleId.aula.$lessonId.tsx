@@ -74,21 +74,27 @@ function LessonComponent() {
   const getCanvaEmbedUrl = (url: string) => {
     if (!url) return null;
     
+    // Se for um link curto do canva.link, convertemos para o formato de embed
+    if (url.includes('canva.link/')) {
+      const code = url.split('canva.link/')[1]?.split('?')[0];
+      if (code) {
+        return `https://www.canva.com/design/${code}/view?embed`;
+      }
+    }
+    
     // Se já for um link de embed do Canva, retorna
     if (url.includes('canva.com') && url.includes('view?embed')) return url;
     
-    // Se for um link curto do canva.link
-    if (url.includes('canva.link')) {
-      return url; // Navegadores lidam com o redirecionamento ou o iframe tenta carregar
-    }
-    
     // Tenta converter link de compartilhamento padrão para link de embed
     if (url.includes('canva.com/design/')) {
-      const baseUrl = url.split('?')[0];
-      return `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}view?embed`;
+      const parts = url.split('/design/')[1]?.split('/');
+      const designId = parts ? parts[0] : null;
+      if (designId) {
+        return `https://www.canva.com/design/${designId}/view?embed`;
+      }
     }
     
-    return url; // Fallback para a URL original
+    return url;
   };
 
   const canvaEmbedUrl = getCanvaEmbedUrl(lesson.canvaUrl || "");
