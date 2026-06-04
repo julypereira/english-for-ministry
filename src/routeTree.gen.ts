@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as AulasRouteImport } from './routes/aulas'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ModuloModuleIdRouteImport } from './routes/modulo/$moduleId'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as ModuloModuleIdAulaLessonIdRouteImport } from './routes/modulo/$moduleId.aula.$lessonId'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AulasRoute = AulasRouteImport.update({
   id: '/aulas',
   path: '/aulas',
@@ -45,6 +51,7 @@ const ModuloModuleIdAulaLessonIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aulas': typeof AulasRoute
+  '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
   '/modulo/$moduleId': typeof ModuloModuleIdRouteWithChildren
   '/modulo/$moduleId/aula/$lessonId': typeof ModuloModuleIdAulaLessonIdRoute
@@ -52,6 +59,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aulas': typeof AulasRoute
+  '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
   '/modulo/$moduleId': typeof ModuloModuleIdRouteWithChildren
   '/modulo/$moduleId/aula/$lessonId': typeof ModuloModuleIdAulaLessonIdRoute
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/aulas': typeof AulasRoute
+  '/login': typeof LoginRoute
   '/admin/users': typeof AdminUsersRoute
   '/modulo/$moduleId': typeof ModuloModuleIdRouteWithChildren
   '/modulo/$moduleId/aula/$lessonId': typeof ModuloModuleIdAulaLessonIdRoute
@@ -69,6 +78,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/aulas'
+    | '/login'
     | '/admin/users'
     | '/modulo/$moduleId'
     | '/modulo/$moduleId/aula/$lessonId'
@@ -76,6 +86,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/aulas'
+    | '/login'
     | '/admin/users'
     | '/modulo/$moduleId'
     | '/modulo/$moduleId/aula/$lessonId'
@@ -83,6 +94,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/aulas'
+    | '/login'
     | '/admin/users'
     | '/modulo/$moduleId'
     | '/modulo/$moduleId/aula/$lessonId'
@@ -91,12 +103,20 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AulasRoute: typeof AulasRoute
+  LoginRoute: typeof LoginRoute
   AdminUsersRoute: typeof AdminUsersRoute
   ModuloModuleIdRoute: typeof ModuloModuleIdRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aulas': {
       id: '/aulas'
       path: '/aulas'
@@ -150,6 +170,7 @@ const ModuloModuleIdRouteWithChildren = ModuloModuleIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AulasRoute: AulasRoute,
+  LoginRoute: LoginRoute,
   AdminUsersRoute: AdminUsersRoute,
   ModuloModuleIdRoute: ModuloModuleIdRouteWithChildren,
 }
