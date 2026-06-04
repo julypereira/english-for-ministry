@@ -125,16 +125,6 @@ function LoginComponent() {
             </Button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 gap-4">
-             <div className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
-                <Shield size={16} className="text-primary" />
-                <span className="text-[8px] font-black uppercase tracking-tighter">Portal Admin</span>
-             </div>
-             <div className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
-                <GraduationCap size={16} className="text-blue-400" />
-                <span className="text-[8px] font-black uppercase tracking-tighter">Área do Aluno</span>
-             </div>
-          </div>
         </div>
       </div>
     </div>
