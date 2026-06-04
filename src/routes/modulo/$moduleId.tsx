@@ -108,11 +108,19 @@ function ModuloComponent() {
             const modLessons = allLessons.filter(l => l.moduleId === mod.id);
             if (modLessons.length === 0) return null;
             
+            const modTitle = lang === 'en' ? (
+              mod.id === 1 ? "BEGINNER" :
+              mod.id === 2 ? "BASIC" :
+              mod.id === 3 ? "INTERMEDIATE" :
+              mod.id === 4 ? "ADVANCED" :
+              mod.id === 5 ? "FLUENT" : mod.title
+            ) : mod.title;
+
             return (
               <div key={mod.id} className="mb-4">
-                <div className="px-4 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 flex items-center gap-2">
+                <div className="px-4 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 flex items-center gap-2 text-left">
                   <LayoutGrid size={10} />
-                  {mod.title}
+                  {modTitle}
                 </div>
                 {modLessons.map((lesson) => {
                   const locked = isLessonLocked(lesson);
