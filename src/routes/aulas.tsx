@@ -68,13 +68,6 @@ function AulasComponent() {
               <span className="text-[10px] font-black uppercase tracking-widest text-primary">{lang === 'pt' ? user.profile : (user.profile === 'Administrador' ? 'Admin' : 'Student')}</span>
               <span className="text-sm font-bold">{user.name}</span>
             </div>
-            <button 
-              onClick={handleLogout} 
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all text-xs font-black uppercase tracking-widest"
-            >
-              <LogOut size={14} />
-              <span className="hidden sm:inline">{lang === 'pt' ? 'Sair' : 'Logout'}</span>
-            </button>
           </div>
         </div>
       </nav>
