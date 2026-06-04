@@ -18,13 +18,13 @@ function AulasComponent() {
 
   useEffect(() => {
     if (!user) {
-      navigate({ to: "/login" });
+      navigate({ to: "/" });
     }
   }, [user, navigate]);
 
   const handleLogout = () => {
     logout();
-    navigate({ to: "/login" });
+    navigate({ to: "/" });
   };
 
   if (!user) return null;
