@@ -188,7 +188,19 @@ function Index() {
                     }}
                     className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary"
                   >
-                    {t.nav.join}
+                    {lang === 'pt' ? 'ÁREA DO ALUNO' : 'STUDENT AREA'}
+                  </button>
+                  <button 
+                    onClick={() => {
+                      const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
+                      if (adminUser) {
+                        useAuthStore.getState().login(adminUser);
+                        window.location.href = "/admin/users";
+                      }
+                    }}
+                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    {lang === 'pt' ? 'ADMINISTRATIVO' : 'ADMINISTRATIVE'}
                   </button>
                 </div>
               )}
