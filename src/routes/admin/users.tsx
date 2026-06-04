@@ -806,7 +806,7 @@ function AdminUsersComponent() {
                     required
                     type="url" 
                     className="w-full bg-slate-950/50 border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-white placeholder:text-slate-700"
-                    placeholder="https://www.canva.com/design/..."
+                    placeholder="https://canva.link/..."
                     value={lessonFormData.canvaUrl}
                     onChange={(e) => setLessonFormData({ ...lessonFormData, canvaUrl: e.target.value })}
                   />
