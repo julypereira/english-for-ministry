@@ -347,6 +347,7 @@ function AdminUsersComponent() {
                     <tr className="bg-white/[0.02] text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
                       <th className="px-6 py-4">{lang === 'pt' ? 'Usuário' : 'User'}</th>
                       <th className="px-6 py-4">{lang === 'pt' ? 'Perfil' : 'Profile'}</th>
+                      <th className="px-6 py-4">{lang === 'pt' ? 'Evolução' : 'Evolution'}</th>
                       <th className="px-6 py-4">{lang === 'pt' ? 'Criado em' : 'Created at'}</th>
                       <th className="px-6 py-4 text-right">{lang === 'pt' ? 'Ações' : 'Actions'}</th>
                     </tr>
@@ -374,6 +375,36 @@ function AdminUsersComponent() {
                             {user.profile === "Administrador" ? <Shield size={10} /> : <GraduationCap size={10} />}
                             {user.profile}
                           </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col gap-1.5 min-w-[120px]">
+                            {user.profile === "Aluno" ? (
+                              (() => {
+                                const userLessons = lessons;
+                                const userProgress = useSchoolStore.getState().progress.filter(p => p.studentId === user.id);
+                                const totalLessons = userLessons.length;
+                                const completedLessons = userProgress.filter(p => p.completed).length;
+                                const percentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+                                
+                                return (
+                                  <>
+                                    <div className="flex justify-between text-[8px] font-black uppercase tracking-widest text-slate-500">
+                                      <span>{percentage}%</span>
+                                      <span>{completedLessons}/{totalLessons} {lang === 'pt' ? 'Aulas' : 'Lessons'}</span>
+                                    </div>
+                                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                      <div 
+                                        className="h-full bg-primary transition-all duration-500" 
+                                        style={{ width: `${percentage}%` }}
+                                      />
+                                    </div>
+                                  </>
+                                );
+                              })()
+                            ) : (
+                              <span className="text-[10px] text-slate-600 italic">--</span>
+                            )}
+                          </div>
                         </td>
                         <td className="px-6 py-4 text-xs text-slate-400">
                           {user.createdAt}

@@ -47,7 +47,9 @@ function LessonComponent() {
   if (!user || !lesson) return null;
 
   const handleComplete = () => {
-    updateLessonProgress(user.id, lesson.id, 100, 100);
+    // Agora usando completeLesson para garantir 100% conforme solicitado
+    const { completeLesson } = useSchoolStore.getState();
+    completeLesson(user.id, lesson.id, 100);
     navigate({ to: "/modulo/$moduleId", params: { moduleId: moduleId.toString() } });
   };
 

@@ -186,13 +186,13 @@ Ouça o professor soletrar 3 palavras e escreva-as:
             return {
               progress: state.progress.map(p => 
                 (p.studentId === studentId && p.lessonId === lessonId) 
-                  ? { ...p, completed: true, score: Math.max(p.score, score) } 
+                  ? { ...p, completed: true, score: 100 } 
                   : p
               )
             };
           }
           return {
-            progress: [...state.progress, { studentId, lessonId, completed: true, score }]
+            progress: [...state.progress, { studentId, lessonId, completed: true, score: 100 }]
           };
         } catch (err) {
           console.error("Erro ao completar aula:", err);
@@ -201,6 +201,7 @@ Ouça o professor soletrar 3 palavras e escreva-as:
       }),
       updateLessonProgress: (studentId, lessonId, currentSlide, totalSlides) => set((state) => {
         try {
+          // Mantemos a atualização de progresso mas o "Concluir" agora fixa em 100%
           const score = Math.round((currentSlide / totalSlides) * 100);
           const completed = currentSlide >= totalSlides;
           
@@ -212,7 +213,7 @@ Ouça o professor soletrar 3 palavras e escreva-as:
                   ? { 
                       ...p, 
                       completed: p.completed || completed, 
-                      score: Math.max(p.score, score),
+                      score: completed ? 100 : Math.max(p.score, score),
                       lastSlide: Math.max(p.lastSlide || 0, currentSlide),
                       totalSlides: totalSlides
                     } 
@@ -225,7 +226,7 @@ Ouça o professor soletrar 3 palavras e escreva-as:
               studentId, 
               lessonId, 
               completed, 
-              score, 
+              score: completed ? 100 : score, 
               lastSlide: currentSlide, 
               totalSlides 
             }]
