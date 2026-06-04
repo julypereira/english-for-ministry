@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAuthStore } from "@/lib/auth-store";
 import { useUsersStore } from "@/lib/users-store";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,6 +21,11 @@ function LoginComponent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  // Debug: log current users in store (only for development)
+  useEffect(() => {
+    console.log("Current users in store:", users);
+  }, [users]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
