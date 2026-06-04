@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
 import { useAuthStore } from "@/lib/auth-store";
 import { useSchoolStore } from "@/lib/school-store";
+import { useUsersStore } from "@/lib/users-store";
 import { useLanguageStore } from "@/lib/language-store";
 import { 
   ChevronLeft, 
@@ -41,10 +42,11 @@ function ModuloComponent() {
   const isAdmin = user?.profile === "Administrador";
   
   useEffect(() => {
-    if (!user) {
-      navigate({ to: "/login" });
+    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+    if (!user && studentUser) {
+      useAuthStore.getState().login(studentUser);
     }
-  }, [user, navigate]);
+  }, [user]);
 
   useEffect(() => {
     if (!selectedLessonId && allLessons.length > 0) {
