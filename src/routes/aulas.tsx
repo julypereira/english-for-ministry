@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/auth-store";
+import { useUsersStore } from "@/lib/users-store";
 import { LogOut, GraduationCap, Lock, ArrowRight, Languages, LayoutGrid, AlertCircle } from "lucide-react";
 import { useLanguageStore } from "@/lib/language-store";
 import { useSchoolStore } from "@/lib/school-store";
