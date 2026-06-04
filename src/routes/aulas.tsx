@@ -18,11 +18,10 @@ function AulasComponent() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
-    if (!user && studentUser) {
-      useAuthStore.getState().login(studentUser);
+    if (!user) {
+      navigate({ to: "/login" });
     }
-  }, [user]);
+  }, [user, navigate]);
 
   const handleLogout = () => {
     logout();
@@ -70,6 +69,13 @@ function AulasComponent() {
               <span className="text-[10px] font-black uppercase tracking-widest text-primary">{lang === 'pt' ? user.profile : (user.profile === 'Administrador' ? 'Admin' : 'Student')}</span>
               <span className="text-sm font-bold">{user.name}</span>
             </div>
+            <button 
+              onClick={handleLogout}
+              className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
+              title={lang === 'pt' ? 'Sair' : 'Logout'}
+            >
+              <LogOut size={18} />
+            </button>
           </div>
         </div>
       </nav>

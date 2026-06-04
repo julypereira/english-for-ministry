@@ -51,11 +51,10 @@ function AdminUsersComponent() {
   const [activeTab, setActiveTab] = useState<"users" | "classes" | "lessons">("users");
 
   useEffect(() => {
-    const adminUser = useUsersStore.getState().users.find(u => u.profile === "Administrador");
-    if ((!currentUser || currentUser.profile !== "Administrador") && adminUser) {
-      useAuthStore.getState().login(adminUser);
+    if (!currentUser || currentUser.profile !== "Administrador") {
+      navigate({ to: "/login" });
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -321,6 +320,13 @@ function AdminUsersComponent() {
                  (lang === 'pt' ? 'Nova Aula' : 'New Lesson')}
               </button>
 
+            <button 
+              onClick={handleLogout}
+              className="p-2.5 hover:bg-white/5 rounded-xl text-slate-400 hover:text-red-500 transition-colors border border-transparent hover:border-white/10"
+              title={lang === 'pt' ? 'Sair' : 'Logout'}
+            >
+              <LogOut size={18} />
+            </button>
           </div>
 
         </header>
