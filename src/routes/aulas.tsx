@@ -13,7 +13,7 @@ function AulasComponent() {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
   const { lang, toggleLang } = useLanguageStore();
-  const { modules, classes } = useSchoolStore();
+  const { modules, classes, progress, lessons } = useSchoolStore();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
