@@ -68,12 +68,12 @@ export const useSchoolStore = create<SchoolStore>()(
         { id: 5, title: "FLUENTE", status: "locked" },
       ],
       lessons: [
-        {
-          id: `l1-1`,
-          moduleId: 1,
-          title: "Aula 001 - Alfabeto",
-          order: 1,
-          theory: `## The English Alphabet
+        ...Array.from({ length: 150 }, (_, i) => ({
+          id: `lesson-${i + 1}`,
+          moduleId: Math.floor(i / 30) + 1, // Distribui 30 aulas por módulo
+          title: `Aula ${String(i + 1).padStart(3, '0')}`,
+          order: (i % 30) + 1,
+          theory: i === 0 ? `## The English Alphabet
         
 O alfabeto inglês possui **26 letras**. É a base para a comunicação no ministério, essencial para soletrar nomes (spelling names), endereços e termos bíblicos.
 
@@ -114,8 +114,8 @@ No ministério, você frequentemente precisará soletrar:
 2. **Biblical terms:** "Can you spell 'Grace'?" "G-R-A-C-E."
 
 ### Video Lesson
-Assista ao vídeo para praticar a sonoridade e o ritmo das letras.`,
-          exercises: `### Exercise 1: Spelling Names
+Assista ao vídeo para praticar a sonoridade e o ritmo das letras.` : `Conteúdo da Aula ${String(i + 1).padStart(3, '0')}...`,
+          exercises: i === 0 ? `### Exercise 1: Spelling Names
 Soletre os seguintes nomes bíblicos em voz alta:
 1. NOAH (N-O-A-H)
 2. MARY (M-A-R-Y)
@@ -126,14 +126,14 @@ Soletre os seguintes nomes bíblicos em voz alta:
 Ouça o professor soletrar 3 palavras e escreva-as:
 1. _ _ _ _ _
 2. _ _ _ _ _
-3. _ _ _ _ _`,
-          homework: `### Homework: My Ministry Profile
+3. _ _ _ _ _` : `Exercícios da Aula ${String(i + 1).padStart(3, '0')}...`,
+          homework: i === 0 ? `### Homework: My Ministry Profile
 1. Escreva seu nome completo e grave um áudio soletre-o.
 2. Escolha seu versículo favorito e soletre a primeira palavra dele.
-3. Pratique a pronúncia das vogais (A, E, I, O, U) que são as mais diferentes do português.`,
-          canvaUrl: "https://canva.link/82k4vlu18tcaicv",
-          status: "released" as LessonStatus
-        },
+3. Pratique a pronúncia das vogais (A, E, I, O, U) que são as mais diferentes do português.` : `Dever de casa da Aula ${String(i + 1).padStart(3, '0')}...`,
+          canvaUrl: i === 0 ? "https://canva.link/82k4vlu18tcaicv" : "",
+          status: i < 5 ? "released" as LessonStatus : "locked" as LessonStatus
+        }))
       ],
       classes: [
         { id: "1", name: "Turma Alpha", moduleIds: [1, 2, 3, 4, 5], studentIds: ["3"] },
