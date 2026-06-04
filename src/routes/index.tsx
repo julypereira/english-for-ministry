@@ -3,6 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { BookOpen, Globe, Users, GraduationCap, Star, Languages, MessageCircle, ArrowRight, ShieldCheck, Zap, Signpost } from 'lucide-react';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { useAuthStore } from "@/lib/auth-store";
+import { useUsersStore } from "@/lib/users-store";
 import { useLanguageStore } from "@/lib/language-store";
 import { LogOut } from 'lucide-react';
 
@@ -177,12 +178,18 @@ function Index() {
                     <span className="hidden sm:inline">{lang === 'pt' ? 'Português' : 'English'}</span>
                     <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
                   </button>
-                  <Link 
-                    to="/login"
+                  <button 
+                    onClick={() => {
+                      const studentUser = useUsersStore.getState().users.find(u => u.profile === "Aluno") || useUsersStore.getState().users[0];
+                      if (studentUser) {
+                        useAuthStore.getState().login(studentUser);
+                        window.location.href = "/aulas";
+                      }
+                    }}
                     className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     {t.nav.join}
-                  </Link>
+                  </button>
                 </div>
               )}
             </div>

@@ -52,7 +52,7 @@ function AdminUsersComponent() {
 
   useEffect(() => {
     if (!currentUser || currentUser.profile !== "Administrador") {
-      navigate({ to: "/login" });
+      navigate({ to: "/" });
     }
   }, [currentUser, navigate]);
 
@@ -235,7 +235,7 @@ function AdminUsersComponent() {
 
   const handleLogout = () => {
     logout();
-    navigate({ to: "/login" });
+    navigate({ to: "/" });
   };
 
 
