@@ -50,7 +50,7 @@ interface SchoolStore {
   lockModule: (id: number) => void;
   releaseLesson: (id: string) => void;
   lockLesson: (id: string) => void;
-  completeLesson: (studentId: string, lessonId: string, score: number) => void;
+  completeLesson: (studentId: string, lessonId: string, score: number) => Promise<void>;
   updateLessonProgress: (studentId: string, lessonId: string, currentSlide: number, totalSlides: number) => Promise<void>;
   addLesson: (lesson: Lesson) => void;
   updateLesson: (lesson: Lesson) => void;
@@ -179,26 +179,28 @@ Ouça o professor soletrar 3 palavras e escreva-as:
       lockLesson: (id) => set((state) => ({
         lessons: state.lessons.map(l => l.id === id ? { ...l, status: "locked" } : l)
       })),
-      completeLesson: (studentId, lessonId, score) => set((state) => {
+      completeLesson: async (studentId, lessonId, score) => {
         try {
-          const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
-          if (existing) {
+          set((state) => {
+            const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
+            if (existing) {
+              return {
+                progress: state.progress.map(p => 
+                  (p.studentId === studentId && p.lessonId === lessonId) 
+                    ? { ...p, completed: true, score: 100 } 
+                    : p
+                )
+              };
+            }
             return {
-              progress: state.progress.map(p => 
-                (p.studentId === studentId && p.lessonId === lessonId) 
-                  ? { ...p, completed: true, score: 100 } 
-                  : p
-              )
+              progress: [...state.progress, { studentId, lessonId, completed: true, score: 100 }]
             };
-          }
-          return {
-            progress: [...state.progress, { studentId, lessonId, completed: true, score: 100 }]
-          };
+          });
         } catch (err) {
-          console.error("Erro ao completar aula:", err);
-          return state;
+          const { handleError } = await import("./error-handler");
+          handleError(err, { store: "SchoolStore", action: "completeLesson" });
         }
-      }),
+      },
       updateLessonProgress: async (studentId, lessonId, currentSlide, totalSlides) => {
         try {
           set((state) => {
