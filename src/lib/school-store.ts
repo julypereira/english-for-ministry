@@ -51,7 +51,7 @@ interface SchoolStore {
   releaseLesson: (id: string) => void;
   lockLesson: (id: string) => void;
   completeLesson: (studentId: string, lessonId: string, score: number) => void;
-  updateLessonProgress: (studentId: string, lessonId: string, currentSlide: number, totalSlides: number) => void;
+  updateLessonProgress: (studentId: string, lessonId: string, currentSlide: number, totalSlides: number) => Promise<void>;
   addLesson: (lesson: Lesson) => void;
   updateLesson: (lesson: Lesson) => void;
   deleteLesson: (id: string) => void;
@@ -199,43 +199,44 @@ Ouça o professor soletrar 3 palavras e escreva-as:
           return state;
         }
       }),
-      updateLessonProgress: (studentId, lessonId, currentSlide, totalSlides) => set((state) => {
+      updateLessonProgress: async (studentId, lessonId, currentSlide, totalSlides) => {
         try {
-          // Mantemos a atualização de progresso mas o "Concluir" agora fixa em 100%
-          const score = Math.round((currentSlide / totalSlides) * 100);
-          const completed = currentSlide >= totalSlides;
-          
-          const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
-          if (existing) {
+          set((state) => {
+            const score = Math.round((currentSlide / totalSlides) * 100);
+            const completed = currentSlide >= totalSlides;
+            
+            const existing = state.progress.find(p => p.studentId === studentId && p.lessonId === lessonId);
+            if (existing) {
+              return {
+                progress: state.progress.map(p => 
+                  (p.studentId === studentId && p.lessonId === lessonId) 
+                    ? { 
+                        ...p, 
+                        completed: p.completed || completed, 
+                        score: completed ? 100 : Math.max(p.score, score),
+                        lastSlide: Math.max(p.lastSlide || 0, currentSlide),
+                        totalSlides: totalSlides
+                      } 
+                    : p
+                )
+              };
+            }
             return {
-              progress: state.progress.map(p => 
-                (p.studentId === studentId && p.lessonId === lessonId) 
-                  ? { 
-                      ...p, 
-                      completed: p.completed || completed, 
-                      score: completed ? 100 : Math.max(p.score, score),
-                      lastSlide: Math.max(p.lastSlide || 0, currentSlide),
-                      totalSlides: totalSlides
-                    } 
-                  : p
-              )
+              progress: [...state.progress, { 
+                studentId, 
+                lessonId, 
+                completed, 
+                score: completed ? 100 : score, 
+                lastSlide: currentSlide, 
+                totalSlides 
+              }]
             };
-          }
-          return {
-            progress: [...state.progress, { 
-              studentId, 
-              lessonId, 
-              completed, 
-              score: completed ? 100 : score, 
-              lastSlide: currentSlide, 
-              totalSlides 
-            }]
-          };
+          });
         } catch (err) {
-          console.error("Erro ao atualizar progresso da aula:", err);
-          return state;
+          const { handleError } = await import("./error-handler");
+          handleError(err, { store: "SchoolStore", action: "updateLessonProgress" });
         }
-      }),
+      },
       addLesson: (lesson) => set((state) => {
         try {
           return { lessons: [...state.lessons, lesson] };
