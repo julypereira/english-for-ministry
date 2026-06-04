@@ -26,6 +26,7 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       login: (user) => {
         try {
+          console.log("Logging in user:", user.email);
           set({ user, isAuthenticated: true });
         } catch (err) {
           console.error("Erro ao realizar login no store:", err);

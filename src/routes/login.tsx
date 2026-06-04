@@ -31,7 +31,11 @@ function LoginComponent() {
     e.preventDefault();
     setError("");
 
-    const user = users.find(u => (u.email === username || u.name === username) && u.password === password);
+    const user = users.find(u => {
+      const matchUsername = u.email === username || u.name === username;
+      const matchPassword = u.password === password;
+      return matchUsername && matchPassword;
+    });
 
     if (user) {
       login(user);
