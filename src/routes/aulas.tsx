@@ -80,6 +80,70 @@ function AulasComponent() {
       </nav>
 
       <main className="flex-1 container mx-auto py-12 px-6">
+        {/* Banner de Evolução */}
+        <div className="relative mb-12 rounded-[2.5rem] overflow-hidden bg-gradient-to-r from-primary to-orange-400 p-8 md:p-12 shadow-2xl shadow-primary/20">
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none mb-4">
+                {lang === 'pt' ? 'Sua Jornada de' : 'Your Journey to'} <br />
+                <span className="text-black/30">{lang === 'pt' ? 'Aprendizado' : 'Learning'}</span>
+              </h2>
+              <p className="text-white/80 font-bold text-sm uppercase tracking-widest mb-8">
+                {lang === 'pt' ? 'Continue de onde você parou' : 'Continue where you left off'}
+              </p>
+              <button 
+                onClick={() => {
+                  // Redireciona para o primeiro módulo acessível ou o último acessado
+                  const firstAccessibleModule = modules.find(m => hasAccess(m.id));
+                  if (firstAccessibleModule) {
+                    navigate({ to: "/modulo/$moduleId", params: { moduleId: firstAccessibleModule.id.toString() } });
+                  }
+                }}
+                className="bg-black text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-xl"
+              >
+                {lang === 'pt' ? 'Continuar Jornada' : 'Continue Journey'}
+              </button>
+            </div>
+            
+            <div className="relative w-48 h-48 flex items-center justify-center">
+              <svg className="w-full h-full transform -rotate-90">
+                <circle
+                  cx="96"
+                  cy="96"
+                  r="80"
+                  stroke="rgba(0,0,0,0.1)"
+                  strokeWidth="16"
+                  fill="transparent"
+                />
+                <circle
+                  cx="96"
+                  cy="96"
+                  r="80"
+                  stroke="white"
+                  strokeWidth="16"
+                  fill="transparent"
+                  strokeDasharray={2 * Math.PI * 80}
+                  strokeDashoffset={2 * Math.PI * 80 * (1 - (progress.filter(p => p.studentId === user.id && p.completed).length / Math.max(lessons.length, 1)))}
+                  strokeLinecap="round"
+                  className="transition-all duration-1000 ease-out"
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-4xl font-black text-white leading-none">
+                  {Math.round((progress.filter(p => p.studentId === user.id && p.completed).length / Math.max(lessons.length, 1)) * 100)}%
+                </span>
+                <span className="text-[8px] font-black text-white/60 uppercase tracking-widest mt-1">
+                  {lang === 'pt' ? 'Evolução' : 'Evolution'}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full -ml-24 -mb-24 blur-2xl" />
+        </div>
+
         <header className="mb-12">
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] p-4 rounded-xl flex items-center justify-between gap-3 mb-6 animate-in fade-in zoom-in duration-300">
