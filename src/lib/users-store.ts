@@ -13,15 +13,15 @@ export const useUsersStore = create<UsersState>()(
   persist(
     (set) => ({
       users: [
-        { id: "1", name: "Administrador", email: "adm@adm.com", password: "123", profile: "Administrador", createdAt: "2024-03-20" },
-        { id: "3", name: "Aluno Teste", email: "aluno@aluno.com", password: "123", profile: "Aluno", createdAt: "2026-06-03" },
+        { id: "1", name: "Administrador", email: "adm@adm.com", password: "Ch@nge0987", profile: "Administrador", createdAt: "2024-03-20" },
+        { id: "3", name: "Aluno Teste", email: "aluno@aluno.com", password: "Ch@nge1234", profile: "Aluno", createdAt: "2026-06-03" },
       ],
       addUser: (user) => set((state) => ({ users: [...state.users, user] })),
       updateUser: (user) => set((state) => ({ users: state.users.map((u) => (u.id === user.id ? user : u)) })),
       deleteUser: (id) => set((state) => ({ users: state.users.filter((u) => u.id !== id) })),
     }),
     {
-      name: 'users-storage-v2',
+      name: 'users-storage-v3',
     }
   )
 );
