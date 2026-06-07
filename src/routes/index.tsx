@@ -210,7 +210,7 @@ function Index() {
                         <span className="text-[10px] font-black text-primary group-hover/card:text-white">{i + 1}</span>
                       </div>
                       <div className="text-[10px] font-black text-white uppercase tracking-wider mb-1 line-clamp-1">{level.name}</div>
-                      <div className="text-[8px] font-bold text-primary tracking-[0.1em] uppercase opacity-80">{level.lessons}</div>
+                      
                       
                       {i < t.levels.length - 1 && (
                         <div className="hidden lg:block absolute top-8 -right-4 w-8 h-[1px] bg-gradient-to-r from-primary/50 to-transparent z-0"></div>

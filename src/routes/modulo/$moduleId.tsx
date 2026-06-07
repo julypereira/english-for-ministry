@@ -104,7 +104,7 @@ function ModuloComponent() {
         <div className="p-6 border-b border-white/5 flex items-center justify-between">
           <div>
             <h2 className="text-xs font-black uppercase tracking-widest text-primary">Conteúdo do Curso</h2>
-            <p className="text-[10px] text-slate-500 font-bold uppercase mt-1">{allLessons.length} Aulas Disponíveis</p>
+            
           </div>
           <button 
             onClick={() => setSidebarOpen(false)}
