@@ -28,6 +28,18 @@ function LoginComponent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { user: authenticatedUser } = useAuthStore();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (authenticatedUser) {
+      if (authenticatedUser.profile === "Administrador") {
+        navigate({ to: "/admin/users" });
+      } else {
+        navigate({ to: "/aulas" });
+      }
+    }
+  }, [authenticatedUser, navigate]);
 
   // Debug: log current users in store (only for development)
   useEffect(() => {
