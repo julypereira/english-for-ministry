@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "English For Ministry | Amigo Intimo Church" },
+      { title: "English For Ministry" },
       { name: "description", content: "English For Ministry - Amigo Intimo Church Learning Portal" },
       { name: "author", content: "Amigo Intimo Church" },
       { property: "og:title", content: "English For Ministry | Amigo Intimo Church" },
