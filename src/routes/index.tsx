@@ -162,7 +162,7 @@ function Index() {
                   <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
                 </button>
                 <Link 
-                  to={user ? (user.profile === "Administrador" ? "/admin/users" : "/aulas") : "/login"}
+                  to="/login"
                   className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
                 >
                   {t.nav.join}
