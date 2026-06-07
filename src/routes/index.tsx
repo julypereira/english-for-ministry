@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
 const translations = {
   pt: {
     nav: {
-      join: "Entrar",
+      join: "Área Restrita",
     },
     hero: {
       tag: "Capacitando Líderes do Reino",
@@ -52,7 +52,7 @@ const translations = {
   },
   en: {
     nav: {
-      join: "Login",
+      join: "Restricted Area",
     },
     hero: {
       tag: "Empowering Kingdom Leaders",
@@ -161,21 +161,12 @@ function Index() {
                   <span className="hidden sm:inline">{lang === 'pt' ? 'Português' : 'English'}</span>
                   <span className="sm:hidden">{lang === 'pt' ? 'PT' : 'EN'}</span>
                 </button>
-                {user ? (
-                  <Link 
-                    to={user.profile === "Administrador" ? "/admin/users" : "/aulas"}
-                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
-                  >
-                    {lang === 'pt' ? 'ÁREA RESTRITA' : 'RESTRICTED AREA'}
-                  </Link>
-                ) : (
-                  <Link 
-                    to="/login"
-                    className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
-                  >
-                    {lang === 'pt' ? 'ENTRAR' : 'LOGIN'}
-                  </Link>
-                )}
+                <Link 
+                  to={user ? (user.profile === "Administrador" ? "/admin/users" : "/aulas") : "/login"}
+                  className="text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-xl bg-primary text-white hover:bg-orange-500 transition-all shadow-lg shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary flex items-center justify-center"
+                >
+                  {t.nav.join}
+                </Link>
               </div>
             </div>
           </div>
