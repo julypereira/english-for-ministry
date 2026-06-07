@@ -16,7 +16,7 @@ type Language = 'pt' | 'en';
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "English for Ministry | Amigo Intimo Church" },
+      { title: "English For Ministry" },
       { name: "description", content: "A plataforma oficial de idiomas da Amigo Intimo Church para missões e ministérios." },
     ],
   }),
