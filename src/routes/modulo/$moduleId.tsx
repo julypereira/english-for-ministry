@@ -115,10 +115,9 @@ function ModuloComponent() {
         </div>
 
         <div className="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-1">
-          {modules.map(mod => {
+          {(() => {
+            const mod = module;
             const modLessons = allLessons.filter(l => l.moduleId === mod.id);
-            if (modLessons.length === 0) return null;
-            
             const modTitle = lang === 'en' ? (
               mod.id === 1 ? "BEGINNER" :
               mod.id === 2 ? "BASIC" :
@@ -128,7 +127,7 @@ function ModuloComponent() {
             ) : mod.title;
 
             return (
-              <div key={mod.id} className="mb-4">
+              <div className="mb-4">
                 <div className="px-4 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 flex items-center gap-2 text-left">
                   <LayoutGrid size={10} />
                   {modTitle}
@@ -163,7 +162,8 @@ function ModuloComponent() {
                 })}
               </div>
             );
-          })}
+          })()}
+
         </div>
       </aside>
 
