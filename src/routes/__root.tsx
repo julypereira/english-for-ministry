@@ -88,8 +88,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "English For Ministry" },
       { name: "twitter:description", content: "English For Ministry - Amigo Intimo Church Learning Portal" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/io6aIaLfvSO9jlpJIthsEkTMEA22/social-images/social-1781309494282-logo_-_fundo_preto.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/io6aIaLfvSO9jlpJIthsEkTMEA22/social-images/social-1781309494282-logo_-_fundo_preto.webp" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/96c5f66d-9891-411c-8d4b-56957dfe25fd/id-preview-83be9bb8--835fb8bf-ea84-4ac8-b44d-062df42c1216.lovable.app-1781321634785.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/96c5f66d-9891-411c-8d4b-56957dfe25fd/id-preview-83be9bb8--835fb8bf-ea84-4ac8-b44d-062df42c1216.lovable.app-1781321634785.png" },
     ],
     links: [
       {
