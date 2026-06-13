@@ -82,10 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "English For Ministry" },
       { name: "description", content: "English For Ministry - Amigo Intimo Church Learning Portal" },
       { name: "author", content: "Amigo Intimo Church" },
-      { property: "og:title", content: "English For Ministry | Amigo Intimo Church" },
+      { property: "og:title", content: "English For Ministry" },
       { property: "og:description", content: "English For Ministry - Amigo Intimo Church Learning Portal" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "English For Ministry" },
+      { name: "twitter:description", content: "English For Ministry - Amigo Intimo Church Learning Portal" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/io6aIaLfvSO9jlpJIthsEkTMEA22/social-images/social-1781309494282-logo_-_fundo_preto.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/io6aIaLfvSO9jlpJIthsEkTMEA22/social-images/social-1781309494282-logo_-_fundo_preto.webp" },
     ],
     links: [
       {
